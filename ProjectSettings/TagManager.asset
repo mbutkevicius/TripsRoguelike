@@ -44,3 +44,6 @@ TagManager:
   - name: Player
     uniqueID: 3190075289
     locked: 0
+  - name: Collision
+    uniqueID: 3027869511
+    locked: 0
