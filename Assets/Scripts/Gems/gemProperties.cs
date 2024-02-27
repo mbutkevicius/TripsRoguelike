@@ -7,7 +7,7 @@ public class gemProperties : MonoBehaviour
 {
     public LogicManager LogicManager;
 
-    public float GemLifespan = 3;
+    public float GemLifespan;
 
     public int ScoreToAdd;
 
@@ -29,7 +29,7 @@ public class gemProperties : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Detect if gem collides with player
-        if (collision.gameObject.layer == 0)
+        if (collision.gameObject.layer == 5)
         {
             LogicManager.Score += ScoreToAdd;
             Destroy(gameObject);
