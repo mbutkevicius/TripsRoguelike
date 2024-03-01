@@ -6,10 +6,11 @@ using UnityEngine;
 public class gemProperties : MonoBehaviour
 {
     public LogicManager LogicManager;
-
     public float GemLifespan;
-
     public int ScoreToAdd;
+    public GameObject GemSparkle;
+    public SpriteRenderer gemSprite;
+    public float gemFlickerLength = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class gemProperties : MonoBehaviour
         if (collision.gameObject.layer == 5)
         {
             LogicManager.Score += ScoreToAdd;
+            Instantiate(GemSparkle, new Vector3 (transform.position.x, transform.position.y), Quaternion.identity);
             Destroy(gameObject);
         }
     }
@@ -40,7 +42,20 @@ public class gemProperties : MonoBehaviour
 
     IEnumerator DespawnGem()
     {
+        StartCoroutine(SpriteFlicker());
         yield return new WaitForSeconds(GemLifespan);
         Destroy (gameObject);
+    }
+
+    IEnumerator SpriteFlicker()
+    {
+        yield return new WaitForSeconds(GemLifespan - 2);
+        while (true)
+        {
+            gemSprite.enabled = false;
+            yield return new WaitForSeconds(gemFlickerLength);
+            gemSprite.enabled = true;
+            yield return new WaitForSeconds(gemFlickerLength);
+        }
     }
 }
