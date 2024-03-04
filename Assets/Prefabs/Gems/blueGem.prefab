@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 141156051
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ab69eefefbbb73446b92059dbc56a689, type: 3}
@@ -100,8 +100,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LogicManager: {fileID: 0}
-  GemLifespan: 8
+  GemLifespan: 7.5
   ScoreToAdd: 300
+  GemSparkle: {fileID: 3695253677973468418, guid: a45c9f421930fe34bb6fa525defce075, type: 3}
+  gemSprite: {fileID: 1670831585867505539}
+  hundredScoreEffect: {fileID: 6090031687843362083, guid: cbcdf83d875a66345a7aed58b152bffb, type: 3}
+  threeHundredScoreEffect: {fileID: 8883649697977874266, guid: 9c60c3bd94b6f6e47a362ee938254d2c, type: 3}
+  thousandScoreEffect: {fileID: 4355495334792737151, guid: a98ce02303bc6c74b9f07d5149903ee8, type: 3}
+  shatterEffect: {fileID: 3043067919055294142, guid: af9b4fa089c79d3488d5502e91a60742, type: 3}
+  spawnEffect: {fileID: 3267786191348378026, guid: a1c0806e963738542a9fb1e98cd217b2, type: 3}
 --- !u!61 &8915368934945117149
 BoxCollider2D:
   m_ObjectHideFlags: 0
