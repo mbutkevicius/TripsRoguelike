@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class YellowGhostTrackingPointScript : MonoBehaviour
 {
-
     public PlayerScript playerScript;
-
 
     // Start is called before the first frame update
     void Start()

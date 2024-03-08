@@ -296,7 +296,7 @@ public class PlayerScript : MonoBehaviour
     #region Jump
 
     public float JumpBufferTime = 0.2f;
-    public bool JumpBufferActive;
+    private bool JumpBufferActive;
     // allows the player to jump
     private void Jump()
     {

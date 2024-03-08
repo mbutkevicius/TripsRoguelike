@@ -8,56 +8,74 @@ using static UnityEngine.GraphicsBuffer;
 
 public class YellowGhostScript : MonoBehaviour
 {
+    private SpriteRenderer sprite;
+    private Rigidbody2D rb;
+    private Transform trackingPoint;
+
+    [Header("Script References")]
     public PlayerScript playerScript;
     public YellowGhostTrackingPointScript trackingPointScript;
 
-    public Transform trackingPoint;
+    [Header("Movement Values")]
+    [SerializeField] private float movementSpeed = 5f;
+    [Tooltip("Controls how fast the inital dash boost is")]
+    [SerializeField] private float boostMultiplier;
+    private float originalBoostMultiplier;
+    [Tooltip("Controls how fast the initial dash boost goes away. Higher value makes it disappear faster")]
+    [SerializeField] private float boostDeceleration;
+    
 
-    public float movementSpeed = 5f;
-
-    public SpriteRenderer sprite;
-
-    public bool isChasingPlayer = false;
-
-    public Rigidbody2D rb;
+    private bool isChasingPlayer = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Get the Rigidbody2D and sprite
+        rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+
+        // Set the tracking point transform
         trackingPoint = trackingPointScript.transform;
 
+        // Begin the AI cycle
         StartCoroutine(State1A());
 
+        // This is used to I can set the boost multiplier back to whatever value it was initally instead of manually entering it to reset it.
         originalBoostMultiplier = boostMultiplier;
     }
 
-    public float boostMultiplier;
-    private float originalBoostMultiplier;
+    IEnumerator State1A() // Idle state
+    {
+        yield return new WaitForSeconds(2);
+        StartCoroutine(State1B());
+    }
 
-    public float boostDeceleration;
+    IEnumerator State1B() // State when Yellow Ghost is charging up the dash
+    {
+        yield return new WaitForSeconds(1);
+        // Tells the tracking point to locate the player's current position
+        trackingPointScript.TrackPlayer();
 
-    // Update is called once per frame
+        // This transitions to State2, in the update function below
+        isChasingPlayer = true;
+    }
+
     void Update()
     {
+        // This 'if' block contains State2 behavior. It's not super visually clean having this here but update function seemed the best for accomplishing this.
         if (isChasingPlayer == true)
         {
+            // Used to determine how close the Ghost needs to be to the tracking point for the cycle to move on
             float distanceThreshold = 0.2f;
+
             if (Vector3.Distance(transform.position, trackingPoint.position) > distanceThreshold)
             {
-                // Calculate direction towards the player
-                // Vector3 direction = (trackingPoint.position - transform.position).normalized;
-
-                // Move towards the player at a constant speed
-                //transform.position += direction * movementSpeed * Time.deltaTime;
-
-                SpeedBurst();
-
-                // Calculate direction to the target
+                // Calculate direction to the tracking point
                 Vector3 direction = (trackingPoint.position - transform.position).normalized;
-
-                // Apply velocity based on direction and moveSpeed
+                // Apply the velocity
                 rb.velocity = direction * movementSpeed * boostMultiplier;
 
+                // This gives the Yellow Ghost a boost at the start of the dash, so it feels snappier. These values can be tweaked
                 if (boostMultiplier > 1)
                 {
                     boostMultiplier -= Time.deltaTime * boostDeceleration;
@@ -67,11 +85,11 @@ public class YellowGhostScript : MonoBehaviour
                     boostMultiplier = 1;
                 }
             }
-            else
+            else // Happens when Yellow Ghost meets the distance threshold
             {
-                isChasingPlayer = false; // Stop chasing the player
-                boostMultiplier = originalBoostMultiplier;
-                StartCoroutine(State1A());
+                isChasingPlayer = false; // Disables this whole 'if' block
+                boostMultiplier = originalBoostMultiplier; // Reset the boost multiplier
+                StartCoroutine(State1A()); // Reset the cycle
             }
         }
 
@@ -82,40 +100,18 @@ public class YellowGhostScript : MonoBehaviour
         Flip(velocityX);
     }
 
-    void SpeedBurst()
-    {
-        // Calculate direction to the target
-        Vector3 direction = (trackingPoint.position - transform.position).normalized;
-
-        // Apply velocity based on direction and moveSpeed
-        rb.velocity = direction * (movementSpeed * 2);
-    }
-
-    IEnumerator State1A()
-    {
-        yield return new WaitForSeconds(2);
-        StartCoroutine(State1B());
-    }
-
-    IEnumerator State1B()
-    {
-        yield return new WaitForSeconds(1);
-        trackingPointScript.TrackPlayer();
-        isChasingPlayer = true;
-    }
-
-    // Method to flip the sprite based on movement direction
+    // Flip the sprite based on movement direction
     private void Flip(float velocityX)
     {
-        // If moving right (positive velocity), flip sprite to face right
+        // If moving right, flip sprite to face right
         if (velocityX > 0)
         {
-            sprite.flipX = false; // Not flipped
+            sprite.flipX = false;
         }
-        // If moving left (negative velocity), flip sprite to face left
+        // If moving left, flip sprite to face left
         else if (velocityX < 0)
         {
-            sprite.flipX = true; // Flipped
+            sprite.flipX = true;
         }
     }
 }
