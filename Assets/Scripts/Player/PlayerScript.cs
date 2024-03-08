@@ -30,7 +30,11 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("Not implemented. Not sure we will need this value because I don't think you can go past maxGravity")]
     [SerializeField] private float maxNegYAxisSpeed;
     [HideInInspector] private float xMoveInput;
+    private float previousXMoveInput;
     [HideInInspector] private float yMoveInput;
+    private int framesSinceDirectionChange;
+    private float slideDirection;
+    private bool isSliding = false;
 
     [Header("Jump")]
     [Tooltip("Determines the jumping power a player has. The higher the number, the higher the player jumps")]
@@ -166,17 +170,43 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    // allows the player to move across the xaxis
-    public void HorizontalMovement(float velocityY)
+    IEnumerator DelayedAction()
     {
+        // Perform actions that should happen immediately
+
+        Debug.Log("Coroutine started");
+        yield return new WaitForSeconds(10.0f);
+        Debug.Log("Coroutine finished");
+        // Resume the rest of the function after the delay
+        // Perform actions that should happen after the delay
+    }
+
+    public void HorizontalMovement(float velocityY){
         // get input
         GetXAxis();
 
+        //Debug.Log(xMoveInput);
         // if player is moving
         if (xMoveInput != 0)
         {
-            // accelerate towards max running speed
-            playerSpeed = Mathf.MoveTowards(playerSpeed, maxRunningSpeed, groundAcceleration);
+            // If the current move input and the previous move input have different signs (changing direction)
+            if (xMoveInput != previousXMoveInput)
+            {
+                // Reset the frame counter
+                framesSinceDirectionChange = 0;
+                // Apply a brief slowdown before changing direction
+                playerSpeed = Mathf.MoveTowards(playerSpeed, minRunningSpeed, groundDeceleration * 7f);
+                rb.AddForce(new Vector2(previousXMoveInput * 4, velocityY));
+                
+                StartCoroutine(DelayedAction());
+                //Debug.Log("Player should be stopping");
+
+                //rb.AddForce(new Vector2(previousXMoveInput * playerSpeed, velocityY));
+            }
+            else {
+                    // accelerate towards max running speed
+                    playerSpeed = Mathf.MoveTowards(playerSpeed, maxRunningSpeed, groundAcceleration);
+            }
         }
         // no input (player isn't moving)
         else
@@ -185,8 +215,78 @@ public class PlayerScript : MonoBehaviour
             playerSpeed = Mathf.MoveTowards(playerSpeed, minRunningSpeed, groundDeceleration);
         }
 
+        previousXMoveInput = xMoveInput;
+
         // // multiply direction by player speed and preserve vertical velocity
         rb.velocity = new Vector2(xMoveInput * playerSpeed, velocityY);
+    }
+
+
+    // allows the player to move across the xaxis
+    public void HorizontalTestMovement(float velocityY){
+        // get input
+        GetXAxis();
+
+        //Debug.Log(xMoveInput);
+        // if player is moving
+        if (xMoveInput != 0)
+        {
+            // If the current move input and the previous move input have different signs (changing direction)
+            if (xMoveInput != previousXMoveInput || isSliding)
+            {
+                isSliding = true;
+                slideDirection = previousXMoveInput;
+
+                Debug.Log(framesSinceDirectionChange);
+                if (framesSinceDirectionChange > 2){
+                    playerSpeed = Mathf.MoveTowards(playerSpeed, maxRunningSpeed, groundAcceleration);
+                    isSliding = false;
+                }
+                else {
+                    playerSpeed = 4;
+                }
+
+                framesSinceDirectionChange++;
+                // Apply a brief slowdown before changing direction
+                //playerSpeed = Mathf.MoveTowards(playerSpeed, minRunningSpeed, groundDeceleration * 7f);
+
+                //rb.AddForce(new Vector2(previousXMoveInput * playerSpeed, velocityY));
+            }
+            /*
+            else {
+                framesSinceDirectionChange++;
+                Debug.Log(framesSinceDirectionChange);
+                if (framesSinceDirectionChange > 2){
+                    // accelerate towards max running speed
+                    playerSpeed = Mathf.MoveTowards(playerSpeed, maxRunningSpeed, groundAcceleration);
+                }
+                
+                else {
+                    playerSpeed = 4;
+                    //playerSpeed = Mathf.MoveTowards(playerSpeed, minRunningSpeed, groundDeceleration);
+                    //rb.velocity = new Vector2(xMoveInput * playerSpeed, velocityY);
+                }
+            }
+            */
+        }
+        // no input (player isn't moving)
+        else
+        {
+            // Decelerate towards minRunningSpeed
+            playerSpeed = Mathf.MoveTowards(playerSpeed, minRunningSpeed, groundDeceleration);
+        }
+
+        previousXMoveInput = xMoveInput;
+
+        if (!isSliding){
+            // Reset the frame counter
+            framesSinceDirectionChange = 0;
+            // multiply direction by player speed and preserve vertical velocity
+            rb.velocity = new Vector2(xMoveInput * playerSpeed, velocityY);
+        }
+        else {
+            rb.velocity = new Vector2(slideDirection * playerSpeed, velocityY);
+        }
     }
 
     #endregion
