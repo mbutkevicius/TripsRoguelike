@@ -81,8 +81,10 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] public float ceilingDetection = 0.45f;
     [Tooltip("Need to create a ground layer and set all ground objects to ground layer. This layer determines whether player is able to jump")]
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsThinPlatform;
     private Collider2D coll;
     private RaycastHit2D groundHit;
+    private RaycastHit2D thinPlatformHit;
     private RaycastHit2D ceilingHit;
 
     // Start is called before the first frame update
@@ -322,8 +324,10 @@ public class PlayerScript : MonoBehaviour
         // only detects ground layer. Extra height gives player small wiggle room for touching the ground
         groundHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, extraHeight, whatIsGround);
 
+        thinPlatformHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, extraHeight, whatIsThinPlatform);
+
         // if boxcast touches ground
-        if (groundHit.collider != null)
+        if (groundHit.collider != null || thinPlatformHit.collider != null)
         {
             return true; 
         }

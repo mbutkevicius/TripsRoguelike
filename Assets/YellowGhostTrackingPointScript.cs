@@ -11,7 +11,7 @@ public class YellowGhostTrackingPointScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(TrackPlayer());
+
     }
 
     // Update is called once per frame
@@ -20,12 +20,8 @@ public class YellowGhostTrackingPointScript : MonoBehaviour
         
     }
 
-    IEnumerator TrackPlayer()
+    public void TrackPlayer()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(2);
-            transform.position = playerScript.transform.position;
-        }
+        transform.position = playerScript.transform.position;
     }
 }
