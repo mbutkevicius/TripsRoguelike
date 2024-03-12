@@ -14,6 +14,7 @@ public class YellowGhostScript : MonoBehaviour
 
     [Header("Script References")]
     public PlayerScript playerScript;
+    public TimerControllerScript timerController;
     public YellowGhostTrackingPointScript trackingPointScript;
 
     [Header("Movement Values")]
@@ -23,9 +24,11 @@ public class YellowGhostScript : MonoBehaviour
     private float originalBoostMultiplier;
     [Tooltip("Controls how fast the initial dash boost goes away. Higher value makes it disappear faster")]
     [SerializeField] private float boostDeceleration;
-    
+    [SerializeField] private float originalIdlingTime;
 
     private bool isChasingPlayer = false;
+
+    private float speedTimeMultiplier;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +49,7 @@ public class YellowGhostScript : MonoBehaviour
 
     IEnumerator State1A() // Idle state
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(originalIdlingTime);
         StartCoroutine(State1B());
     }
 
@@ -62,6 +65,8 @@ public class YellowGhostScript : MonoBehaviour
 
     void Update()
     {
+        speedTimeMultiplier = timerController.ghostTimeFraction;
+
         // This 'if' block contains State2 behavior. It's not super visually clean having this here but update function seemed the best for accomplishing this.
         if (isChasingPlayer == true)
         {
@@ -73,7 +78,7 @@ public class YellowGhostScript : MonoBehaviour
                 // Calculate direction to the tracking point
                 Vector3 direction = (trackingPoint.position - transform.position).normalized;
                 // Apply the velocity
-                rb.velocity = direction * movementSpeed * boostMultiplier;
+                rb.velocity = direction * (movementSpeed * speedTimeMultiplier) * boostMultiplier;
 
                 // This gives the Yellow Ghost a boost at the start of the dash, so it feels snappier. These values can be tweaked
                 if (boostMultiplier > 1)
