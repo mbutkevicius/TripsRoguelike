@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,29 +15,17 @@ public class PlayerScript : MonoBehaviour
 
     [Header("Movement")]
     [Tooltip("Max speed player can accelerate to")]
-    [SerializeField] private float maxRunningSpeed = 7;
-    [Tooltip("Minimum speed player can move. Player will start at this speed when running")]
-    [SerializeField] private float minRunningSpeed = 2;
-    [Tooltip("Default starting speed. Tbh probably don't need this as it should be the same as minRunningSpeed. For now keep them the same value")]
-    [SerializeField] private float playerSpeed = 7;
-    [Tooltip("This value determines the speed that a player will accelerate to max speed. The higher the value the faster they reach max speed")]
-    [SerializeField] private float groundAcceleration = 0.05f;
-    [Tooltip("This value determines the speed that a player will decelerate to max speed. The higher the value the faster they reach minimum speed")]
-    [SerializeField] private float groundDeceleration = 0.05f;
-    [Tooltip("Not implemented. Not sure we will need these values because I don't see a way you can exceed maxRunningSpeed")]
-    [SerializeField] private float maxPosXAxisSpeed;
-    [Tooltip("Not implemented. Not sure we will need these values because I don't see a way you can exceed maxRunningSpeed")]
-    [SerializeField] private float maxNegXAxisSpeed;
-    [Tooltip("Not implemented. Not sure we will need this value")]
-    [SerializeField] private float maxPosYAxisSpeed;
-    [Tooltip("Not implemented. Not sure we will need this value because I don't think you can go past maxGravity")]
-    [SerializeField] private float maxNegYAxisSpeed;
+    [SerializeField] private float maxRunningSpeed = 8f;
+    [Tooltip("Value for how quickly player moves into a run. It should be higher than your maxRunningSpeed")]
+    [SerializeField] private float playerAcceleration = 7f;
+    [Tooltip("This value determines how quickly the player is able to turn around on the ground. The higher the value the faster they can turn")]
+    [SerializeField] private float groundedLinearDrag = 5.35f;
+    [Tooltip("This value determines how quickly the player is able to turn around in the air. This value does affect how gravity will feel. Will need to tweak gravity settings as this value is tweaked. I recommend keeping it relatively close to 0")]
+    [SerializeField] private float aerialLinearDrag = 2f;
+    private Vector2 direction;
+    private bool facingRight = true;
     [HideInInspector] private float xMoveInput;
-    private float previousXMoveInput;
     [HideInInspector] private float yMoveInput;
-    private int framesSinceDirectionChange;
-    private float slideDirection;
-    private bool isSliding = false;
 
     [Header("Jump")]
     [Tooltip("Determines the jumping power a player has. The higher the number, the higher the player jumps")]
@@ -55,6 +46,7 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("The force that pushes you down when you hit a ceiling (make a positive number")]
     [SerializeField] private float playerCeilingBumpForce = 12.5f;
     private float CoyoteTimeCounter;
+    public bool bouncing = false;
     //private float peakJumpCounter;
     //private float maxPeakJumpTime = 0.2f;
 
@@ -69,7 +61,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float maxGravity = 8;
     [Tooltip("How quickly you will reach max gravity")]
     [SerializeField] private float descGravityAceleration = 0.3f;
-    [Tooltip("Allows player to reach peak jump gravity change. This value is a little strange. I don't quite understand why it reacts the way it does. I would keep it between 3-7")]
+    [Tooltip("Allows player to reach peak jump gravity change.")]
     [SerializeField] private float ApproachingPeakJump = 5;
     //[SerializeField] private float ascPeakJump = 0.1f;
     [Tooltip("The lower the number, the longer it will take to trigger descending gravity")]
@@ -111,8 +103,13 @@ public class PlayerScript : MonoBehaviour
 
         // track coyote time and reset gravity is player isgrounded
         // NOTE: I'm not sure it's efficient to check grounded status every frame. However, I don't know a better way right now
+        // also don't know if this should be in FixedUpdate
         if (IsGrounded())
         {
+            // reset descGravity to default
+            descGravity = 6f;
+
+            // track coyoteTimer
             if (CoyoteTimeCounter != maxCoyoteTime)
             {
                 CoyoteTimeCounter = maxCoyoteTime;
@@ -136,8 +133,54 @@ public class PlayerScript : MonoBehaviour
     // physics updates containedhere
     void FixedUpdate()
     {
-        // move across the x axis
-        HorizontalMovement(rb.velocity.y);
+        GroundedHorizontalMovement(rb.velocity.y);
+        if (IsGrounded()){
+            //groundedLinearDrag = 5.35f;
+            // move across the x axis
+        }
+        else {
+            //groundedLinearDrag = 2;
+        }
+
+
+        ModifyPhysics();
+    }
+
+    // Method to modify linearDrag variables when player is moving
+    public void ModifyPhysics(){
+        bool changingDirection = false;
+
+        // check if player player is changing directions
+        if ((xMoveInput > 0 && rb.velocity.x < 0) || (xMoveInput < 0 && rb.velocity.x > 0)){
+            changingDirection = true;
+        }
+
+        // check if player is grounded and not moving a directional input. Think of 0.4 as the deadzone to stop getting run input
+        if(((Mathf.Abs(xMoveInput) < 0.4f) || changingDirection) && IsGrounded()){
+            rb.drag = groundedLinearDrag;
+        }
+        // check if player is in the air and not moving a directional input. Think of 0.4 as the deadzone to stop getting run input
+        else if(((Mathf.Abs(xMoveInput) < 0.4f) || changingDirection) && !IsGrounded()){
+            rb.drag = aerialLinearDrag;
+            /*
+            if (xMoveInput == 0){
+                playerAcceleration = Mathf.MoveTowards(playerAcceleration, 0, 0.2f);
+                rb.velocity = new Vector2(playerAcceleration * xMoveInput, rb.velocity.y);
+            }
+            else{
+                playerAcceleration = 14f;
+            }
+            */
+        }
+        // rest drag to 0 is grounded
+        else if (IsGrounded()){
+            rb.drag = 0;
+        }
+        // must be in the air in this situation. This case is here for the chance that I make it so that the linearDrag can change values in the air like the ground
+        else {
+            //aerialLinearDrag = 0;
+            rb.drag = aerialLinearDrag;
+        }
     }
 
     #region Movement
@@ -154,141 +197,29 @@ public class PlayerScript : MonoBehaviour
         yMoveInput = UserInput.instance.moveInput.y;
     }
 
-    // Not sure I need to even do this. Will test more on it later
-    void CapMaxHorizontalMovement()
-    {
-        if (rb.velocity.x > maxNegXAxisSpeed)
-        {
-            playerSpeed = maxRunningSpeed;
-        }
-    }
-
-    // Not sure I need to even do this. Will test more on it later
-    void CapMaxVerticalMovement()
-    {
-        if (rb.velocity.y > maxNegYAxisSpeed)
-        {
-            playerSpeed = maxJumpForce;
-        }
-    }
-
-    IEnumerator DelayedAction()
-    {
-        // Perform actions that should happen immediately
-
-        Debug.Log("Coroutine started");
-        yield return new WaitForSeconds(10.0f);
-        Debug.Log("Coroutine finished");
-        // Resume the rest of the function after the delay
-        // Perform actions that should happen after the delay
-    }
-
-    public void HorizontalMovement(float velocityY){
-        // get input
+    public void GroundedHorizontalMovement(float velocityY){
         GetXAxis();
 
-        //Debug.Log(xMoveInput);
-        // if player is moving
-        if (xMoveInput != 0)
-        {
-            // If the current move input and the previous move input have different signs (changing direction)
-            if (xMoveInput != previousXMoveInput)
-            {
-                // Reset the frame counter
-                framesSinceDirectionChange = 0;
-                // Apply a brief slowdown before changing direction
-                playerSpeed = Mathf.MoveTowards(playerSpeed, minRunningSpeed, groundDeceleration * 7f);
-                rb.AddForce(new Vector2(previousXMoveInput * 4, velocityY));
-                
-                StartCoroutine(DelayedAction());
-                //Debug.Log("Player should be stopping");
+        // apply force to move vector. Note: this is AddForce not creating a new vector. This allows the slide to happen during turns and stops
+        rb.AddForce(Vector2.right * xMoveInput * playerAcceleration);
 
-                //rb.AddForce(new Vector2(previousXMoveInput * playerSpeed, velocityY));
-            }
-            else {
-                    // accelerate towards max running speed
-                    playerSpeed = Mathf.MoveTowards(playerSpeed, maxRunningSpeed, groundAcceleration);
-            }
+        // check if player is changing direction
+        if ((xMoveInput > 0 && !facingRight) || (xMoveInput < 0 && facingRight)){
+            Flip();
         }
-        // no input (player isn't moving)
-        else
-        {
-            // Decelerate towards minRunningSpeed
-            playerSpeed = Mathf.MoveTowards(playerSpeed, minRunningSpeed, groundDeceleration);
+        // cap players velocity if they are moving past max speed
+        if (Mathf.Abs(rb.velocity.x) > maxRunningSpeed){
+            rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxRunningSpeed, rb.velocity.y);
         }
 
-        previousXMoveInput = xMoveInput;
-
-        // // multiply direction by player speed and preserve vertical velocity
-        rb.velocity = new Vector2(xMoveInput * playerSpeed, velocityY);
     }
 
-
-    // allows the player to move across the xaxis
-    public void HorizontalTestMovement(float velocityY){
-        // get input
-        GetXAxis();
-
-        //Debug.Log(xMoveInput);
-        // if player is moving
-        if (xMoveInput != 0)
-        {
-            // If the current move input and the previous move input have different signs (changing direction)
-            if (xMoveInput != previousXMoveInput || isSliding)
-            {
-                isSliding = true;
-                slideDirection = previousXMoveInput;
-
-                Debug.Log(framesSinceDirectionChange);
-                if (framesSinceDirectionChange > 2){
-                    playerSpeed = Mathf.MoveTowards(playerSpeed, maxRunningSpeed, groundAcceleration);
-                    isSliding = false;
-                }
-                else {
-                    playerSpeed = 4;
-                }
-
-                framesSinceDirectionChange++;
-                // Apply a brief slowdown before changing direction
-                //playerSpeed = Mathf.MoveTowards(playerSpeed, minRunningSpeed, groundDeceleration * 7f);
-
-                //rb.AddForce(new Vector2(previousXMoveInput * playerSpeed, velocityY));
-            }
-            /*
-            else {
-                framesSinceDirectionChange++;
-                Debug.Log(framesSinceDirectionChange);
-                if (framesSinceDirectionChange > 2){
-                    // accelerate towards max running speed
-                    playerSpeed = Mathf.MoveTowards(playerSpeed, maxRunningSpeed, groundAcceleration);
-                }
-                
-                else {
-                    playerSpeed = 4;
-                    //playerSpeed = Mathf.MoveTowards(playerSpeed, minRunningSpeed, groundDeceleration);
-                    //rb.velocity = new Vector2(xMoveInput * playerSpeed, velocityY);
-                }
-            }
-            */
-        }
-        // no input (player isn't moving)
-        else
-        {
-            // Decelerate towards minRunningSpeed
-            playerSpeed = Mathf.MoveTowards(playerSpeed, minRunningSpeed, groundDeceleration);
-        }
-
-        previousXMoveInput = xMoveInput;
-
-        if (!isSliding){
-            // Reset the frame counter
-            framesSinceDirectionChange = 0;
-            // multiply direction by player speed and preserve vertical velocity
-            rb.velocity = new Vector2(xMoveInput * playerSpeed, velocityY);
-        }
-        else {
-            rb.velocity = new Vector2(slideDirection * playerSpeed, velocityY);
-        }
+    // Method to flip the player sprite
+    public void Flip(){
+        facingRight = !facingRight;
+        // flip sprite along the y axis
+        // note on syntax cause I forget sometimes (if facingRight 0 else 100)
+        transform.rotation = Quaternion.Euler(0, facingRight ? 0 : 180, 0);
     }
 
     #endregion
@@ -297,19 +228,20 @@ public class PlayerScript : MonoBehaviour
 
     public float JumpBufferTime = 0.2f;
     private bool JumpBufferActive;
+
+    // this detects if we have pressed the jump input (doesn't count holding presses) and will activate a coroutine that makes a short jump buffer window
+
+    // coroutine that activates the jump buffer for a period we define
+    IEnumerator JumpBuffer()
+    {
+        JumpBufferActive = true;
+        yield return new WaitForSeconds(JumpBufferTime);
+        JumpBufferActive = false;
+    }
+
     // allows the player to jump
     private void Jump()
     {
-        // this detects if we have pressed the jump input (doesn't count holding presses) and will activate a coroutine that makes a short jump buffer window
-
-        // coroutine that activates the jump buffer for a period we define
-        IEnumerator JumpBuffer()
-        {
-            JumpBufferActive = true;
-            yield return new WaitForSeconds(JumpBufferTime);
-            JumpBufferActive = false;
-        }
-
         // check if button was just pushed
         if (UserInput.instance.controls.Jumping.Jump.WasPressedThisFrame() || JumpBufferActive == true) // now jump will take 'JumpBufferActive' as a valid alternative
         {
@@ -345,7 +277,6 @@ public class PlayerScript : MonoBehaviour
             {
                 isJumping = false;
             }
-
         }
         else
         {
@@ -363,9 +294,21 @@ public class PlayerScript : MonoBehaviour
         DrawGroundCheck();
     }
 
+    IEnumerator BounceBuffer()
+    {
+        JumpBufferActive = true;
+        yield return new WaitForSeconds(JumpBufferTime);
+        JumpBufferActive = false;
+    }
+
     // determines player jump height when bouncing from jump pad
     public void BounceJump()
     {
+        bouncing = true;
+
+        // resets gravity when player touches bouncepad
+        rb.gravityScale = ascGravity;
+
         // disable jump while using the bouncepad. 
         // NOTE: If multiple jumps allowed, will need to check if more jumping is allowed
         if (isJumping)
@@ -373,11 +316,9 @@ public class PlayerScript : MonoBehaviour
             isJumping = false;
         }
 
-        // resets gravity when player touches bouncepad
-        rb.gravityScale = ascGravity;
-
         // preserve horizontal velocity and uses bounceJump to make player go extra high
         rb.velocity = new Vector2(rb.velocity.x, playerJumpForce * bounceJump);
+        bouncing = false;
     }
 
     #endregion
@@ -421,6 +362,9 @@ public class PlayerScript : MonoBehaviour
     // renamed to ground/ceiling check
     private bool IsGrounded()
     {
+        // Note: This is probably what I am going to change to
+        //groundHit = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, whatIsGround);
+
         // only detects ground layer. Extra height gives player small wiggle room for touching the ground
         groundHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, extraHeight, whatIsGround);
 
