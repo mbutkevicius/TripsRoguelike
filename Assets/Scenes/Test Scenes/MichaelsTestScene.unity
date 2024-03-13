@@ -1097,7 +1097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3091570932345733587, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
       propertyPath: maxRunningSpeed
-      value: 8.8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3091570932345733587, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
       propertyPath: aerialLinearDrag
@@ -1108,8 +1108,12 @@ PrefabInstance:
       value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 3091570932345733587, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
+      propertyPath: groundedLinearDrag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3091570932345733587, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
       propertyPath: playerAcceleration
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7778502801689768655, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
       propertyPath: m_SortingOrder
@@ -5325,6 +5329,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e30a8ebae5d1f2e4892594b8c6f6cbc9, type: 3}
+--- !u!1001 &2222983865724052301
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4398230830530631940, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398230830530631940, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398230830530631940, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398230830530631940, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398230830530631940, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398230830530631940, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398230830530631940, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398230830530631940, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398230830530631940, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398230830530631940, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432638378615223231, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
+      propertyPath: m_Name
+      value: PurpleGhost
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
 --- !u!1001 &5097973016704536005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5333,6 +5394,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4300939885629348126, guid: cbe8a3c05504b0a4cb2fa7626afcdd68, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300939885629348126, guid: cbe8a3c05504b0a4cb2fa7626afcdd68, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300939885629348126, guid: cbe8a3c05504b0a4cb2fa7626afcdd68, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6322561436223686816, guid: cbe8a3c05504b0a4cb2fa7626afcdd68, type: 3}
       propertyPath: target
       value: 
@@ -5458,3 +5531,4 @@ SceneRoots:
   - {fileID: 1556692831974432816}
   - {fileID: 1602949636}
   - {fileID: 5097973016704536005}
+  - {fileID: 2222983865724052301}
