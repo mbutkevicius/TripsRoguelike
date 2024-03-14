@@ -3,6 +3,9 @@ using UnityEngine.UIElements;
 
 public class SineWaveMovement : MonoBehaviour
 {
+    public GameDataManager gameDataManager;
+
+    [Header("Movement")]
     [SerializeField] private float amplitude = 10f; // Amplitude of the sine wave
     [SerializeField] private float frequency = 0.25f; // Frequency of the sine wave
     [SerializeField] private float moveSpeed = 3.5f; // Movement speed
@@ -12,14 +15,19 @@ public class SineWaveMovement : MonoBehaviour
     private bool inverted = false;
     private bool facingRight = true;
 
+    private float speedTimeMultiplier;
+
     void Start()
     {
+        // Find the game data manager
+        gameDataManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameDataManager>();
+
         initialPosition = transform.position;
     }
 
     void Update()
     {
-
+        speedTimeMultiplier = gameDataManager.ghostTimeFraction;
     }
 
     private void FixedUpdate(){
@@ -36,12 +44,12 @@ public class SineWaveMovement : MonoBehaviour
 
         // movement for going left
         if (inverted){
-            pos.x -= moveSpeed * Time.deltaTime;
+            pos.x -= moveSpeed * Time.deltaTime * speedTimeMultiplier;
             pos.y = initialPosition.y + sin;
         }
         // movement for going right
         else{
-            pos.x += moveSpeed * Time.deltaTime;
+            pos.x += moveSpeed * Time.deltaTime * speedTimeMultiplier;
             pos.y = initialPosition.y - sin;
         }
 

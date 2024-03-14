@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1202596309497580004}
   - component: {fileID: 1146645784516682389}
   - component: {fileID: 2207958424741218276}
-  - component: {fileID: 8323177703596351146}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -135,22 +134,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8323177703596351146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993365998991961280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81584edd20bc1c54f8700320af595aad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerText: {fileID: 2207958424741218276}
-  ghostTimeFraction: 0
-  maxGhostTime: 30
-  ghostSpeedMultiplier: 2
 --- !u!1 &5257524000087794889
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +184,7 @@ GameObject:
   - component: {fileID: 354961836311310951}
   m_Layer: 5
   m_Name: ScreenCanvas
-  m_TagString: Untagged
+  m_TagString: HUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +247,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 649, y: 360}
+  m_ReferenceResolution: {x: 640, y: 360}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8860131587330293863
+--- !u!1 &2718400526325621361
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5839777122618013316}
-  - component: {fileID: 1670831585867505539}
-  - component: {fileID: 1896624998042682107}
-  - component: {fileID: 8915368934945117149}
-  - component: {fileID: -3865258833123243700}
+  - component: {fileID: 3193305421707057572}
+  - component: {fileID: 5794746182259109541}
+  - component: {fileID: 5103571632264824475}
+  - component: {fileID: 3063278153216642264}
+  - component: {fileID: -5595881517172306593}
   m_Layer: 0
-  m_Name: blueGem
+  m_Name: GreenGem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5839777122618013316
+--- !u!4 &3193305421707057572
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8860131587330293863}
+  m_GameObject: {fileID: 2718400526325621361}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1670831585867505539
+--- !u!212 &5794746182259109541
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8860131587330293863}
+  m_GameObject: {fileID: 2718400526325621361}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,10 +73,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 141156051
-  m_SortingLayer: 0
+  m_SortingLayerID: 748214717
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ab69eefefbbb73446b92059dbc56a689, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6fc6d8ab4f327a64c972c066097d69cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,35 +87,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1896624998042682107
+--- !u!114 &5103571632264824475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8860131587330293863}
+  m_GameObject: {fileID: 2718400526325621361}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a25169c0cbf78448a6adb168a5e564b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LogicManager: {fileID: 0}
-  GemLifespan: 7.5
-  ScoreToAdd: 300
+  gameDataManager: {fileID: 0}
+  GemLifespan: 10
+  ScoreToAdd: 100
   GemSparkle: {fileID: 3695253677973468418, guid: a45c9f421930fe34bb6fa525defce075, type: 3}
-  gemSprite: {fileID: 1670831585867505539}
+  gemSprite: {fileID: 5794746182259109541}
   hundredScoreEffect: {fileID: 6090031687843362083, guid: cbcdf83d875a66345a7aed58b152bffb, type: 3}
   threeHundredScoreEffect: {fileID: 8883649697977874266, guid: 9c60c3bd94b6f6e47a362ee938254d2c, type: 3}
   thousandScoreEffect: {fileID: 4355495334792737151, guid: a98ce02303bc6c74b9f07d5149903ee8, type: 3}
   shatterEffect: {fileID: 3043067919055294142, guid: af9b4fa089c79d3488d5502e91a60742, type: 3}
   spawnEffect: {fileID: 3267786191348378026, guid: a1c0806e963738542a9fb1e98cd217b2, type: 3}
---- !u!61 &8915368934945117149
+--- !u!61 &3063278153216642264
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8860131587330293863}
+  m_GameObject: {fileID: 2718400526325621361}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -152,24 +152,24 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
---- !u!50 &-3865258833123243700
+--- !u!50 &-5595881517172306593
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8860131587330293863}
+  m_GameObject: {fileID: 2718400526325621361}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

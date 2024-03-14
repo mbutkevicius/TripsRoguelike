@@ -14,7 +14,7 @@ public class YellowGhostScript : MonoBehaviour
 
     [Header("Script References")]
     public PlayerScript playerScript;
-    public TimerControllerScript timerController;
+    public GameDataManager gameDataManager;
     public YellowGhostTrackingPointScript trackingPointScript;
 
     [Header("Movement Values")]
@@ -33,6 +33,11 @@ public class YellowGhostScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Find the player script
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        // Find the game data manager
+        gameDataManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameDataManager>();
+
         // Get the Rigidbody2D and sprite
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -65,7 +70,7 @@ public class YellowGhostScript : MonoBehaviour
 
     void Update()
     {
-        speedTimeMultiplier = timerController.ghostTimeFraction;
+        speedTimeMultiplier = gameDataManager.ghostTimeFraction;
 
         // This 'if' block contains State2 behavior. It's not super visually clean having this here but update function seemed the best for accomplishing this.
         if (isChasingPlayer == true)

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2931065048878577026}
   - component: {fileID: 2864047331866181202}
   m_Layer: 0
-  m_Name: yellowGhostTrackingPoint
+  m_Name: YellowGhostTrackingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

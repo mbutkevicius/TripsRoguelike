@@ -7,9 +7,6 @@ using static gemSpawner;
 
 public class gemSpawner : MonoBehaviour
 {
-    public GameObject gem;
-
-
     // Class to store info about spawner locations and occupancy status
     [System.Serializable]
     public class gemSpawners

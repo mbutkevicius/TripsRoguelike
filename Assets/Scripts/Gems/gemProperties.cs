@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class gemProperties : MonoBehaviour
+public class GemProperties : MonoBehaviour
 {
-    public LogicManager LogicManager;
+    public GameDataManager gameDataManager;
+
     public float GemLifespan;
     public int ScoreToAdd;
     public GameObject GemSparkle;
@@ -24,7 +25,8 @@ public class gemProperties : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LogicManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
+        // Find the game data manager
+        gameDataManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameDataManager>();
 
         Instantiate(spawnEffect, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
 
@@ -55,7 +57,7 @@ public class gemProperties : MonoBehaviour
             {
                 Instantiate(thousandScoreEffect, new Vector3(transform.position.x, transform.position.y + scoreEffectHeightOffset), Quaternion.identity);
             }
-            LogicManager.Score += ScoreToAdd;
+            gameDataManager.Score += ScoreToAdd;
             Instantiate(GemSparkle, new Vector3 (transform.position.x, transform.position.y), Quaternion.identity);
             Destroy(gameObject);
         }
