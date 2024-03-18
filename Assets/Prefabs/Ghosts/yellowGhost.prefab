@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5329796802132674050}
   - component: {fileID: 787105541638054230}
   - component: {fileID: 8771955033671105704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: YellowGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}

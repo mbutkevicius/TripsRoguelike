@@ -43,7 +43,7 @@ public class GemProperties : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Detect if gem collides with player
-        if (collision.gameObject.layer == 5)
+        if (collision.gameObject.layer == 8)
         {
             if (ScoreToAdd == 100)
             {
