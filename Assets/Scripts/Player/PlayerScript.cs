@@ -8,6 +8,7 @@ using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
+using UnityEngine.XR;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float playerCeilingBumpForce = 12.5f;
     private float CoyoteTimeCounter;
     public bool bouncing = false;
+    public float JumpBufferTime = 0.2f;
+    private bool JumpBufferActive;
     //private float peakJumpCounter;
     //private float maxPeakJumpTime = 0.2f;
 
@@ -83,6 +86,9 @@ public class PlayerScript : MonoBehaviour
     private RaycastHit2D thinPlatformHit;
     private RaycastHit2D ceilingHit;
 
+    [Header("Animation")]
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -93,10 +99,14 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // get the horizontal direction player is moving (right key=1 leftkey=-1 no key=0)
         GetXAxis();
         // get the vertical direction player is moving (right key=1 leftkey=-1 no key=0)
         GetYAxis();
+
+        animator.SetFloat("horizontal", Mathf.Abs(Input.GetAxis("Horizontal")));
+        animator.SetFloat("vertical", Mathf.Abs(yMoveInput));
 
         // check if player presses jump
         Jump();
@@ -156,7 +166,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         // check if player is grounded and not moving a directional input. Think of 0.4 as the deadzone to stop getting run input
-        if(((Mathf.Abs(xMoveInput) < 0.4f) || changingDirection) && IsGrounded()){
+        if(((Mathf.Abs(xMoveInput) < 0.4f) || changingDirection) && IsGrounded() && !bouncing){
             rb.drag = groundedLinearDrag;
         }
         // check if player is in the air and not moving a directional input. Think of 0.4 as the deadzone to stop getting run input
@@ -225,10 +235,6 @@ public class PlayerScript : MonoBehaviour
     #endregion
 
     #region Jump
-
-    public float JumpBufferTime = 0.2f;
-    private bool JumpBufferActive;
-
     // this detects if we have pressed the jump input (doesn't count holding presses) and will activate a coroutine that makes a short jump buffer window
 
     // coroutine that activates the jump buffer for a period we define
@@ -245,7 +251,16 @@ public class PlayerScript : MonoBehaviour
         // check if button was just pushed
         if (UserInput.instance.controls.Jumping.Jump.WasPressedThisFrame() || JumpBufferActive == true) // now jump will take 'JumpBufferActive' as a valid alternative
         {
+            Debug.Log(bouncing);
             StartCoroutine(JumpBuffer());
+            if (bouncing){
+                StopCoroutine(JumpBuffer());
+                JumpBufferActive = false;
+                jumpTimeCounter = 0;
+                isJumping = false;
+                CoyoteTimeCounter = 0;
+            }
+
             // check if player can jump
             if (IsGrounded() || CoyoteTimeCounter > 0f && isJumping == false) // added 'isJumping == false' here to ensure we can't jump while we're jumping 
             {
@@ -287,6 +302,7 @@ public class PlayerScript : MonoBehaviour
         if (UserInput.instance.controls.Jumping.Jump.WasReleasedThisFrame())
         {
             isJumping = false;
+            bouncing = false;
             CoyoteTimeCounter = 0f;
         }
 
@@ -305,20 +321,20 @@ public class PlayerScript : MonoBehaviour
     public void BounceJump()
     {
         bouncing = true;
+        //jumpTimeCounter = 0;
 
         // resets gravity when player touches bouncepad
         rb.gravityScale = ascGravity;
 
         // disable jump while using the bouncepad. 
         // NOTE: If multiple jumps allowed, will need to check if more jumping is allowed
-        if (isJumping)
-        {
-            isJumping = false;
-        }
+        //isJumping = false;
 
+        //rb.velocity = new Vector2(rb.velocity.x, 0);
         // preserve horizontal velocity and uses bounceJump to make player go extra high
+        //rb.AddForce(Vector2.up * bounceJump, ForceMode2D.Impulse);
         rb.velocity = new Vector2(rb.velocity.x, playerJumpForce * bounceJump);
-        bouncing = false;
+        //bouncing = false;
     }
 
     #endregion
@@ -380,10 +396,22 @@ public class PlayerScript : MonoBehaviour
             return false;
         }
     }
+
+    // Boxcast to tell if player is touching ceiling
     private bool TouchingCeiling()
     {
+        // Get the original size of the player's bounding box
+        Vector2 originalSize = coll.bounds.size;
+
+        // Reduce the size of the player's bounding box along the x-axis to 95% of the original size
+        // this is to prevent bug where player would rarely register a ceiling hit when they touch wall
+        float newSizeX = originalSize.x * 0.95f;
+
+        // Create a new size vector with the adjusted x-component and the original y-component
+        Vector2 newSize = new Vector2(newSizeX, originalSize.y);
+
         // Check for collision with the ceiling
-        ceilingHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.up, ceilingDetection, whatIsGround);
+        ceilingHit = Physics2D.BoxCast(coll.bounds.center, newSize, 0f, Vector2.up, ceilingDetection, whatIsGround);
 
         // If boxcast touches ceiling
         if (ceilingHit.collider != null)

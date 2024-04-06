@@ -19650,6 +19650,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GemSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5363040728686552137, guid: df573946579a54348bec66151e591986, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

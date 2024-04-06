@@ -21,8 +21,9 @@ public class BouncePadScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Touched sprite");
-            Debug.Log(other.GetComponent<PlayerScript>().isJumping);
-            //other.GetComponent<PlayerScript>().bouncing = true;
+            //Debug.Log(other.GetComponent<PlayerScript>().isJumping);
+            other.GetComponent<PlayerScript>().isJumping = false;
+            other.GetComponent<PlayerScript>().bouncing = true;
             other.GetComponent<PlayerScript>().BounceJump();
         }
     }
@@ -33,6 +34,7 @@ public class BouncePadScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Physics2D.IgnoreCollision(other, platformCollider, false);
+            other.GetComponent<PlayerScript>().bouncing = false;
         }
     }
 }
