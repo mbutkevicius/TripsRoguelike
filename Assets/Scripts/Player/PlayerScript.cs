@@ -25,8 +25,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float aerialLinearDrag = 2f;
     private Vector2 direction;
     private bool facingRight = true;
-    [HideInInspector] private float xMoveInput;
-    [HideInInspector] private float yMoveInput;
+    [HideInInspector] public float xMoveInput;
+    [HideInInspector] public float yMoveInput;
 
     [Header("Jump")]
     [Tooltip("Determines the jumping power a player has. The higher the number, the higher the player jumps")]
@@ -85,6 +85,8 @@ public class PlayerScript : MonoBehaviour
     private RaycastHit2D groundHit;
     private RaycastHit2D thinPlatformHit;
     private RaycastHit2D ceilingHit;
+
+    private Collider2D thinPlatformColl;
 
     [Header("Animation")]
     public Animator animator;
@@ -376,7 +378,7 @@ public class PlayerScript : MonoBehaviour
 
     #region Ground/Ceiling Check
     // renamed to ground/ceiling check
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         // Note: This is probably what I am going to change to
         //groundHit = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, whatIsGround);
@@ -387,9 +389,15 @@ public class PlayerScript : MonoBehaviour
         thinPlatformHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, extraHeight, whatIsThinPlatform);
 
         // if boxcast touches ground
-        if (groundHit.collider != null || thinPlatformHit.collider != null)
+        if (groundHit.collider != null)
         {
             return true; 
+        }
+        // check if player is on platform
+        // to be especially careful, could add another && platform.bounds.max.y check to see if player is on top
+        else if (thinPlatformHit.collider != null && rb.velocity.y == 0){
+            Debug.Log("Platform");
+            return true;
         }
         else
         {

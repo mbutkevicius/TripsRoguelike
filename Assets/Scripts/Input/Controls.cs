@@ -298,6 +298,45 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Drop"",
+            ""id"": ""381e73b2-2509-4941-8b34-8cbc7721db14"",
+            ""actions"": [
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""46598229-bc0a-4634-b5b6-e4bab6e5a5e3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b152bd75-efc9-4959-88ae-8346d8ffc985"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6eb1be3-8fc3-46bb-b20c-2891cf40aaae"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -319,6 +358,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Jumping
         m_Jumping = asset.FindActionMap("Jumping", throwIfNotFound: true);
         m_Jumping_Jump = m_Jumping.FindAction("Jump", throwIfNotFound: true);
+        // Drop
+        m_Drop = asset.FindActionMap("Drop", throwIfNotFound: true);
+        m_Drop_Drop = m_Drop.FindAction("Drop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -468,6 +510,52 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public JumpingActions @Jumping => new JumpingActions(this);
+
+    // Drop
+    private readonly InputActionMap m_Drop;
+    private List<IDropActions> m_DropActionsCallbackInterfaces = new List<IDropActions>();
+    private readonly InputAction m_Drop_Drop;
+    public struct DropActions
+    {
+        private @Controls m_Wrapper;
+        public DropActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Drop => m_Wrapper.m_Drop_Drop;
+        public InputActionMap Get() { return m_Wrapper.m_Drop; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DropActions set) { return set.Get(); }
+        public void AddCallbacks(IDropActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DropActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DropActionsCallbackInterfaces.Add(instance);
+            @Drop.started += instance.OnDrop;
+            @Drop.performed += instance.OnDrop;
+            @Drop.canceled += instance.OnDrop;
+        }
+
+        private void UnregisterCallbacks(IDropActions instance)
+        {
+            @Drop.started -= instance.OnDrop;
+            @Drop.performed -= instance.OnDrop;
+            @Drop.canceled -= instance.OnDrop;
+        }
+
+        public void RemoveCallbacks(IDropActions instance)
+        {
+            if (m_Wrapper.m_DropActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDropActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DropActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DropActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DropActions @Drop => new DropActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -493,5 +581,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IJumpingActions
     {
         void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IDropActions
+    {
+        void OnDrop(InputAction.CallbackContext context);
     }
 }
