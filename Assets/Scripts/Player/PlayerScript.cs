@@ -110,6 +110,13 @@ public class PlayerScript : MonoBehaviour
         animator.SetFloat("horizontal", Mathf.Abs(Input.GetAxis("Horizontal")));
         animator.SetFloat("vertical", Mathf.Abs(yMoveInput));
 
+        if (FindObjectOfType<GameOverScript>().gameIsOver){
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.drag = 0f;
+            Time.timeScale = 1f;
+        }
+
         // check if player presses jump
         Jump();
 
@@ -448,6 +455,22 @@ public class PlayerScript : MonoBehaviour
         Debug.DrawRay(coll.bounds.center + new Vector3(coll.bounds.extents.x, 0), Vector2.down * (coll.bounds.extents.y + extraHeight), rayColor);
         Debug.DrawRay(coll.bounds.center - new Vector3(coll.bounds.extents.x, 0), Vector2.down * (coll.bounds.extents.y + extraHeight), rayColor);
         Debug.DrawRay(coll.bounds.center - new Vector3(coll.bounds.extents.x, coll.bounds.extents.y + extraHeight), Vector2.right * (coll.bounds.extents.y * 2), rayColor);
+    }
+
+    #endregion
+
+    #region Animation
+
+    public void DisableAnimation(){
+        if (animator != null){
+            animator.enabled = false;
+        }
+    }
+
+    public void EnableAnimation(){
+        if (animator != null){
+            animator.enabled = true;
+        }
     }
 
     #endregion

@@ -25,11 +25,15 @@ public class UserInput : MonoBehaviour
         controls.Movement.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
     }
 
-    private void OnEnable(){
-        controls.Enable();
+    public void OnEnable(){
+        // ensure controls isn't null
+        controls?.Enable();
     }
 
-    private void OnDisable(){
-        controls.Disable();
+    public void OnDisable(){
+        // ensure controls isn't null
+        // was getting an error on restart because controls became null
+        controls?.Disable();
+        
     }
 }

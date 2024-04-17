@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -37,10 +38,14 @@ public class PlayerHealth : MonoBehaviour
 
     // method for when player is hurt
     public void TakeDamage(int amount){
+        // remove health from player
         health -= amount;
+
+        // check if GameOver condition is met
         if (health <= 0){
-            // gameover
+            FindObjectOfType<GameOverScript>().GameOver();
         }
+
         // indicate player invulnerability time
         StartCoroutine(InvincibilityFrames());
 
