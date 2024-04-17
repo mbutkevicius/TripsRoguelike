@@ -1,0 +1,92 @@
+using System.Collections;
+using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine;
+
+public class PlayerHealth : MonoBehaviour
+{
+    // update hearts 
+    public GameObject heartPrefab;
+    public Transform heartsParent;
+    
+    // player sprite for blink
+    private SpriteRenderer playerSprite;
+    
+    public int health;
+    public int maxHealth = 3;
+    public bool isInvincible = false;
+    private float invincibilityDuration = 2f;
+    private float blinkInterval = 0.1f;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // set sprite renderer and health
+        playerSprite = GetComponent<SpriteRenderer>();
+        health = maxHealth;
+
+        // display health
+        UpdateHearts();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    // method for when player is hurt
+    public void TakeDamage(int amount){
+        health -= amount;
+        if (health <= 0){
+            // gameover
+        }
+        // indicate player invulnerability time
+        StartCoroutine(InvincibilityFrames());
+
+        // update hp
+        UpdateHearts();
+    }
+
+    // Gives player invincibility time
+    private IEnumerator InvincibilityFrames(){
+        isInvincible = true;
+        // flash player sprite to indicate i frames
+        StartCoroutine(Blink());
+
+        // wait for specified time
+        yield return new WaitForSeconds(invincibilityDuration);
+
+        // disable Blink
+        StopCoroutine(Blink());
+        isInvincible = false;
+    }
+
+    // allows player sprite to quickly appear and disappear
+    private IEnumerator Blink(){
+        while (isInvincible){
+            // alternate displaying sprite 
+            playerSprite.enabled = !playerSprite.enabled;
+            // wait for duration before alternating sprite
+            yield return new WaitForSeconds(blinkInterval);
+        }
+
+        // Enable sprite if left off
+        playerSprite.enabled = true;
+    }   
+
+    // update hearts on UI for player to see
+    private void UpdateHearts(){
+        // Clear existing hearts
+        foreach (Transform child in heartsParent){
+            Destroy(child.gameObject);
+        }
+
+        // Instantiate hearts based on current health
+        for (int i = 0; i < health; i++){
+            GameObject newHeart = Instantiate(heartPrefab, heartsParent);
+            // Position each heart horizontally next to the previous one
+            newHeart.transform.localPosition = new Vector2(i * 20, 0);     // Adjust the x value to change spacing
+        }
+    } 
+}
