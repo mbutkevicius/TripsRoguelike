@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6532100052621189315}
   - component: {fileID: 6453516319300610026}
   - component: {fileID: 8260153895945960097}
+  - component: {fileID: 3305691974442273344}
   m_Layer: 9
   m_Name: PurpleGhost
   m_TagString: Untagged
@@ -147,3 +148,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.875, y: 1.25}
   m_EdgeRadius: 0
+--- !u!114 &3305691974442273344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432638378615223231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca8106196aadc01468585eeec68835db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpriteRenderer: {fileID: 0}
+  damage: 1

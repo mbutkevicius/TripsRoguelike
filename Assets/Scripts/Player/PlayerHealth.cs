@@ -16,8 +16,10 @@ public class PlayerHealth : MonoBehaviour
     public int health;
     public int maxHealth = 3;
     public bool isInvincible = false;
-    private float invincibilityDuration = 2f;
-    private float blinkInterval = 0.1f;
+
+    [Header("i-frames")]
+    [SerializeField] private float invincibilityDuration = 1.5f;
+    [SerializeField] private float blinkInterval = 0.075f;
 
     // Start is called before the first frame update
     void Start()

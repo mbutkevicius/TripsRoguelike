@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5329796802132674050}
   - component: {fileID: 787105541638054230}
   - component: {fileID: 8771955033671105704}
+  - component: {fileID: 85878241311339567}
   m_Layer: 9
   m_Name: yellowGhost
   m_TagString: Untagged
@@ -201,6 +202,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &85878241311339567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255111441839529596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca8106196aadc01468585eeec68835db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpriteRenderer: {fileID: 0}
+  damage: 1
 --- !u!1001 &5318522407790145977
 PrefabInstance:
   m_ObjectHideFlags: 0
