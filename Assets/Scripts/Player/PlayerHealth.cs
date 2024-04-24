@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     // update hearts 
     public GameObject heartPrefab;
     public Transform heartsParent;
+    public CameraShakeEffect cameraShakeEffect;
     
     // player sprite for blink
     private SpriteRenderer playerSprite;
@@ -42,6 +43,8 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount){
         // remove health from player
         health -= amount;
+        // shake camera
+        StartCoroutine(cameraShakeEffect.CameraShake());
 
         // check if GameOver condition is met
         if (health <= 0){
