@@ -69,6 +69,8 @@ public class PlayerScript : MonoBehaviour
     //[SerializeField] private float ascPeakJump = 0.1f;
     [Tooltip("The lower the number, the longer it will take to trigger descending gravity")]
     [SerializeField] private float descPeakJump = 0.1f;
+    [Tooltip("The lower the number, the longer it will take to trigger descending gravity")]
+    [SerializeField] private float gameOverGravity = 60f;
     private float previousVelocityY;
     //private bool isFalling = false;
     private bool isApproachingPeak = false;
@@ -96,75 +98,98 @@ public class PlayerScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+
+        xMoveInput = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(xMoveInput);
 
-        // get the horizontal direction player is moving (right key=1 leftkey=-1 no key=0)
-        GetXAxis();
-        // get the vertical direction player is moving (right key=1 leftkey=-1 no key=0)
-        GetYAxis();
+        if (FindObjectOfType<GameOverScript>().isGameOver == false){
+            // get the horizontal direction player is moving (right key=1 leftkey=-1 no key=0)
+            GetXAxis();
+            // get the vertical direction player is moving (right key=1 leftkey=-1 no key=0)
+            GetYAxis();
 
-        animator.SetFloat("horizontal", Mathf.Abs(Input.GetAxis("Horizontal")));
-        animator.SetFloat("vertical", Mathf.Abs(yMoveInput));
+            // set animator movement values
+            animator.SetFloat("horizontal", Mathf.Abs(Input.GetAxis("Horizontal")));
+            animator.SetFloat("vertical", Mathf.Abs(yMoveInput));
 
-        if (FindObjectOfType<GameOverScript>().gameIsOver){
+            // check if player presses jump
+            Jump();
+
+            // track coyote time and reset gravity is player isgrounded
+            // NOTE: I'm not sure it's efficient to check grounded status every frame. However, I don't know a better way right now
+            // also don't know if this should be in FixedUpdate
+            if (IsGrounded())
+            {
+                // reset descGravity to default
+                descGravity = 6f;
+
+                // track coyoteTimer
+                if (CoyoteTimeCounter != maxCoyoteTime)
+                {
+                    CoyoteTimeCounter = maxCoyoteTime;
+                }
+                // reset gravity
+                if (rb.gravityScale != ascGravity)
+                {
+                    rb.gravityScale = ascGravity;
+                }
+            }
+            // if airborn
+            else
+            {
+                // reduce coyote time
+                CoyoteTimeCounter -= Time.deltaTime;
+                // set airborn gravity
+                Gravity();
+            }
+        }
+        // if gameover is occuring, clear all player movement 
+        else{
+            // reset input
+            FindObjectOfType<UserInput>().ClearInput();
+            xMoveInput = 0;
+            // stop movement
             rb.velocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-            rb.drag = 0f;
-            Time.timeScale = 1f;
-        }
-
-        // check if player presses jump
-        Jump();
-
-        // track coyote time and reset gravity is player isgrounded
-        // NOTE: I'm not sure it's efficient to check grounded status every frame. However, I don't know a better way right now
-        // also don't know if this should be in FixedUpdate
-        if (IsGrounded())
-        {
-
-
-            // reset descGravity to default
-            descGravity = 6f;
-
-            // track coyoteTimer
-            if (CoyoteTimeCounter != maxCoyoteTime)
-            {
-                CoyoteTimeCounter = maxCoyoteTime;
-            }
-            // reset gravity
-            if (rb.gravityScale != ascGravity)
-            {
-                rb.gravityScale = ascGravity;
-            }
-        }
-        // if airborn
-        else
-        {
-            // reduce coyote time
-            CoyoteTimeCounter -= Time.deltaTime;
-            // set airborn gravity
-            Gravity();
+            rb.drag = 0;
+            // player would slowly fall through air without this value. I suspect something is happening with the drag 
+            // did not test because this is a working solution. 
+            rb.gravityScale = gameOverGravity;
         }
     }
 
-    // physics updates containedhere
+    // physics updates contained here
     void FixedUpdate()
     {
-        GroundedHorizontalMovement(rb.velocity.y);
-        if (IsGrounded()){
-            //groundedLinearDrag = 5.35f;
-            // move across the x axis
-        }
-        else {
-            //groundedLinearDrag = 2;
-        }
-
-
+        // check if game is still going on
+        if (FindObjectOfType<GameOverScript>().isGameOver == false){
+            GroundedHorizontalMovement(rb.velocity.y);
+            if (IsGrounded()){
+                //groundedLinearDrag = 5.35f;
+                // move across the x axis
+            }
+            else {
+                //groundedLinearDrag = 2;
+            }
+        
         ModifyPhysics();
+        }
+        // if gameover is occuring, clear all player movement 
+        else{
+            // reset input
+            FindObjectOfType<UserInput>().ClearInput();
+            xMoveInput = 0;
+            // stop movement
+            rb.velocity = Vector2.zero;
+            rb.drag = 0;
+            // player would slowly fall through air without this value. I suspect something is happening with the drag 
+            // did not test because this is a working solution. 
+            rb.gravityScale = gameOverGravity;
+        }
     }
 
     // Method to modify linearDrag variables when player is moving
@@ -239,7 +264,7 @@ public class PlayerScript : MonoBehaviour
     public void Flip(){
         facingRight = !facingRight;
         // flip sprite along the y axis
-        // note on syntax cause I forget sometimes (if facingRight 0 else 100)
+        // note on syntax cause I forget sometimes (if facingRight 0 else 180)
         transform.rotation = Quaternion.Euler(0, facingRight ? 0 : 180, 0);
     }
 
@@ -321,29 +346,17 @@ public class PlayerScript : MonoBehaviour
         DrawGroundCheck();
     }
 
-    IEnumerator BounceBuffer()
-    {
-        JumpBufferActive = true;
-        yield return new WaitForSeconds(JumpBufferTime);
-        JumpBufferActive = false;
-    }
-
     // determines player jump height when bouncing from jump pad
     public void BounceJump()
     {
         bouncing = true;
-        //jumpTimeCounter = 0;
 
-        // resets gravity when player touches bouncepad
         rb.gravityScale = ascGravity;
 
         // disable jump while using the bouncepad. 
         // NOTE: If multiple jumps allowed, will need to check if more jumping is allowed
         //isJumping = false;
 
-        //rb.velocity = new Vector2(rb.velocity.x, 0);
-        // preserve horizontal velocity and uses bounceJump to make player go extra high
-        //rb.AddForce(Vector2.up * bounceJump, ForceMode2D.Impulse);
         rb.velocity = new Vector2(rb.velocity.x, playerJumpForce * bounceJump);
         //bouncing = false;
     }
@@ -463,12 +476,14 @@ public class PlayerScript : MonoBehaviour
 
     #region Animation
 
+// disable animations
     public void DisableAnimation(){
         if (animator != null){
             animator.enabled = false;
         }
     }
 
+// enable animations
     public void EnableAnimation(){
         if (animator != null){
             animator.enabled = true;

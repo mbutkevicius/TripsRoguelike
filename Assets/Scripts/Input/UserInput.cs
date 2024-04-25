@@ -11,6 +11,7 @@ public class UserInput : MonoBehaviour
     [HideInInspector] public Vector2 moveInput;
 
     public void Awake() {
+        
         if (instance == null){
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -33,7 +34,11 @@ public class UserInput : MonoBehaviour
     public void OnDisable(){
         // ensure controls isn't null
         // was getting an error on restart because controls became null
-        controls?.Disable();
-        
+        controls?.Disable(); 
+    }
+
+    // Method to clear user input
+    public void ClearInput(){
+        moveInput = Vector2.zero;
     }
 }
