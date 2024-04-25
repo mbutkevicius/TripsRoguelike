@@ -10,7 +10,7 @@ using UnityEngine.AI;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : AnimatorManager
 {
     private Rigidbody2D rb;
 
@@ -92,10 +92,17 @@ public class PlayerScript : MonoBehaviour
 
     [Header("Animation")]
     public Animator animator;
+    // Important: this is used to determine the placement in the animator array in AnimatorManager.cs
+    // if multiple parts were used, you would add each component in numeric order you want them to appear 
+    // in the layers
+    private const int SPRITE = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        // initialize animation
+        Initialize(GetComponent<Animator>().layerCount, Animations.IDLE, GetComponent<Animator>(), DefaultAnimation);
+
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
 
@@ -105,13 +112,15 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(xMoveInput);
+        //Debug.Log(xMoveInput);
 
         if (FindObjectOfType<GameOverScript>().isGameOver == false){
             // get the horizontal direction player is moving (right key=1 leftkey=-1 no key=0)
             GetXAxis();
             // get the vertical direction player is moving (right key=1 leftkey=-1 no key=0)
             GetYAxis();
+
+            CheckMovementAnimation(SPRITE);
 
             // set animator movement values
             animator.SetFloat("horizontal", Mathf.Abs(Input.GetAxis("Horizontal")));
@@ -476,14 +485,54 @@ public class PlayerScript : MonoBehaviour
 
     #region Animation
 
-// disable animations
+    void DefaultAnimation(int layer){
+        CheckMovementAnimation(SPRITE);
+        // use this with multiple layers
+        /*
+        if (layer == UPPERBODY){
+            CheckTopAnimation();
+        }
+        else {
+            CheckBottomAnimation();
+        }
+        */
+    }
+
+    // would use this if there were multiple layers to our character
+    /*
+    private void CheckTopAnimation(){
+        CheckMovementAnimation(UPPERBODY)
+    }
+
+    private void CheckBottomAnimation(){
+        CheckMovementAnimation(LOWERBODY)
+    }
+    */
+
+    private void CheckMovementAnimation(int layer){
+        if (xMoveInput != 0 && IsGrounded()){
+            Play(Animations.RUN, layer, false, false);
+        }
+        else if (rb.velocity.y > 0 && !IsGrounded()){
+            Play(Animations.UPWARDJUMP, layer, false, false);
+        }
+        else if (rb.velocity.y > 0 && !IsGrounded()){
+            Play(Animations.DOWNWARDJUMP, layer, false, false);
+        }
+        else {
+            Play(Animations.IDLE, layer, false, false);
+        }
+
+    }
+
+    // disable animations
     public void DisableAnimation(){
         if (animator != null){
             animator.enabled = false;
         }
     }
 
-// enable animations
+    // enable animations
     public void EnableAnimation(){
         if (animator != null){
             animator.enabled = true;

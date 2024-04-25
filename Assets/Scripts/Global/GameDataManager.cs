@@ -44,7 +44,7 @@ public class GameDataManager : MonoBehaviour
 
     void Start()
     {
-        timerText = GameObject.FindGameObjectWithTag("HUD").GetComponent<TextMeshProUGUI>();
+        //timerText = GameObject.FindGameObjectWithTag("HUD").GetComponent<TextMeshProUGUI>();
 
         timerText.text = "Time - 00:00.00";
         timerGoing = false;
