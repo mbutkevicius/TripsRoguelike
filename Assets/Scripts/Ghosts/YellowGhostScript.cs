@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
+using System.Xml.Serialization;
+using Unity.Mathematics;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -11,6 +13,8 @@ public class YellowGhostScript : MonoBehaviour
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
     private Transform trackingPoint;
+
+    public CameraShakeEffect cameraShakeEffect;
 
     [Header("Script References")]
     public PlayerScript playerScript;
@@ -25,6 +29,10 @@ public class YellowGhostScript : MonoBehaviour
     [Tooltip("Controls how fast the initial dash boost goes away. Higher value makes it disappear faster")]
     [SerializeField] private float boostDeceleration;
     [SerializeField] private float originalIdlingTime;
+
+    [Header("Effects")]
+    public GameObject trailEffect;
+    [SerializeField] private float trailEffectSpawnRate;
 
     private bool isChasingPlayer = false;
 
@@ -66,6 +74,12 @@ public class YellowGhostScript : MonoBehaviour
 
         // This transitions to State2, in the update function below
         isChasingPlayer = true;
+
+        // shake camera
+        StartCoroutine(cameraShakeEffect.CustomCameraShake(0.12f, 0.12f));
+
+        yield return new WaitForSeconds(0.02f);
+        StartCoroutine(TrailEffect());
     }
 
     void Update()
@@ -97,6 +111,7 @@ public class YellowGhostScript : MonoBehaviour
             }
             else // Happens when Yellow Ghost meets the distance threshold
             {
+                StopCoroutine(TrailEffect());
                 isChasingPlayer = false; // Disables this whole 'if' block
                 boostMultiplier = originalBoostMultiplier; // Reset the boost multiplier
                 StartCoroutine(State1A()); // Reset the cycle
@@ -116,12 +131,25 @@ public class YellowGhostScript : MonoBehaviour
         // If moving right, flip sprite to face right
         if (velocityX > 0)
         {
-            sprite.flipX = false;
+            transform.rotation = Quaternion.AngleAxis(0f, Vector3.up);
+            // sprite.flipX = false;
         }
         // If moving left, flip sprite to face left
         else if (velocityX < 0)
         {
-            sprite.flipX = true;
+            transform.rotation = Quaternion.AngleAxis(180f, Vector3.up);
+            // sprite.flipX = true;
+        }
+    }
+
+
+
+    private IEnumerator TrailEffect()
+    {
+        while (isChasingPlayer == true)
+        {
+            Instantiate(trailEffect, new Vector3(transform.position.x, transform.position.y), transform.rotation);
+            yield return new WaitForSeconds(trailEffectSpawnRate);
         }
     }
 }

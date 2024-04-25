@@ -109,6 +109,8 @@ MonoBehaviour:
   boostMultiplier: 2.5
   boostDeceleration: 8
   originalIdlingTime: 0
+  trailEffect: {fileID: 518376368355276613, guid: b19059a5ee23a3c479e4fd5a49114895, type: 3}
+  cameraShakeEffect: {fileID: 5886161030971954564, guid: 8f6ce251bb13f4949a6a4df4415e63e4, type: 3}
 --- !u!61 &5329796802132674050
 BoxCollider2D:
   m_ObjectHideFlags: 0

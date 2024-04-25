@@ -23,16 +23,34 @@ public class ThinPlatformScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // check if player is touching platform and pressing down 
-        if (player.IsGrounded() && player.yMoveInput < 0){
+        // check if player is pressing down 
+        if (player.yMoveInput < 0 && player.IsGrounded())
+        {
             coll.enabled = false;
-            StartCoroutine(EnableColliderAfterDelay(0.5f));
+
+            if (delayActive == false)
+            {
+                StartCoroutine(EnableColliderAfterDelay(0.15f));
+            }
+        }
+        else if (delayActive == false)
+        {
+            coll.enabled = true;
+            StopCoroutine(EnableColliderAfterDelay(0));
+        }
+
+        if (player.yMoveInput >= 0 && player.IsGrounded()! && delayActive == false)
+        {
+            coll.enabled = true;
+            StopCoroutine(EnableColliderAfterDelay(0));
         }
     }
 
+    private bool delayActive = false;
     // create short delay to allow player to drop through platform
     private IEnumerator EnableColliderAfterDelay(float delay){
+        delayActive = true;
         yield return new WaitForSeconds(delay);
-        coll.enabled = true;
+        delayActive = false;
     }
 }

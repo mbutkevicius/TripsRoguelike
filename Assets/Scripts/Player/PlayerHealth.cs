@@ -42,17 +42,21 @@ public class PlayerHealth : MonoBehaviour
     // method for when player is hurt
     public void TakeDamage(int amount){
         // remove health from player
-        health -= amount;
-        // shake camera
-        StartCoroutine(cameraShakeEffect.CameraShake());
+        if (health > 0)
+        {
+            health -= amount;
+
+            // shake camera
+            StartCoroutine(cameraShakeEffect.CameraShake());
+
+            // indicate player invulnerability time
+            StartCoroutine(InvincibilityFrames());
+        }
 
         // check if GameOver condition is met
         if (health <= 0){
             FindObjectOfType<GameOverScript>().GameOver();
         }
-
-        // indicate player invulnerability time
-        StartCoroutine(InvincibilityFrames());
 
         // update hp
         UpdateHearts();

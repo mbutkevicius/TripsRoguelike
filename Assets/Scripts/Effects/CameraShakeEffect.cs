@@ -19,7 +19,7 @@ public class CameraShakeEffect : MonoBehaviour
             float x = Random.Range(-1f, 1f) * shakeMagnitude;
             float y = Random.Range(-1f, 1f) * shakeMagnitude;
 
-            transform.localPosition = new Vector3(x, y, originalPos.z);
+            transform.localPosition = new Vector3((originalPos.x + x), (originalPos.y + y), originalPos.z);
 
             elapsed += Time.deltaTime;
 
@@ -29,4 +29,25 @@ public class CameraShakeEffect : MonoBehaviour
         transform.localPosition = originalPos;
     }
 
+
+    public IEnumerator CustomCameraShake(float shakeDuration, float shakeMagnitude)
+    {
+        Vector3 originalPos = transform.localPosition;
+
+        float elapsed = 0f;
+
+        while (elapsed < shakeDuration)
+        {
+            float x = Random.Range(-1f, 1f) * shakeMagnitude;
+            float y = Random.Range(-1f, 1f) * shakeMagnitude;
+
+            transform.localPosition = new Vector3((originalPos.x + x), (originalPos.y + y), originalPos.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.localPosition = originalPos;
+    }
 }

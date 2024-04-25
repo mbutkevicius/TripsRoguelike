@@ -125,6 +125,8 @@ public class PlayerScript : MonoBehaviour
         // also don't know if this should be in FixedUpdate
         if (IsGrounded())
         {
+
+
             // reset descGravity to default
             descGravity = 6f;
 
