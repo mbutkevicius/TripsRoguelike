@@ -21,9 +21,8 @@ public class BouncePadScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Touched sprite");
-            //Debug.Log(other.GetComponent<PlayerScript>().isJumping);
-            other.GetComponent<PlayerScript>().isJumping = false;
-            other.GetComponent<PlayerScript>().bouncing = true;
+
+            // bounce player
             other.GetComponent<PlayerScript>().BounceJump();
         }
     }

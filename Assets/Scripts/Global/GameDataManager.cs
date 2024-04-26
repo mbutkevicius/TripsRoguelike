@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class GameDataManager : MonoBehaviour
 {
     [Header("Score Data")]
-    public int Score;
+    public TextMeshProUGUI scoreText;
+    [HideInInspector] public int score;
 
     [Header("Timer Data")]
     [Tooltip("Amount of time it takes for ghosts to reach max speed")]

@@ -57,7 +57,8 @@ public class GemProperties : MonoBehaviour
             {
                 Instantiate(thousandScoreEffect, new Vector3(transform.position.x, transform.position.y + scoreEffectHeightOffset), Quaternion.identity);
             }
-            gameDataManager.Score += ScoreToAdd;
+            gameDataManager.score += ScoreToAdd;
+            gameDataManager.scoreText.text = gameDataManager.score.ToString();
             Instantiate(GemSparkle, new Vector3 (transform.position.x, transform.position.y), Quaternion.identity);
             Destroy(gameObject);
         }

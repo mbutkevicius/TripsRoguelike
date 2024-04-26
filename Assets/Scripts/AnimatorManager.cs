@@ -9,8 +9,8 @@ public class AnimatorManager : MonoBehaviour
     {
         Animator.StringToHash("IdleAnimation"),
         Animator.StringToHash("RunAnimation"),
-        Animator.StringToHash("UpwardJumpAnimation"),
-        Animator.StringToHash("DownwardJumpAnimation"),
+        Animator.StringToHash("JumpAnimation"),
+        Animator.StringToHash("FallingAnimation"),
         Animator.StringToHash("DeathAnimation")
     };
 
@@ -75,8 +75,8 @@ public class AnimatorManager : MonoBehaviour
 public enum Animations{
     IDLE,
     RUN,
-    UPWARDJUMP,
-    DOWNWARDJUMP,
+    JUMP,
+    FALLING,
     DEATH,
     NONE
 }

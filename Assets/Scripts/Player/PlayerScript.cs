@@ -358,15 +358,19 @@ public class PlayerScript : AnimatorManager
     // determines player jump height when bouncing from jump pad
     public void BounceJump()
     {
-        bouncing = true;
 
-        rb.gravityScale = ascGravity;
 
         // disable jump while using the bouncepad. 
         // NOTE: If multiple jumps allowed, will need to check if more jumping is allowed
         //isJumping = false;
 
-        rb.velocity = new Vector2(rb.velocity.x, playerJumpForce * bounceJump);
+        // don't let player bounce when jumping from below
+        if (rb.velocity.y <= 0){
+            bouncing = true;
+
+            rb.gravityScale = ascGravity;
+            rb.velocity = new Vector2(rb.velocity.x, playerJumpForce * bounceJump);
+        }
         //bouncing = false;
     }
 
@@ -485,9 +489,10 @@ public class PlayerScript : AnimatorManager
 
     #region Animation
 
+    // would use this if there were multiple layers to our character
     void DefaultAnimation(int layer){
         CheckMovementAnimation(SPRITE);
-        // use this with multiple layers
+
         /*
         if (layer == UPPERBODY){
             CheckTopAnimation();
@@ -509,20 +514,20 @@ public class PlayerScript : AnimatorManager
     }
     */
 
+    // checks which animation state to play
     private void CheckMovementAnimation(int layer){
         if (xMoveInput != 0 && IsGrounded()){
             Play(Animations.RUN, layer, false, false);
         }
         else if (rb.velocity.y > 0 && !IsGrounded()){
-            Play(Animations.UPWARDJUMP, layer, false, false);
+            Play(Animations.JUMP, layer, false, true);
         }
-        else if (rb.velocity.y > 0 && !IsGrounded()){
-            Play(Animations.DOWNWARDJUMP, layer, false, false);
+        else if (rb.velocity.y < 0 && !IsGrounded()){
+            Play(Animations.FALLING, layer, false, true);
         }
         else {
             Play(Animations.IDLE, layer, false, false);
         }
-
     }
 
     // disable animations
