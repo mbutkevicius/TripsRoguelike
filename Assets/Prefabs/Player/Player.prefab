@@ -125,7 +125,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.6875}
   m_SpriteTilingProperty:
     border: {x: 0.4375, y: 0.6875, z: 0.5, w: 0.6875}
-    pivot: {x: 0.625, y: 0}
+    pivot: {x: 0.5294118, y: 0}
     oldSize: {x: 1.0625, y: 1.625}
     newSize: {x: 2, y: 3}
     adaptiveTilingThreshold: 0.5
@@ -197,6 +197,7 @@ MonoBehaviour:
   descGravityAceleration: 0.15
   ApproachingPeakJump: 2.23
   descPeakJump: 0.33
+  gameOverGravity: 60
   extraHeight: 0.02
   ceilingDetection: 0.02
   whatIsGround:
@@ -206,6 +207,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   animator: {fileID: 0}
+  landDustEffect: {fileID: 6486760060759171460, guid: 883df1229e63cd849aa525e3f869cf16, type: 3}
+  walkDustEffect: {fileID: 3706003843465490373, guid: a491c7d4544cc1544aa45afbe079cc90, type: 3}
 --- !u!114 &7980847657872068898
 MonoBehaviour:
   m_ObjectHideFlags: 0

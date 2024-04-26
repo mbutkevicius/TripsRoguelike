@@ -97,6 +97,11 @@ public class PlayerScript : AnimatorManager
     // in the layers
     private const int SPRITE = 0;
 
+    [Header("Effects")]
+    public GameObject landDustEffect;
+    public GameObject walkDustEffect;
+
+
     // Start is called before the first frame update
     void Start()
     {
