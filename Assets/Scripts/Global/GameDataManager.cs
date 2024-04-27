@@ -27,7 +27,6 @@ public class GameDataManager : MonoBehaviour
     [Header("Font References")]
     public TextMeshProUGUI timerText;
 
-
     private void Update()
     {
         // Calculates the multiplier for ghost speed

@@ -46,7 +46,7 @@ public class PlayerScript : AnimatorManager
     [SerializeField] private float maxCoyoteTime = 0.2f;
     [Tooltip("The force that pushes you down when you hit a ceiling (make a positive number")]
     [SerializeField] private float playerCeilingBumpForce = 12.5f;
-    private float CoyoteTimeCounter;
+    public float coyoteTimeCounter;
     public bool bouncing = false;
     public float JumpBufferTime = 0.2f;
     private bool JumpBufferActive;
@@ -138,9 +138,9 @@ public class PlayerScript : AnimatorManager
                 descGravity = 6f;
 
                 // track coyoteTimer
-                if (CoyoteTimeCounter != maxCoyoteTime)
+                if (coyoteTimeCounter != maxCoyoteTime)
                 {
-                    CoyoteTimeCounter = maxCoyoteTime;
+                    coyoteTimeCounter = maxCoyoteTime;
                 }
                 // reset gravity
                 if (rb.gravityScale != ascGravity)
@@ -152,7 +152,7 @@ public class PlayerScript : AnimatorManager
             else
             {
                 // reduce coyote time
-                CoyoteTimeCounter -= Time.deltaTime;
+                coyoteTimeCounter -= Time.deltaTime;
                 // set airborn gravity
                 Gravity();
             }
@@ -303,11 +303,11 @@ public class PlayerScript : AnimatorManager
                 JumpBufferActive = false;
                 jumpTimeCounter = 0;
                 isJumping = false;
-                CoyoteTimeCounter = 0;
+                coyoteTimeCounter = 0;
             }
 
             // check if player can jump
-            if (IsGrounded() || CoyoteTimeCounter > 0f && isJumping == false) // added 'isJumping == false' here to ensure we can't jump while we're jumping 
+            if (IsGrounded() || coyoteTimeCounter > 0f && isJumping == false) // added 'isJumping == false' here to ensure we can't jump while we're jumping 
             {
                 isJumping = true;
                 jumpTimeCounter = maxJumpTime;
@@ -348,7 +348,7 @@ public class PlayerScript : AnimatorManager
         {
             isJumping = false;
             bouncing = false;
-            CoyoteTimeCounter = 0f;
+            coyoteTimeCounter = 0f;
         }
 
         // debugging tool you can see in gizmos

@@ -7,6 +7,9 @@ public class ThinPlatformScript : MonoBehaviour
 {
     private BoxCollider2D coll;
     private PlayerScript player;
+    [Tooltip("controls the distance analog stick has to be pressed down before falling through")]
+    [SerializeField] private float deadzone = -0.4f;
+    private bool delayActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +27,9 @@ public class ThinPlatformScript : MonoBehaviour
     void Update()
     {
         // check if player is pressing down 
-        if (player.yMoveInput < 0 && player.IsGrounded())
+        if (player.yMoveInput < deadzone && player.IsGrounded())
         {
+            player.coyoteTimeCounter = 0f;
             coll.enabled = false;
 
             if (delayActive == false)
@@ -39,14 +43,13 @@ public class ThinPlatformScript : MonoBehaviour
             StopCoroutine(EnableColliderAfterDelay(0));
         }
 
-        if (player.yMoveInput >= 0 && player.IsGrounded()! && delayActive == false)
+        if (player.yMoveInput >= deadzone && player.IsGrounded()! && delayActive == false)
         {
             coll.enabled = true;
             StopCoroutine(EnableColliderAfterDelay(0));
         }
     }
 
-    private bool delayActive = false;
     // create short delay to allow player to drop through platform
     private IEnumerator EnableColliderAfterDelay(float delay){
         delayActive = true;

@@ -2311,6 +2311,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7642179767981277436, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
+      propertyPath: deadzone
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 9087081923056695247, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_Name
       value: ThinPlatform (5)
@@ -4123,6 +4127,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7642179767981277436, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
+      propertyPath: deadzone
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 9087081923056695247, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_Name
       value: ThinPlatform (1)
@@ -5345,6 +5353,10 @@ PrefabInstance:
     - target: {fileID: 6196406065199146518, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642179767981277436, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
+      propertyPath: deadzone
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 9087081923056695247, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_Name
@@ -13958,6 +13970,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7642179767981277436, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
+      propertyPath: deadzone
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 9087081923056695247, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_Name
       value: ThinPlatform (4)
@@ -14777,6 +14793,10 @@ PrefabInstance:
     - target: {fileID: 6196406065199146518, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642179767981277436, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
+      propertyPath: deadzone
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 9087081923056695247, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_Name
@@ -20926,6 +20946,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7642179767981277436, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
+      propertyPath: deadzone
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 9087081923056695247, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_Name
       value: ThinPlatform (8)
@@ -25070,6 +25094,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7642179767981277436, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
+      propertyPath: deadzone
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 9087081923056695247, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_Name
       value: ThinPlatform (7)
@@ -25333,6 +25361,10 @@ PrefabInstance:
     - target: {fileID: 6196406065199146518, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642179767981277436, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
+      propertyPath: deadzone
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 9087081923056695247, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_Name
@@ -25984,6 +26016,10 @@ PrefabInstance:
     - target: {fileID: 6196406065199146518, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642179767981277436, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
+      propertyPath: deadzone
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 9087081923056695247, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
       propertyPath: m_Name
