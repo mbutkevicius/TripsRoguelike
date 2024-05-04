@@ -5,16 +5,22 @@ using UnityEngine;
 using System;
 using FullscreenEditor;
 using UnityEditor.EditorTools;
+using UnityEditorInternal;
 
 public class GameOverScript : MonoBehaviour
 {
     public GameObject gameOverUI;
+    public Animator transition;
+    public gemSpawner gemSpawner;
 
     [HideInInspector] public bool isGameOver = false;
     [Tooltip("Dev tool: disables cursor during gameplay. I like this option on but can make it annoying during testing")]
     [SerializeField] private bool isCursorDisabled;
     [Tooltip("Determines the length of time required for gameOverUI to appear after death")]
-    [SerializeField] private float restartDelay = 1.5f;
+
+    [Header("Delay Settings")]
+    [SerializeField] private float deathDelay = 1.5f;
+    [SerializeField] private float restartDelay = 1f;
 
     void Start(){
         // dev check to make it easier to work
@@ -28,6 +34,9 @@ public class GameOverScript : MonoBehaviour
 
     public void GameOver(){
         if (!isGameOver){
+            transition.SetTrigger("Death");
+            StopCoroutine(gemSpawner.SpawnGems());
+
             isGameOver = true;
             Debug.Log("GameOver");
 
@@ -48,7 +57,7 @@ public class GameOverScript : MonoBehaviour
     }
 
     private IEnumerator GameOverScreen(){
-        yield return new WaitForSeconds(restartDelay);
+        yield return new WaitForSeconds(deathDelay);
         gameOverUI.SetActive(true);
             // allow player to use the cursor to select from UI
             Cursor.visible = true;
@@ -57,6 +66,14 @@ public class GameOverScript : MonoBehaviour
 
     public void Restart(){
         Debug.Log("Restart");
+        StartCoroutine(Restarted());
+    }
+
+    IEnumerator Restarted()
+    {
+        transition.SetTrigger("Out");
+        yield return new WaitForSeconds(deathDelay);
+
         isGameOver = false;
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

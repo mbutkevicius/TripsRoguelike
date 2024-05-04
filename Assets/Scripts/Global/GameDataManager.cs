@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameDataManager : MonoBehaviour
 {
     [Header("Score Data")]
-    public TextMeshProUGUI scoreText;
+    public Text scoreText;
     [HideInInspector] public int score;
 
     [Header("Timer Data")]
@@ -25,7 +25,7 @@ public class GameDataManager : MonoBehaviour
     public float ghostTimeFraction;
 
     [Header("Font References")]
-    public TextMeshProUGUI timerText;
+    public Text timerText;
 
     private void Update()
     {
@@ -46,9 +46,8 @@ public class GameDataManager : MonoBehaviour
     {
         //timerText = GameObject.FindGameObjectWithTag("HUD").GetComponent<TextMeshProUGUI>();
 
-        timerText.text = "Time - 00:00.00";
+        timerText.text = "00:00.00";
         timerGoing = false;
-        BeginTimer();
     }
 
     public void BeginTimer()
@@ -70,7 +69,7 @@ public class GameDataManager : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
-            string timePlayingStr = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
+            string timePlayingStr = timePlaying.ToString("mm':'ss'.'ff");
             timerText.text = timePlayingStr;
 
             yield return null;
