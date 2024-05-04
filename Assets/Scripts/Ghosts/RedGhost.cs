@@ -7,9 +7,13 @@ using Unity.VisualScripting;
 
 public class RedGhost : MonoBehaviour
 {
+    public DelayedStartScript countdownTimer;
+
     public GameDataManager gameDataManager;
 
-    [SerializeField] public Transform target;
+    public GameOverScript gameOverScript;
+
+    [SerializeField] private Transform target;
     private NavMeshAgent agent;
 
     private bool facingRight = true;
@@ -19,10 +23,17 @@ public class RedGhost : MonoBehaviour
 
     private float speedTimeMultiplier;
 
+    private bool canMove;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Find the game data manager
         gameDataManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameDataManager>();
+        // Find the game over script
+        gameOverScript = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameOverScript>();
+        // Find the game over script
+        countdownTimer = GameObject.FindGameObjectWithTag("Logic").GetComponent<DelayedStartScript>();
 
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -41,10 +52,13 @@ public class RedGhost : MonoBehaviour
         }
 
         // chase after player
-        agent.SetDestination(target.position);
+        if (canMove)
+        {
+            agent.SetDestination(target.position);
 
-        agent.speed = chaseSpeed * speedTimeMultiplier;
-        agent.acceleration = slipperyFactor * speedTimeMultiplier;
+            agent.speed = chaseSpeed * speedTimeMultiplier;
+            agent.acceleration = slipperyFactor * speedTimeMultiplier;
+        }
     }
 
     // animation to flip sprite
@@ -52,5 +66,14 @@ public class RedGhost : MonoBehaviour
         facingRight = !facingRight;
         // flip sprite along the y axis
         transform.rotation = Quaternion.Euler(0, facingRight ? 0 : 180, 0);
+    }
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
     }
 }

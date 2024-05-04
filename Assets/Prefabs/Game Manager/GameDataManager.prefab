@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4377969561913198485}
   - component: {fileID: 881306786058495302}
+  - component: {fileID: 4167871610416086213}
+  - component: {fileID: 4039585943486066072}
   m_Layer: 0
   m_Name: GameDataManager
   m_TagString: Logic
@@ -44,8 +46,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81584edd20bc1c54f8700320af595aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 0
-  ghostMaxSpeedTime: 60
+  scoreText: {fileID: 0}
+  score: 0
+  ghostMaxSpeedTime: 90
   ghostSpeedMultiplier: 2
   ghostTimeFraction: 0
   timerText: {fileID: 0}
+--- !u!114 &4167871610416086213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4667532683427384614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98418e84b5ccfa44786c840dc45d3f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverUI: {fileID: 0}
+  transition: {fileID: 0}
+  gemSpawner: {fileID: 0}
+  isGameOver: 0
+  isCursorDisabled: 0
+  deathDelay: 2
+  restartDelay: 0.5
+--- !u!114 &4039585943486066072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4667532683427384614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df333a1a9b5b3a48a5187b4b01a03f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yellowGhost: {fileID: 0}
+  purpleGhost: {fileID: 0}
+  redGhost: {fileID: 0}
+  gameDataManager: {fileID: 881306786058495302}
+  HudContainer: {fileID: 0}
+  delayTime: 3

@@ -8,8 +8,10 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using static UnityEngine.GraphicsBuffer;
 
-public class YellowGhostScript : MonoBehaviour
+public class YellowGhost : MonoBehaviour
 {
+    public DelayedStartScript countdownTimer;
+
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
     private Transform trackingPoint;
@@ -19,7 +21,7 @@ public class YellowGhostScript : MonoBehaviour
     [Header("Script References")]
     public PlayerScript playerScript;
     public GameDataManager gameDataManager;
-    public YellowGhostTrackingPointScript trackingPointScript;
+    public YellowGhostTrackingPoint trackingPointScript;
 
     [Header("Movement Values")]
     [SerializeField] private float movementSpeed = 5f;
@@ -34,7 +36,7 @@ public class YellowGhostScript : MonoBehaviour
     public GameObject trailEffect;
     [SerializeField] private float trailEffectSpawnRate;
 
-    private bool isChasingPlayer = false;
+    public bool isChasingPlayer = false;
 
     private float speedTimeMultiplier;
 
@@ -45,6 +47,8 @@ public class YellowGhostScript : MonoBehaviour
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
         // Find the game data manager
         gameDataManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameDataManager>();
+        // Find the game over script
+        countdownTimer = GameObject.FindGameObjectWithTag("Logic").GetComponent<DelayedStartScript>();
 
         // Get the Rigidbody2D and sprite
         rb = GetComponent<Rigidbody2D>();
@@ -53,20 +57,17 @@ public class YellowGhostScript : MonoBehaviour
         // Set the tracking point transform
         trackingPoint = trackingPointScript.transform;
 
-        // Begin the AI cycle
-        StartCoroutine(State1A());
-
         // This is used to I can set the boost multiplier back to whatever value it was initally instead of manually entering it to reset it.
         originalBoostMultiplier = boostMultiplier;
     }
 
-    IEnumerator State1A() // Idle state
+    public IEnumerator State1A() // Idle state
     {
         yield return new WaitForSeconds(originalIdlingTime);
         StartCoroutine(State1B());
     }
 
-    IEnumerator State1B() // State when Yellow Ghost is charging up the dash
+    public IEnumerator State1B() // State when Yellow Ghost is charging up the dash
     {
         yield return new WaitForSeconds(1);
         // Tells the tracking point to locate the player's current position
@@ -76,7 +77,7 @@ public class YellowGhostScript : MonoBehaviour
         isChasingPlayer = true;
 
         // shake camera
-        StartCoroutine(cameraShakeEffect.CustomCameraShake(0.12f, 0.12f));
+        StartCoroutine(cameraShakeEffect.CustomCameraShake(0.1f, 0.08f));
 
         yield return new WaitForSeconds(0.02f);
         StartCoroutine(TrailEffect());

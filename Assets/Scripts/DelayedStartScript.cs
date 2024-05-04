@@ -5,21 +5,50 @@ using UnityEngine;
 
 public class DelayedStartScript : MonoBehaviour
 {
+    [Header("Ghosts")]
+    public YellowGhost yellowGhost;
+    public PurpleGhost purpleGhost;
+    public RedGhost redGhost;
+
+    [Header("Game Info References")]
+    public GameDataManager gameDataManager;
+    public GameObject HudContainer;
+
+    [Header("Countdown Timer Settings")]
     [Tooltip("Determines amount of delay before game will start")]
     [SerializeField] private float delayTime;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(StartGameAfterDelay(delayTime));
+        // disable player movement
+        FindObjectOfType<UserInput>().OnDisable();
+
+        // get the game manager
+        gameDataManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameDataManager>();
+
+        // start timer
+        StartCoroutine(CountdownTimer());
+
+        // hide the HUD
+        HudContainer.SetActive(false);
     }
 
-    IEnumerator StartGameAfterDelay(float delayTime)
+    public IEnumerator CountdownTimer()
     {
-        Time.timeScale = 0;
-        float pauseTime = Time.realtimeSinceStartup + delayTime;
-        while (Time.realtimeSinceStartup < pauseTime){
-            yield return 0;
-        }
-        Time.timeScale = 1;
+        yield return new WaitForSeconds(delayTime);
+
+        // activate ghost movement
+        purpleGhost.EnableMovement();
+        redGhost.EnableMovement();
+        StartCoroutine(yellowGhost.State1A());
+
+        // activate player
+        FindObjectOfType<UserInput>().OnEnable();
+
+        // activate timer
+        gameDataManager.BeginTimer();
+
+        // show HUD
+        HudContainer.SetActive(true);
     }
 }

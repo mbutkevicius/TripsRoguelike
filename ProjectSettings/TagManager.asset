@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Logic
   - HUD
+  - Game Over
+  - Ghost
   layers:
   - Default
   - TransparentFX
