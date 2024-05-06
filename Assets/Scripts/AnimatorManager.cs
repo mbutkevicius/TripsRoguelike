@@ -14,7 +14,7 @@ public class AnimatorManager : MonoBehaviour
         Animator.StringToHash("DeathAnimation")
     };
 
-    private Animator animator;
+    protected Animator animator;
     private Animations[] currentAnimationArr;
     private bool[] layerLockedArr;
     // stores method called DefaultAnimation

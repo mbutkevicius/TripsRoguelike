@@ -5,8 +5,10 @@ using System.Security.Cryptography;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor.Callbacks;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
 
@@ -23,10 +25,12 @@ public class PlayerScript : AnimatorManager
     [SerializeField] private float groundedLinearDrag = 5.35f;
     [Tooltip("This value determines how quickly the player is able to turn around in the air. This value does affect how gravity will feel. Will need to tweak gravity settings as this value is tweaked. I recommend keeping it relatively close to 0")]
     [SerializeField] private float aerialLinearDrag = 2f;
-    private Vector2 direction;
     private bool facingRight = true;
     [HideInInspector] public float xMoveInput;
+    public float prevXMoveInput;
     [HideInInspector] public float yMoveInput;
+    private bool isMoving = false;
+    private Vector3 lastPosition;
 
     [Header("Jump")]
     [Tooltip("Determines the jumping power a player has. The higher the number, the higher the player jumps")]
@@ -91,11 +95,23 @@ public class PlayerScript : AnimatorManager
     private Collider2D thinPlatformColl;
 
     [Header("Animation")]
-    public Animator animator;
+    // Load the animation prefab from the Resources folder
+    private GameObject walkDustAnimation;
+    private GameObject landDustAnimation;
+    private bool canWalkDustAppear = true;
+
+    //public Animator animator;
     // Important: this is used to determine the placement in the animator array in AnimatorManager.cs
     // if multiple parts were used, you would add each component in numeric order you want them to appear 
     // in the layers
     private const int SPRITE = 0;
+
+    private void Awake()
+    {
+        // Load the animation prefab from the Resources folder in Awake
+        walkDustAnimation = Resources.Load<GameObject>("PlayerEffects/WalkDustEffect");
+        landDustAnimation = Resources.Load<GameObject>("PlayerEffects/LandDustEffect");
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -106,6 +122,7 @@ public class PlayerScript : AnimatorManager
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
 
+        lastPosition = transform.position;
         xMoveInput = 0;
     }
 
@@ -120,6 +137,7 @@ public class PlayerScript : AnimatorManager
             // get the vertical direction player is moving (right key=1 leftkey=-1 no key=0)
             GetYAxis();
 
+            // Check the animation state to be in
             CheckMovementAnimation(SPRITE);
 
             // set animator movement values
@@ -252,6 +270,11 @@ public class PlayerScript : AnimatorManager
         yMoveInput = UserInput.instance.moveInput.y;
     }
 
+    // Determines if player is moving
+    private bool IsMoving(){
+        return rb.velocity.magnitude > 0;
+    }
+
     public void GroundedHorizontalMovement(float velocityY){
         GetXAxis();
 
@@ -262,19 +285,18 @@ public class PlayerScript : AnimatorManager
         if ((xMoveInput > 0 && !facingRight) || (xMoveInput < 0 && facingRight)){
             Flip();
         }
+        // check if player is moving from standstill to trigger dust animation
+        else if (prevXMoveInput == 0 && Math.Abs(xMoveInput) > 0 && IsGrounded()){
+            TriggerWalkDustAnimation();
+        }
         // cap players velocity if they are moving past max speed
         if (Mathf.Abs(rb.velocity.x) > maxRunningSpeed){
             rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxRunningSpeed, rb.velocity.y);
         }
 
-    }
+        // update previous input for calculating dust animation
+        prevXMoveInput = xMoveInput;
 
-    // Method to flip the player sprite
-    public void Flip(){
-        facingRight = !facingRight;
-        // flip sprite along the y axis
-        // note on syntax cause I forget sometimes (if facingRight 0 else 180)
-        transform.rotation = Quaternion.Euler(0, facingRight ? 0 : 180, 0);
     }
 
     #endregion
@@ -489,10 +511,10 @@ public class PlayerScript : AnimatorManager
 
     #region Animation
 
-    // would use this if there were multiple layers to our character
     void DefaultAnimation(int layer){
         CheckMovementAnimation(SPRITE);
 
+        // would use this if there were multiple layers to our character
         /*
         if (layer == UPPERBODY){
             CheckTopAnimation();
@@ -509,6 +531,7 @@ public class PlayerScript : AnimatorManager
         CheckMovementAnimation(UPPERBODY)
     }
 
+    // would use this if there were multiple layers to our character
     private void CheckBottomAnimation(){
         CheckMovementAnimation(LOWERBODY)
     }
@@ -527,6 +550,43 @@ public class PlayerScript : AnimatorManager
         }
         else {
             Play(Animations.IDLE, layer, false, false);
+        }
+    }
+
+   // Method to flip the player sprite
+    public void Flip(){
+        facingRight = !facingRight;
+        // flip sprite along the y axis
+        // note on syntax cause I forget sometimes (if facingRight 0 else 180)
+        transform.rotation = Quaternion.Euler(0, facingRight ? 0 : 180, 0);
+
+        if (IsGrounded()){
+            TriggerWalkDustAnimation();
+        }
+    }
+
+    // Triggers the dust animation on the player
+    void TriggerWalkDustAnimation(){
+        // Check if the prefab is successfully loaded
+        if (walkDustAnimation != null){
+            // Instantiate the animation prefab at the current object's position
+            Vector3 bottomLeftPosition = transform.position - new Vector3(transform.localScale.x / 6f, transform.localScale.y / 6f, 0f);
+
+            // Add an offset to position the dust slightly higher
+            float yOffset = 0.5f; // Adjust this value as needed
+            bottomLeftPosition += Vector3.up * yOffset;
+
+            // I don't know why the values aren't the same. 
+            // needed to create an offset but right dust cloud was closer to center
+            if (!facingRight){
+                bottomLeftPosition += Vector3.right * 0.8f;
+            }
+            else {
+                bottomLeftPosition += Vector3.left * 0.5f;
+            }
+
+            GameObject dustInstance = Instantiate(walkDustAnimation, bottomLeftPosition, Quaternion.identity);
+            dustInstance.transform.rotation = Quaternion.Euler(0, facingRight ? 0 : 180, 0);
         }
     }
 
