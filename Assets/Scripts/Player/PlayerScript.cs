@@ -313,6 +313,8 @@ public class PlayerScript : AnimatorManager
                 jumpTimeCounter = maxJumpTime;
                 //jumpCount++;
                 rb.velocity = new Vector2(rb.velocity.x, playerJumpForce);
+
+                FindObjectOfType<AudioManager>().Play("PlayerJump");
             }
         }
 
@@ -358,7 +360,7 @@ public class PlayerScript : AnimatorManager
     // determines player jump height when bouncing from jump pad
     public void BounceJump()
     {
-
+        FindObjectOfType<AudioManager>().Play("MushroomBounce");
 
         // disable jump while using the bouncepad. 
         // NOTE: If multiple jumps allowed, will need to check if more jumping is allowed

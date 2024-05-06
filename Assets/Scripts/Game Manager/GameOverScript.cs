@@ -51,6 +51,9 @@ public class GameOverScript : MonoBehaviour
             // invoke calls the function name and allows some sort of delay before calling it
             //Invoke(nameof(Restart), restartDelay);
 
+            FindObjectOfType<AudioManager>().Play("PlayerDeath");
+            FindObjectOfType<AudioManager>().Stop("Music");
+
             StartCoroutine(GameOverScreen());
         }
             

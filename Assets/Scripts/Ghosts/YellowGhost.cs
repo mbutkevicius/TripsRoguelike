@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEditor.Experimental.GraphView.GraphView;
 using static UnityEngine.GraphicsBuffer;
 
 public class YellowGhost : MonoBehaviour
@@ -36,6 +37,10 @@ public class YellowGhost : MonoBehaviour
     public GameObject trailEffect;
     [SerializeField] private float trailEffectSpawnRate;
 
+    [Header("Animation")]
+    public Animator animator;
+
+    [HideInInspector]
     public bool isChasingPlayer = false;
 
     private float speedTimeMultiplier;
@@ -69,6 +74,10 @@ public class YellowGhost : MonoBehaviour
 
     public IEnumerator State1B() // State when Yellow Ghost is charging up the dash
     {
+        animator.Play("YellowGhostWindUpAnimation", -1, 0f);
+
+        FindObjectOfType<AudioManager>().Play("YellowGhostWindUp");
+
         yield return new WaitForSeconds(1);
         // Tells the tracking point to locate the player's current position
         trackingPointScript.TrackPlayer();
@@ -80,6 +89,10 @@ public class YellowGhost : MonoBehaviour
         StartCoroutine(cameraShakeEffect.CustomCameraShake(0.1f, 0.08f));
 
         yield return new WaitForSeconds(0.02f);
+
+        FindObjectOfType<AudioManager>().Play("YellowGhostChase");
+        animator.Play("YellowGhostIdleAnimation", -1, 0f);
+
         StartCoroutine(TrailEffect());
     }
 

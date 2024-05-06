@@ -78,5 +78,6 @@ public enum Animations{
     JUMP,
     FALLING,
     DEATH,
+    WINDUP,
     NONE
 }

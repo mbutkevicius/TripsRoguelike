@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8861201262268249634}
   - component: {fileID: 8750915387831055261}
   - component: {fileID: 9159891073220054337}
+  - component: {fileID: 3941332069291997474}
   m_Layer: 5
   m_Name: Crossfade
   m_TagString: Untagged
@@ -110,6 +111,18 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &3941332069291997474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246874990820158434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e287ae04f43027a4aab03985ea38b9f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4346332880549103954
 GameObject:
   m_ObjectHideFlags: 0
