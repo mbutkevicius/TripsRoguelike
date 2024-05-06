@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2680954973320931097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4526753282985683601}
+  - component: {fileID: 745336827918675225}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4526753282985683601
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2680954973320931097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &745336827918675225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2680954973320931097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ff63f7dc2e02544bd664687e44d570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: PlayerJump
+    clip: {fileID: 8300000, guid: 6875d32f66ec2fc4caba6e50c81c4dde, type: 3}
+    volume: 0.36
+    pitch: 0.75
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerHurt
+    clip: {fileID: 8300000, guid: 1fcff474d6ae84044952b83566b8c077, type: 3}
+    volume: 0.27
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 8a9a69c0244ec6749a745732a71c85ab, type: 3}
+    volume: 0.341
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GemCollected100
+    clip: {fileID: 8300000, guid: 007e892f47b6c7745ae8c46965e430cd, type: 3}
+    volume: 0.308
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GemCollected300
+    clip: {fileID: 8300000, guid: 007e892f47b6c7745ae8c46965e430cd, type: 3}
+    volume: 0.299
+    pitch: 1.2
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GemCollected1000
+    clip: {fileID: 8300000, guid: 007e892f47b6c7745ae8c46965e430cd, type: 3}
+    volume: 0.299
+    pitch: 1.5
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GemShatter
+    clip: {fileID: 8300000, guid: c9ee671f338cff34d91e99bad421bbcf, type: 3}
+    volume: 0.6
+    pitch: 1
+    spatialBlend: 1
+    reverbZoneMix: 0.209
+    loop: 0
+    source: {fileID: 0}
+  - name: GemSpawn100
+    clip: {fileID: 8300000, guid: b7d5c413587059d4c9c3b57adf4f44e6, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 1
+    reverbZoneMix: 0.209
+    loop: 0
+    source: {fileID: 0}
+  - name: GemSpawn300
+    clip: {fileID: 8300000, guid: b7d5c413587059d4c9c3b57adf4f44e6, type: 3}
+    volume: 1
+    pitch: 0.66
+    spatialBlend: 1
+    reverbZoneMix: 0.209
+    loop: 0
+    source: {fileID: 0}
+  - name: GemSpawn1000
+    clip: {fileID: 8300000, guid: b7d5c413587059d4c9c3b57adf4f44e6, type: 3}
+    volume: 1
+    pitch: 0.33
+    spatialBlend: 1
+    reverbZoneMix: 0.209
+    loop: 0
+    source: {fileID: 0}
+  - name: YellowGhostWindUp
+    clip: {fileID: 8300000, guid: e7b16a790a6405d47b52ca1f1f44912a, type: 3}
+    volume: 0.27
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: YellowGhostChase
+    clip: {fileID: 8300000, guid: f1d841cb74a1e17439493c98eb8eaa69, type: 3}
+    volume: 0.209
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Music
+    clip: {fileID: 8300000, guid: 9ef4161da7e431c4cac10bbf2dbf7f6b, type: 3}
+    volume: 0.175
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: TimerTick
+    clip: {fileID: 8300000, guid: 6a2f5c3634a67e74db8b8061665feee4, type: 3}
+    volume: 0.26
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: TimerFinish
+    clip: {fileID: 8300000, guid: cb432576226351442904d159cb73427c, type: 3}
+    volume: 0.26
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: MushroomBounce
+    clip: {fileID: 8300000, guid: 870c0075eef206d4ead1124cc0912442, type: 3}
+    volume: 0.28
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}

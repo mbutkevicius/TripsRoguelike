@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 312840810686997486}
   - component: {fileID: 6487819345504174346}
   - component: {fileID: 2359669495779101709}
+  - component: {fileID: -8508832735416490437}
   m_Layer: 0
   m_Name: HeadBumpEffect
   m_TagString: Untagged
@@ -71,13 +72,13 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1616481889
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -140886923, guid: fdab531427a28954da032e49e4eb2227, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1.875, y: 1.875}
   m_AdaptiveModeThreshold: 0.5
@@ -106,3 +107,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-8508832735416490437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059097752970644541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10ee7814c2f2134a93fb19a51b53f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectLifespan: 0.5

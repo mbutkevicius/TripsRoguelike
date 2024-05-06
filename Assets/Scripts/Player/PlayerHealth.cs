@@ -22,6 +22,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float invincibilityDuration = 1.5f;
     [SerializeField] private float blinkInterval = 0.075f;
 
+    [Header("Effects")]
+    public GameObject damagedEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +51,10 @@ public class PlayerHealth : MonoBehaviour
 
             // shake camera
             StartCoroutine(cameraShakeEffect.CameraShake());
+
+            Instantiate(damagedEffect, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+
+            FindObjectOfType<AudioManager>().Play("PlayerHurt");
 
             // indicate player invulnerability time
             StartCoroutine(InvincibilityFrames());

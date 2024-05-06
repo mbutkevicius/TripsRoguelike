@@ -31,6 +31,19 @@ public class GemProperties : MonoBehaviour
         Instantiate(spawnEffect, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
 
         StartCoroutine(DespawnGem());
+
+        if (ScoreToAdd == 100)
+        {
+            FindObjectOfType<AudioManager>().Play("GemSpawn100");
+        }
+        if (ScoreToAdd == 300)
+        {
+            FindObjectOfType<AudioManager>().Play("GemSpawn300");
+        }
+        if (ScoreToAdd == 1000)
+        {
+            FindObjectOfType<AudioManager>().Play("GemSpawn1000");
+        }
     }
 
     // Update is called once per frame
@@ -48,14 +61,17 @@ public class GemProperties : MonoBehaviour
             if (ScoreToAdd == 100)
             {
                 Instantiate(hundredScoreEffect, new Vector3(transform.position.x, transform.position.y + scoreEffectHeightOffset), Quaternion.identity);
+                FindObjectOfType<AudioManager>().Play("GemCollected100");
             }
             if (ScoreToAdd == 300)
             {
                 Instantiate(threeHundredScoreEffect, new Vector3(transform.position.x, transform.position.y + scoreEffectHeightOffset), Quaternion.identity);
+                FindObjectOfType<AudioManager>().Play("GemCollected300");
             }
             if (ScoreToAdd == 1000)
             {
                 Instantiate(thousandScoreEffect, new Vector3(transform.position.x, transform.position.y + scoreEffectHeightOffset), Quaternion.identity);
+                FindObjectOfType<AudioManager>().Play("GemCollected1000");
             }
             gameDataManager.score += ScoreToAdd;
             gameDataManager.scoreText.text = gameDataManager.score.ToString();
@@ -72,7 +88,10 @@ public class GemProperties : MonoBehaviour
         StartCoroutine(SpriteFlickerFast());
         yield return new WaitForSeconds(GemLifespan);
         Instantiate(shatterEffect, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
-        Destroy (gameObject);
+
+        FindObjectOfType<AudioManager>().Play("GemShatter");
+
+        Destroy(gameObject);
     }
 
 
@@ -100,6 +119,5 @@ public class GemProperties : MonoBehaviour
     {
         yield return new WaitForSeconds(GemLifespan - 0.5f);
         fastFlicker = true;
-
     }
 }

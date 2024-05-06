@@ -28,6 +28,8 @@ public class DelayedStartScript : MonoBehaviour
 
         // start timer
         StartCoroutine(CountdownTimer());
+        // start timer for sounds/effects (tracks each tick)
+        StartCoroutine(TimerTicks());
 
         // hide the HUD
         HudContainer.SetActive(false);
@@ -36,6 +38,8 @@ public class DelayedStartScript : MonoBehaviour
     public IEnumerator CountdownTimer()
     {
         yield return new WaitForSeconds(delayTime);
+
+        FindObjectOfType<AudioManager>().Play("Music");
 
         // activate ghost movement
         purpleGhost.EnableMovement();
@@ -50,5 +54,24 @@ public class DelayedStartScript : MonoBehaviour
 
         // show HUD
         HudContainer.SetActive(true);
+    }
+
+    public IEnumerator TimerTicks()
+    {
+        yield return new WaitForSeconds(1);
+        // "3"
+        FindObjectOfType<AudioManager>().Play("TimerTick");
+
+        yield return new WaitForSeconds(0.666f);
+        // "2"
+        FindObjectOfType<AudioManager>().Play("TimerTick");
+
+        yield return new WaitForSeconds(0.666f);
+        // "1"
+        FindObjectOfType<AudioManager>().Play("TimerTick");
+
+        yield return new WaitForSeconds(0.666f);
+        // "GO!"
+        FindObjectOfType<AudioManager>().Play("TimerFinish");
     }
 }
