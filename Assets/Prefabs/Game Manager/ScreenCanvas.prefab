@@ -13,14 +13,13 @@ GameObject:
   - component: {fileID: 8861201262268249634}
   - component: {fileID: 8750915387831055261}
   - component: {fileID: 9159891073220054337}
-  - component: {fileID: 3941332069291997474}
   m_Layer: 5
   m_Name: Crossfade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &269675522488670236
 RectTransform:
   m_ObjectHideFlags: 0
@@ -111,18 +110,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &3941332069291997474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 246874990820158434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e287ae04f43027a4aab03985ea38b9f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4346332880549103954
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +143,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -324.14996, y: -176.85}
+  m_AnchoredPosition: {x: -324.1667, y: -176.85}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &9060807167002858144
@@ -200,7 +187,7 @@ SpriteRenderer:
   m_SortingLayerID: 748214717
   m_SortingLayer: 6
   m_SortingOrder: 2
-  m_Sprite: {fileID: -1900483257, guid: a3f554d53de905a4a85261159ef92428, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b6afec8b04d2b549b21cc844b42999e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -382,14 +369,14 @@ RectTransform:
   m_GameObject: {fileID: 6053322604588475440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.333333, y: 0.333333, z: 1}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1967188585116710492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -326, y: -176.85}
+  m_AnchoredPosition: {x: -326.04166, y: -176.85}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1237953189314643692
@@ -865,11 +852,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 440391963968694820, guid: 222cedaa650227c4c9946b855f0b2dea, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 440391963968694820, guid: 222cedaa650227c4c9946b855f0b2dea, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 440391963968694820, guid: 222cedaa650227c4c9946b855f0b2dea, type: 3}
       propertyPath: m_LocalPosition.x
