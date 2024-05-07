@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
@@ -12,9 +13,12 @@ using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
 
+
 public class PlayerScript : AnimatorManager
 {
     private Rigidbody2D rb;
+
+    #region MovementVariables
 
     [Header("Movement")]
     [Tooltip("Max speed player can accelerate to")]
@@ -27,16 +31,19 @@ public class PlayerScript : AnimatorManager
     [SerializeField] private float aerialLinearDrag = 2f;
     private bool facingRight = true;
     [HideInInspector] public float xMoveInput;
-    public float prevXMoveInput;
+    public float prevXMoveInput;             // used when checking for dust animation from stopped position
     [HideInInspector] public float yMoveInput;
-    private bool isMoving = false;
-    private Vector3 lastPosition;
+    //private bool isMoving = false;
+
+    #endregion
+
+    #region JumpVariables
 
     [Header("Jump")]
     [Tooltip("Determines the jumping power a player has. The higher the number, the higher the player jumps")]
     [SerializeField] private float playerJumpForce = 12.5f;
-    [Tooltip("Not implemented. Don't think we will need this")]
-    [SerializeField] private float maxJumpForce = 15f;
+    //[Tooltip("Not implemented. Don't think we will need this")]
+    //[SerializeField] private float maxJumpForce = 15f;
     [Tooltip("Determines the bounce force factor on a bouncepad. bounceJump is multiplied by playerJumpForce")]
     [SerializeField] private float bounceJump = 2;
     public bool isJumping = false;
@@ -44,8 +51,8 @@ public class PlayerScript : AnimatorManager
     [Tooltip("Determines how long player can hold jump button before jump ends")]
     [SerializeField] private float maxJumpTime = 3;
     //private int jumpCount = 0;
-    [Tooltip("Not implemented. I can code this in if we decide we ever want to have multiple jumps")]
-    [SerializeField] private int maxJumpCount = 1;
+    //[Tooltip("Not implemented. I can code this in if we decide we ever want to have multiple jumps")]
+    //[SerializeField] private int maxJumpCount = 1;
     [Tooltip("The amount of leeway you have to jump after leaving a ledge. The lower the number the less grace period you have")]
     [SerializeField] private float maxCoyoteTime = 0.2f;
     [Tooltip("The force that pushes you down when you hit a ceiling (make a positive number")]
@@ -57,6 +64,9 @@ public class PlayerScript : AnimatorManager
     //private float peakJumpCounter;
     //private float maxPeakJumpTime = 0.2f;
 
+    #endregion
+
+    #region GravityVariables
     [Header("Gravity")]
     [Tooltip("The strength of gravity on the ascent of your jump")]
     [SerializeField] private float ascGravity = 3;
@@ -79,6 +89,9 @@ public class PlayerScript : AnimatorManager
     //private bool isFalling = false;
     private bool isApproachingPeak = false;
 
+    #endregion
+
+    #region GroundCheckVariables
     [Header("Ground Check")]
     // allows the player to jump slightly before touching the ground
     [Tooltip("Gives the player a buffer jump if they press the jump button without touching the ground. The higher the number, the more leeway the player has. Turn on gizmos to see a visual representation")]
@@ -94,17 +107,23 @@ public class PlayerScript : AnimatorManager
 
     private Collider2D thinPlatformColl;
 
+    #endregion
+
+    #region AnimationVariables
     [Header("Animation")]
     // Load the animation prefab from the Resources folder
     private GameObject walkDustAnimation;
     private GameObject landDustAnimation;
-    private bool canWalkDustAppear = true;
 
     //public Animator animator;
     // Important: this is used to determine the placement in the animator array in AnimatorManager.cs
     // if multiple parts were used, you would add each component in numeric order you want them to appear 
     // in the layers
     private const int SPRITE = 0;
+
+    #endregion
+
+    #region RunTime
 
     private void Awake()
     {
@@ -122,7 +141,6 @@ public class PlayerScript : AnimatorManager
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
 
-        lastPosition = transform.position;
         xMoveInput = 0;
     }
 
@@ -146,6 +164,8 @@ public class PlayerScript : AnimatorManager
 
             // check if player presses jump
             Jump();
+
+            IsLanding();
 
             // track coyote time and reset gravity is player isgrounded
             // NOTE: I'm not sure it's efficient to check grounded status every frame. However, I don't know a better way right now
@@ -256,6 +276,8 @@ public class PlayerScript : AnimatorManager
         }
     }
 
+    #endregion
+
     #region Movement
 
     // get the horizontal direction player is moving (right key=1 left key=-1 no key=0)
@@ -318,7 +340,7 @@ public class PlayerScript : AnimatorManager
         // check if button was just pushed
         if (UserInput.instance.controls.Jumping.Jump.WasPressedThisFrame() || JumpBufferActive == true) // now jump will take 'JumpBufferActive' as a valid alternative
         {
-            Debug.Log(bouncing);
+            //Debug.Log(bouncing);
             StartCoroutine(JumpBuffer());
             if (bouncing){
                 StopCoroutine(JumpBuffer());
@@ -398,6 +420,29 @@ public class PlayerScript : AnimatorManager
         //bouncing = false;
     }
 
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.01f);
+    }
+
+    // triggers landing dust when player lands
+    private void IsLanding() {
+        // check previous velocity against current velocity to determine when landing occurs
+        // when jumping quickly, wouldn't work so added the OR condition
+        if (!bouncing)
+        {
+            //StartCoroutine(Delay());
+            if (rb.velocity.y == 0 && previousVelocityY != rb.velocity.y || previousVelocityY < 0 && rb.velocity.y > 0)
+            {
+                // reset previous velocity as it never gets reset upon landing
+                previousVelocityY = 0f;
+
+                // trigger animation
+                TriggerLandingDustAnimation();
+            }
+        }
+    }
+
     #endregion
 
     #region Gravity
@@ -455,7 +500,7 @@ public class PlayerScript : AnimatorManager
         // check if player is on platform
         // to be especially careful, could add another && platform.bounds.max.y check to see if player is on top
         else if (thinPlatformHit.collider != null && rb.velocity.y == 0){
-            Debug.Log("Platform");
+            //Debug.Log("Platform");
             return true;
         }
         else
@@ -567,8 +612,8 @@ public class PlayerScript : AnimatorManager
         }
     }
 
-    // Triggers the dust animation on the player
-    void TriggerWalkDustAnimation(){
+    // Triggers the dust animation on the player for walking
+    private void TriggerWalkDustAnimation(){
         // Check if the prefab is successfully loaded
         if (walkDustAnimation != null){
             // Instantiate the animation prefab at the current object's position
@@ -589,6 +634,21 @@ public class PlayerScript : AnimatorManager
 
             GameObject dustInstance = Instantiate(walkDustAnimation, bottomLeftPosition, Quaternion.identity);
             dustInstance.transform.rotation = Quaternion.Euler(0, facingRight ? 0 : 180, 0);
+        }
+    }
+
+    // triggers the dust animation on player when landing
+    private void TriggerLandingDustAnimation(){
+        // Check if the prefab is successfully loaded
+        if (landDustAnimation != null){
+            // Instantiate the animation prefab at the current object's position
+            Vector3 bottomLeftPosition = transform.position - new Vector3(transform.localScale.x / 8f, transform.localScale.y / 8f, 0f);
+
+            // Add an offset to position the dust slightly higher
+            float xOffset = 0.05f; // Adjust this value as needed
+            bottomLeftPosition += Vector3.right * xOffset;
+
+            Instantiate(landDustAnimation, bottomLeftPosition, Quaternion.identity);
         }
     }
 
