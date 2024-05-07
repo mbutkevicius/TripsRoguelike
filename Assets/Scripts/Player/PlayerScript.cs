@@ -121,6 +121,9 @@ public class PlayerScript : AnimatorManager
     // in the layers
     private const int SPRITE = 0;
 
+    [SerializeField] private float maxWalkingTimeDustSpawn;
+    private float walkingTimeDustSpawn;
+
     #endregion
 
     #region RunTime
@@ -142,6 +145,7 @@ public class PlayerScript : AnimatorManager
         coll = GetComponent<Collider2D>();
 
         xMoveInput = 0;
+        walkingTimeDustSpawn = maxWalkingTimeDustSpawn;
     }
 
     // Update is called once per frame
@@ -305,16 +309,32 @@ public class PlayerScript : AnimatorManager
 
         // check if player is changing direction
         if ((xMoveInput > 0 && !facingRight) || (xMoveInput < 0 && facingRight)){
+            //walkingTimeDustSpawn = maxWalkingTimeDustSpawn;
             Flip();
         }
         // check if player is moving from standstill to trigger dust animation
         else if (prevXMoveInput == 0 && Math.Abs(xMoveInput) > 0 && IsGrounded()){
+            //walkingTimeDustSpawn = maxWalkingTimeDustSpawn;
             TriggerWalkDustAnimation();
         }
         // cap players velocity if they are moving past max speed
         if (Mathf.Abs(rb.velocity.x) > maxRunningSpeed){
             rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxRunningSpeed, rb.velocity.y);
         }
+
+        /*
+        // check if player is moving and on the ground
+        if (Mathf.Abs(xMoveInput) > 0 && IsGrounded()){
+            // subtract from timer
+            walkingTimeDustSpawn -= Time.deltaTime;
+
+            // trigger animation if timer interval reaches 0
+            if (walkingTimeDustSpawn <= 0){
+                TriggerWalkDustAnimation();
+                walkingTimeDustSpawn = maxWalkingTimeDustSpawn;
+            }
+        }
+        */
 
         // update previous input for calculating dust animation
         prevXMoveInput = xMoveInput;
@@ -417,26 +437,18 @@ public class PlayerScript : AnimatorManager
             rb.gravityScale = ascGravity;
             rb.velocity = new Vector2(rb.velocity.x, playerJumpForce * bounceJump);
         }
-        //bouncing = false;
-    }
-
-    IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(0.01f);
     }
 
     // triggers landing dust when player lands
     private void IsLanding() {
         // check previous velocity against current velocity to determine when landing occurs
         // when jumping quickly, wouldn't work so added the OR condition
-        if (!bouncing)
-        {
-            //StartCoroutine(Delay());
-            if (rb.velocity.y == 0 && previousVelocityY != rb.velocity.y || previousVelocityY < 0 && rb.velocity.y > 0)
-            {
-                // reset previous velocity as it never gets reset upon landing
-                previousVelocityY = 0f;
+        if (!bouncing && rb.velocity.y == 0 && previousVelocityY != rb.velocity.y || !bouncing && previousVelocityY < 0 && rb.velocity.y > 0){
+            // reset previous velocity as it never gets reset upon landing
+            previousVelocityY = 0f;
 
+            // check if player is actually touching ground
+            if (TrueIsGrounded()){
                 // trigger animation
                 TriggerLandingDustAnimation();
             }
@@ -500,6 +512,34 @@ public class PlayerScript : AnimatorManager
         // check if player is on platform
         // to be especially careful, could add another && platform.bounds.max.y check to see if player is on top
         else if (thinPlatformHit.collider != null && rb.velocity.y == 0){
+            //Debug.Log("Platform");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+        // Needed a true ground check without extra height for dust landing animation 
+        public bool TrueIsGrounded()
+    {
+        // Note: This is probably what I am going to change to
+        //groundHit = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, whatIsGround);
+
+        // only detects ground layer. Extra height gives player small wiggle room for touching the ground
+        groundHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.02f, whatIsGround);
+
+        thinPlatformHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.02f, whatIsThinPlatform);
+
+        // if boxcast touches ground
+        if (groundHit.collider != null)
+        {
+            return true; 
+        }
+        // check if player is on platform
+        // to be especially careful, could add another && platform.bounds.max.y check to see if player is on top
+        else if (thinPlatformHit.collider != null){
             //Debug.Log("Platform");
             return true;
         }
@@ -650,6 +690,19 @@ public class PlayerScript : AnimatorManager
 
             Instantiate(landDustAnimation, bottomLeftPosition, Quaternion.identity);
         }
+    }
+
+    // delete landing dust animation if in scene
+    private void DeleteLandingDustAnimation(){
+        // Check if the object exists in the hierarchy
+        GameObject objectToDelete = GameObject.Find("LandDustEffect" + "(Clone)");
+
+        if (objectToDelete != null)
+        {
+            // Object exists, so delete it
+            Destroy(objectToDelete);
+        }
+
     }
 
     // disable animations

@@ -14,6 +14,12 @@ public class BouncePadScript : MonoBehaviour
         }
     }
 
+    IEnumerator Delay(Collider2D other)
+    {
+        yield return new WaitForSeconds(0.01f);
+        other.GetComponent<PlayerScript>().bouncing = false;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         
@@ -33,7 +39,7 @@ public class BouncePadScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Physics2D.IgnoreCollision(other, platformCollider, false);
-            other.GetComponent<PlayerScript>().bouncing = false;
+            StartCoroutine(Delay(other));
         }
     }
 }
