@@ -88,7 +88,17 @@ public class GameOverScript : MonoBehaviour
     }
 
     public void MainMenu(){
-        //SceneManager.LoadScene("MainMenu");
+        StartCoroutine(MainMenuTransition());
+    }
+
+    IEnumerator MainMenuTransition()
+    {
+        transition.SetTrigger("Out");
+        yield return new WaitForSeconds(deathDelay);
+
+        isGameOver = false;
+
+        SceneManager.LoadScene(0);
     }
 
     public void Quit(){
