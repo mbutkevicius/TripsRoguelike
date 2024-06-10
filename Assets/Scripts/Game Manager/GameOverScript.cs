@@ -12,6 +12,7 @@ public class GameOverScript : MonoBehaviour
     public GameObject gameOverUI;
     public Animator transition;
     public gemSpawner gemSpawner;
+    public PlayerScript playerScript;
 
     [HideInInspector] public bool isGameOver = false;
     [Tooltip("Dev tool: disables cursor during gameplay. I like this option on but can make it annoying during testing")]
@@ -30,11 +31,14 @@ public class GameOverScript : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
         Debug.Log(gameOverUI);
+
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
 
     public void GameOver(){
         if (!isGameOver){
             transition.SetTrigger("Death");
+            playerScript.KillPlayer();
             StopCoroutine(gemSpawner.SpawnGems());
 
             isGameOver = true;

@@ -9,6 +9,7 @@ using UnityEditor.Callbacks;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
@@ -114,6 +115,7 @@ public class PlayerScript : AnimatorManager
     // Load the animation prefab from the Resources folder
     private GameObject walkDustAnimation;
     private GameObject landDustAnimation;
+    private GameObject deathAnimation;
 
     //public Animator animator;
     // Important: this is used to determine the placement in the animator array in AnimatorManager.cs
@@ -133,6 +135,7 @@ public class PlayerScript : AnimatorManager
         // Load the animation prefab from the Resources folder in Awake
         walkDustAnimation = Resources.Load<GameObject>("PlayerEffects/WalkDustEffect");
         landDustAnimation = Resources.Load<GameObject>("PlayerEffects/LandDustEffect");
+        deathAnimation = Resources.Load<GameObject>("PlayerEffects/TripDeathAnimation");
     }
 
     // Start is called before the first frame update
@@ -720,4 +723,10 @@ public class PlayerScript : AnimatorManager
     }
 
     #endregion
+
+    public void KillPlayer()
+    {
+        Instantiate(deathAnimation, transform.position, Quaternion.identity);
+        gameObject.layer = 0;
+    }
 }

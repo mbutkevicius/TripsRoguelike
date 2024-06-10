@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEditor.Build.Content;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -85,12 +86,13 @@ public class PlayerHealth : MonoBehaviour
 
     // allows player sprite to quickly appear and disappear
     private IEnumerator Blink(){
-        while (isInvincible){
+        while (isInvincible && health > 0){
             // alternate displaying sprite 
             playerSprite.enabled = !playerSprite.enabled;
             // wait for duration before alternating sprite
             yield return new WaitForSeconds(blinkInterval);
         }
+        
 
         // Enable sprite if left off
         playerSprite.enabled = true;

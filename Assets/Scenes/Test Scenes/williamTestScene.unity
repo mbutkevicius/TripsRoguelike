@@ -4744,6 +4744,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3763013999363396079, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
   m_PrefabInstance: {fileID: 1602949636}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &886696120 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7778502801689768655, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
+  m_PrefabInstance: {fileID: 1602949636}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &921067601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6196406065199146518, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
@@ -15758,6 +15763,10 @@ PrefabInstance:
       value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 3091570932345733587, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 886696120}
+    - target: {fileID: 3091570932345733587, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
       propertyPath: maxRunningSpeed
       value: 8
       objectReference: {fileID: 0}
@@ -15780,6 +15789,10 @@ PrefabInstance:
     - target: {fileID: 3091570932345733587, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
       propertyPath: playerAcceleration
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3091570932345733587, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
+      propertyPath: maxWalkingTimeDustSpawn
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 3091570932345733587, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
       propertyPath: whatIsThinPlatform.m_Bits
@@ -27226,6 +27239,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 246874990820158434, guid: 0b94f8a786d6ae546830aa0973c02838, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3016361715454113681, guid: 0b94f8a786d6ae546830aa0973c02838, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -27397,6 +27414,10 @@ PrefabInstance:
     - target: {fileID: 6643733143853060494, guid: 0b94f8a786d6ae546830aa0973c02838, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193979289989127117, guid: 0b94f8a786d6ae546830aa0973c02838, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9060807167002858144, guid: 0b94f8a786d6ae546830aa0973c02838, type: 3}
       propertyPath: m_Sprite
@@ -27576,7 +27597,11 @@ PrefabInstance:
     - target: {fileID: 745336827918675225, guid: 93e640a642bcfcc45b7eaf5b239fc8e7, type: 3}
       propertyPath: sounds.Array.data[12].clip
       value: 
-      objectReference: {fileID: 8300000, guid: b743745add9a7674a95f7e1272728efb, type: 3}
+      objectReference: {fileID: 8300000, guid: 5014352a4a6d75d47adbc84658e8031d, type: 3}
+    - target: {fileID: 745336827918675225, guid: 93e640a642bcfcc45b7eaf5b239fc8e7, type: 3}
+      propertyPath: sounds.Array.data[12].volume
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 2680954973320931097, guid: 93e640a642bcfcc45b7eaf5b239fc8e7, type: 3}
       propertyPath: m_Name
       value: AudioManager
