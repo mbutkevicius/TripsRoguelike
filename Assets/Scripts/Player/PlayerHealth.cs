@@ -40,7 +40,10 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (health == 0)
+        {
+            playerSprite.enabled = false;
+        }
     }
 
     // method for when player is hurt

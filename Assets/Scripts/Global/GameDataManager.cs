@@ -9,7 +9,8 @@ public class GameDataManager : MonoBehaviour
 {
     [Header("Score Data")]
     public Text scoreText;
-    [HideInInspector] public int score;
+    public Text highScoreText;
+    public int score;
 
     [Header("Timer Data")]
     [Tooltip("Amount of time it takes for ghosts to reach max speed")]
@@ -48,6 +49,8 @@ public class GameDataManager : MonoBehaviour
 
         timerText.text = "00:00.00";
         timerGoing = false;
+
+        highScoreText.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
 
     public void BeginTimer()
@@ -74,5 +77,12 @@ public class GameDataManager : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    [ContextMenu("SetHighScore")]
+    public void SetHighScore()
+    {
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        PlayerPrefs.SetInt("HighScore", score);
     }
 }

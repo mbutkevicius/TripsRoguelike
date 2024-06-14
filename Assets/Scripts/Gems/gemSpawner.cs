@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using static gemSpawner;
 
-public class gemSpawner : MonoBehaviour
+public class GemSpawner : MonoBehaviour
 {
-    // Class to store info about spawner locations and occupancy status
     [System.Serializable]
     public class gemSpawners
     {
@@ -24,13 +22,10 @@ public class gemSpawner : MonoBehaviour
             yield return new WaitForSeconds(10);
             spawnerIsOccupied = false;
         }
-    }  
+    }
 
-    // Makes a list for the spawner class in the inspector that can be populated
     public List<gemSpawners> spawnerList = new List<gemSpawners>();
 
-
-    // Class to store info about gem types and weight
     [System.Serializable]
     public class gems
     {
@@ -38,13 +33,10 @@ public class gemSpawner : MonoBehaviour
         public int gemWeight;
     }
 
-    // Makes a list for the gem class in the inspector that can be populated
     public List<gems> gemList = new List<gems>();
 
-
-
-    // Calculate total weight of all gems
     int totalWeight = 0;
+
     public int CalculateTotalGemWeight()
     {
         foreach (gems gem in gemList)
@@ -54,17 +46,16 @@ public class gemSpawner : MonoBehaviour
         return totalWeight;
     }
 
-
-    public void selectGem()
+    public void SelectGem()
     {
         int randomValue;
         bool gemWasSelected = false;
 
-        while (gemWasSelected == false)
+        while (!gemWasSelected)
         {
             int i = 0;
 
-            foreach (gems gems in gemList)
+            foreach (gems gem in gemList)
             {
                 randomValue = Random.Range(totalWeight, 0);
                 Debug.Log(randomValue);
@@ -81,103 +72,98 @@ public class gemSpawner : MonoBehaviour
         }
     }
 
-
-
-    // Spawning timer
     public float GemSpawningTimer;
-
 
     private bool isSpawning = false;
     bool gemSpawnerWasHalted = false;
-    bool spawnerSelected = false;
 
     public IEnumerator SpawnGems()
     {
-        while(spawnerList.Count > 0)
+        while (spawnerList.Count > 0)
         {
-            // initiate the spawning timer
             yield return new WaitForSeconds(GemSpawningTimer);
 
-            // Check if there are any unoccupied spawners left
-            bool unoccupiedSpawnerExists = false;
-            foreach (var spawner in spawnerList)
+            if (!AnyUnoccupiedSpawner())
             {
-                if (!spawner.spawnerIsOccupied)
-                {
-                    unoccupiedSpawnerExists = true;
-                    break;
-                }
-            }
-
-            // If there are no unoccupied spawners, exit the coroutine
-            if (!unoccupiedSpawnerExists)
-            {
-                // ("All spawners occupied. Exiting coroutine.");
                 gemSpawnerWasHalted = true;
                 yield break;
             }
 
-            // Enter a loop that will iterate through spawners until it finds an empty one
-            while (spawnerSelected == false)
-            {
-                // represents the selected gem
-                // Choose a random index from the spawner list
-                int randomIndex = Random.Range(0, spawnerList.Count);
-                // Debug.Log(randomIndex);
-                if (spawnerList[randomIndex].spawnerIsOccupied == false)
-                {
-                    int randomValue;
-                    
-                    bool gemWasSelected = false;
-
-                    while (gemWasSelected == false)
-                    {
-                        int gemIndex = 0;
-
-                        foreach (gems gems in gemList)
-                        {
-                            randomValue = Random.Range(totalWeight, 0);
-                            Debug.Log(randomValue);
-
-                            if (randomValue <= gemList[gemIndex].gemWeight)
-                            {
-                                Debug.Log(gemIndex);
-                                gemWasSelected = true;
-                                // Get the position of the object at the random index
-                                Vector3 spawnPosition = spawnerList[randomIndex].spawner.transform.position;
-
-                                // Instantiate the object at the position
-                                Instantiate(gemList[gemIndex].gem, spawnPosition, Quaternion.identity);
-                                break;
-                            }
-
-                            gemIndex++;
-                        }
-                    }
-
-                 
-
-                    spawnerList[randomIndex].OccupySpawner();
-                    StartCoroutine(spawnerList[randomIndex].OccupancyTimer());
-                    spawnerSelected = true;
-                }
-            }
-            spawnerSelected = false;
+            SpawnGemAtRandomSpawner();
         }
     }
 
+    private bool AnyUnoccupiedSpawner()
+    {
+        foreach (var spawner in spawnerList)
+        {
+            if (!spawner.spawnerIsOccupied)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    // Start is called before the first frame update
+    private void SpawnGemAtRandomSpawner()
+    {
+        bool spawnerSelected = false;
+
+        while (!spawnerSelected)
+        {
+            int randomIndex = Random.Range(0, spawnerList.Count);
+
+            if (!spawnerList[randomIndex].spawnerIsOccupied)
+            {
+                int gemIndex = SelectRandomGemIndex();
+
+                Vector3 spawnPosition = spawnerList[randomIndex].spawner.transform.position;
+                Instantiate(gemList[gemIndex].gem, spawnPosition, Quaternion.identity);
+
+                spawnerList[randomIndex].OccupySpawner();
+                StartCoroutine(spawnerList[randomIndex].OccupancyTimer());
+                spawnerSelected = true;
+            }
+        }
+    }
+
+    private int SelectRandomGemIndex()
+    {
+        int randomValue;
+        int gemIndex = 0;
+        bool gemWasSelected = false;
+
+        while (!gemWasSelected)
+        {
+            gemIndex = 0;
+
+            foreach (gems gem in gemList)
+            {
+                randomValue = Random.Range(totalWeight, 0);
+                Debug.Log(randomValue);
+
+                if (randomValue <= gem.gemWeight)
+                {
+                    Debug.Log(gemIndex);
+                    gemWasSelected = true;
+                    break;
+                }
+
+                gemIndex++;
+            }
+        }
+
+        return gemIndex;
+    }
+
     void Start()
     {
         StartCoroutine(SpawnGems());
         CalculateTotalGemWeight();
     }
 
-    // Update is called once per frame
     void Update()
     {
-    
-    }
 
+    }
 }

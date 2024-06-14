@@ -20,6 +20,8 @@ public class DelayedStartScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FindObjectOfType<AudioManager>().Play("Music");
+
         // disable player movement
         FindObjectOfType<UserInput>().OnDisable();
 
@@ -38,8 +40,6 @@ public class DelayedStartScript : MonoBehaviour
     public IEnumerator CountdownTimer()
     {
         yield return new WaitForSeconds(delayTime);
-
-        FindObjectOfType<AudioManager>().Play("Music");
 
         // activate ghost movement
         purpleGhost.EnableMovement();

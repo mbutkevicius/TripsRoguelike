@@ -35,8 +35,11 @@ public class TitleScreen : MonoBehaviour
 
     IEnumerator PlayGame()
     {
+        isInputLocked = true;
+
         transition.SetTrigger("Death");
 
+        FindObjectOfType<AudioManager>().Stop("TitleScreenMusic");
         FindObjectOfType<AudioManager>().Play("TitleScreenKeyPress");
 
         keyPrompt.SetTrigger("PressedKey");
@@ -52,6 +55,8 @@ public class TitleScreen : MonoBehaviour
 
     IEnumerator StartDelay()
     {
+        FindObjectOfType<AudioManager>().Play("TitleScreenMusic");
+
         yield return new WaitForSeconds(startDelay);
 
         isInputLocked = false;

@@ -728,5 +728,6 @@ public class PlayerScript : AnimatorManager
     {
         Instantiate(deathAnimation, transform.position, Quaternion.identity);
         gameObject.layer = 0;
+        coll.enabled = false;
     }
 }

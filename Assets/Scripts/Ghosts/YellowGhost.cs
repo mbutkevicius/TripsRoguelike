@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Transactions;
 using System.Xml.Serialization;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -165,6 +166,13 @@ public class YellowGhost : MonoBehaviour
             Instantiate(trailEffect, new Vector3(transform.position.x, transform.position.y), transform.rotation);
             yield return new WaitForSeconds(trailEffectSpawnRate);
         }
+    }
+
+    public void DisableMovement()
+    {
+        isChasingPlayer = false;
+        animator.SetTrigger("Idle");
+        StopAllCoroutines();
     }
 }
 

@@ -8,9 +8,7 @@ using Unity.VisualScripting;
 public class RedGhost : MonoBehaviour
 {
     public DelayedStartScript countdownTimer;
-
     public GameDataManager gameDataManager;
-
     public GameOverScript gameOverScript;
 
     [SerializeField] private Transform target;
@@ -75,5 +73,7 @@ public class RedGhost : MonoBehaviour
     public void DisableMovement()
     {
         canMove = false;
+        chaseSpeed = 0;
+        agent.enabled = false;
     }
 }
