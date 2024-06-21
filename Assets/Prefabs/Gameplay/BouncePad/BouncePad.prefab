@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformCollider: {fileID: 713025279373980837}
+  animator: {fileID: 6039302762687016250}
+  bounceEffect: {fileID: 3059097752970644541, guid: 928ab3097c41f5047beee900281e78d5, type: 3}
 --- !u!95 &6039302762687016250
 Animator:
   serializedVersion: 5

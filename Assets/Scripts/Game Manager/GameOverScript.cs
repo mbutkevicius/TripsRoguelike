@@ -16,6 +16,7 @@ public class GameOverScript : MonoBehaviour
     public YellowGhost yellowGhost;
     public PurpleGhost purpleGhost;
     public RedGhost redGhost;
+    public WhiteGhost whiteGhost;
     public GameDataManager gameDataManager;
 
     [HideInInspector] public bool isGameOver = false;
@@ -55,6 +56,7 @@ public class GameOverScript : MonoBehaviour
             redGhost.DisableMovement();
             purpleGhost.DisableMovement();
             yellowGhost.DisableMovement();
+            whiteGhost.DisableMovement();
 
             // disable player movement
             FindObjectOfType<UserInput>().OnDisable();
@@ -93,6 +95,7 @@ public class GameOverScript : MonoBehaviour
 
     IEnumerator Restarted()
     {
+        FindObjectOfType<AudioManager>().Play("UiClick");
         transition.SetTrigger("Out");
         yield return new WaitForSeconds(deathDelay);
 
@@ -112,6 +115,7 @@ public class GameOverScript : MonoBehaviour
 
     IEnumerator MainMenuTransition()
     {
+        FindObjectOfType<AudioManager>().Play("UiClick");
         transition.SetTrigger("Out");
         yield return new WaitForSeconds(deathDelay);
 
@@ -121,6 +125,7 @@ public class GameOverScript : MonoBehaviour
     }
 
     public void Quit(){
+        FindObjectOfType<AudioManager>().Play("UiClick");
         Application.Quit();
     }
 }

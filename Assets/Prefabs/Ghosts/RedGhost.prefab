@@ -76,7 +76,6 @@ MonoBehaviour:
   countdownTimer: {fileID: 0}
   gameDataManager: {fileID: 0}
   gameOverScript: {fileID: 0}
-  rb: {fileID: 964474286505953684}
   target: {fileID: 0}
   chaseSpeed: 5
   slipperyFactor: 0.5
@@ -191,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpriteRenderer: {fileID: 0}
   damage: 1
+  canDoDamage: 1
 --- !u!95 &2519583115032996213
 Animator:
   serializedVersion: 5

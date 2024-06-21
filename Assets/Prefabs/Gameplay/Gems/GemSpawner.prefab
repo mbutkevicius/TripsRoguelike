@@ -338,7 +338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb139a6548aecc45a65f3e459b1eb3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gem: {fileID: 8860131587330293863, guid: 26514aeb60e06004abf36df070a4f38f, type: 3}
   spawnerList:
   - spawner: {fileID: 78849775905421527}
     spawnerIsOccupied: 0
@@ -372,7 +371,7 @@ MonoBehaviour:
     spawnerIsOccupied: 0
   gemList:
   - gem: {fileID: 2718400526325621361, guid: 948d16933cefbb840b45a7df4e53cd7d, type: 3}
-    gemWeight: 16
+    gemWeight: 14
   - gem: {fileID: 8860131587330293863, guid: 26514aeb60e06004abf36df070a4f38f, type: 3}
     gemWeight: 12
   - gem: {fileID: 8359316455293858919, guid: a089a1a4bdc51084a871e6f82f36c863, type: 3}

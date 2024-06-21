@@ -44,8 +44,6 @@ public class YellowGhost : MonoBehaviour
     [HideInInspector]
     public bool isChasingPlayer = false;
 
-    private float speedTimeMultiplier;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -99,8 +97,6 @@ public class YellowGhost : MonoBehaviour
 
     void Update()
     {
-        speedTimeMultiplier = gameDataManager.ghostTimeFraction;
-
         // This 'if' block contains State2 behavior. It's not super visually clean having this here but update function seemed the best for accomplishing this.
         if (isChasingPlayer == true)
         {
@@ -112,7 +108,7 @@ public class YellowGhost : MonoBehaviour
                 // Calculate direction to the tracking point
                 Vector3 direction = (trackingPoint.position - transform.position).normalized;
                 // Apply the velocity
-                rb.velocity = direction * (movementSpeed * speedTimeMultiplier) * boostMultiplier;
+                rb.velocity = direction * (movementSpeed * gameDataManager.ghostTimeFraction) * boostMultiplier;
 
                 // This gives the Yellow Ghost a boost at the start of the dash, so it feels snappier. These values can be tweaked
                 if (boostMultiplier > 1)
@@ -156,8 +152,6 @@ public class YellowGhost : MonoBehaviour
             // sprite.flipX = true;
         }
     }
-
-
 
     private IEnumerator TrailEffect()
     {
