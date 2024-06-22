@@ -142,8 +142,8 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Music
-    clip: {fileID: 8300000, guid: 9ef4161da7e431c4cac10bbf2dbf7f6b, type: 3}
-    volume: 0.175
+    clip: {fileID: 8300000, guid: 5014352a4a6d75d47adbc84658e8031d, type: 3}
+    volume: 0.25
     pitch: 1
     spatialBlend: 0
     reverbZoneMix: 0
@@ -168,6 +168,22 @@ MonoBehaviour:
   - name: MushroomBounce
     clip: {fileID: 8300000, guid: 870c0075eef206d4ead1124cc0912442, type: 3}
     volume: 0.28
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: WhiteGhostAggro
+    clip: {fileID: 8300000, guid: 833a90bcb40076f419df321117c159aa, type: 3}
+    volume: 0.42
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: WhiteGhostAppear
+    clip: {fileID: 8300000, guid: 9aa04a4c4dfe40f42ae114a050e0fcae, type: 3}
+    volume: 0.35
     pitch: 1
     spatialBlend: 0
     reverbZoneMix: 0

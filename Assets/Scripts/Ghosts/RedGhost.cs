@@ -19,8 +19,6 @@ public class RedGhost : MonoBehaviour
     public float chaseSpeed = 5f;
     public float slipperyFactor = 0.5f; // A factor to make it feel slippery
 
-    private float speedTimeMultiplier;
-
     private bool canMove;
 
     // Start is called before the first frame update
@@ -42,8 +40,6 @@ public class RedGhost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedTimeMultiplier = gameDataManager.ghostTimeFraction;
-
         // flip ghost if facing the wrong direction
         if (agent.velocity.x < 0 && facingRight || agent.velocity.x > 0 && !facingRight){
             Flip();
@@ -54,8 +50,8 @@ public class RedGhost : MonoBehaviour
         {
             agent.SetDestination(target.position);
 
-            agent.speed = chaseSpeed * speedTimeMultiplier;
-            agent.acceleration = slipperyFactor * speedTimeMultiplier;
+            agent.speed = chaseSpeed * gameDataManager.ghostTimeFraction;
+            agent.acceleration = slipperyFactor * gameDataManager.ghostTimeFraction;
         }
     }
 

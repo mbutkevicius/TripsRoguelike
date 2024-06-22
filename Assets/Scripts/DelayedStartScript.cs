@@ -9,6 +9,7 @@ public class DelayedStartScript : MonoBehaviour
     public YellowGhost yellowGhost;
     public PurpleGhost purpleGhost;
     public RedGhost redGhost;
+    public WhiteGhost whiteGhost;
 
     [Header("Game Info References")]
     public GameDataManager gameDataManager;
@@ -45,6 +46,7 @@ public class DelayedStartScript : MonoBehaviour
         purpleGhost.EnableMovement();
         redGhost.EnableMovement();
         StartCoroutine(yellowGhost.State1A());
+        StartCoroutine(whiteGhost.State1A());
 
         // activate player
         FindObjectOfType<UserInput>().OnEnable();

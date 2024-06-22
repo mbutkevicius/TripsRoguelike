@@ -19,8 +19,6 @@ public class PurpleGhost : MonoBehaviour
     private bool inverted = false;
     private bool facingRight = true;
 
-    private float speedTimeMultiplier;
-
     private bool canMove;
 
     void Start()
@@ -33,11 +31,6 @@ public class PurpleGhost : MonoBehaviour
         countdownTimer = GameObject.FindGameObjectWithTag("Logic").GetComponent<DelayedStartScript>();
 
         initialPosition = transform.position;
-    }
-
-    void Update()
-    {
-        speedTimeMultiplier = gameDataManager.ghostTimeFraction;
     }
 
     public void FixedUpdate(){
@@ -57,12 +50,12 @@ public class PurpleGhost : MonoBehaviour
 
             // movement for going left
             if (inverted){
-                pos.x -= moveSpeed * Time.deltaTime * speedTimeMultiplier;
+                pos.x -= moveSpeed * Time.deltaTime * gameDataManager.ghostTimeFraction;
                 pos.y = initialPosition.y + sin;
             }
             // movement for going right
             else{
-                pos.x += moveSpeed * Time.deltaTime * speedTimeMultiplier;
+                pos.x += moveSpeed * Time.deltaTime * gameDataManager.ghostTimeFraction;
                 pos.y = initialPosition.y - sin;
                 }
 

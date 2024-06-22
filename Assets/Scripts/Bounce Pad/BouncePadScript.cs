@@ -5,6 +5,8 @@ using UnityEngine;
 public class BouncePadScript : MonoBehaviour
 {
     public BoxCollider2D platformCollider;
+    public Animator animator;
+    public GameObject bounceEffect;
 
     void Start()
     {
@@ -26,6 +28,10 @@ public class BouncePadScript : MonoBehaviour
         // Disable collision with player when entering from below
         if (other.CompareTag("Player"))
         {
+            animator.Play("BouncePad_Hit", -1, 0f);
+            Instantiate(bounceEffect, new Vector3(transform.position.x, transform.position.y + 1), Quaternion.identity);
+            StartCoroutine(Delay());
+
             Debug.Log("Touched sprite");
 
             // bounce player
@@ -41,5 +47,11 @@ public class BouncePadScript : MonoBehaviour
             Physics2D.IgnoreCollision(other, platformCollider, false);
             StartCoroutine(Delay(other));
         }
+    }
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.33f);
+        animator.Play("BouncePad_Idle", -1, 0f);
     }
 }

@@ -2,8 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameDataManager : MonoBehaviour
 {
@@ -28,6 +31,8 @@ public class GameDataManager : MonoBehaviour
     [Header("Font References")]
     public Text timerText;
 
+    [HideInInspector] public float speedTimeMultiplier;
+
     private void Update()
     {
         // Calculates the multiplier for ghost speed
@@ -50,7 +55,13 @@ public class GameDataManager : MonoBehaviour
         timerText.text = "00:00.00";
         timerGoing = false;
 
-        highScoreText.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+        UnityEngine.SceneManagement.Scene currentScene = SceneManager.GetActiveScene();
+
+        // Check the name of the current scene
+        if (currentScene.name == "TitleScreen")
+        {
+            highScoreText.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+        }
     }
 
     public void BeginTimer()
@@ -79,10 +90,15 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
-    [ContextMenu("SetHighScore")]
     public void SetHighScore()
     {
         if (score > PlayerPrefs.GetInt("HighScore", 0))
         PlayerPrefs.SetInt("HighScore", score);
+    }
+
+    [ContextMenu("ResetHighScore")]
+    public void ResetHighScore()
+    {
+        PlayerPrefs.SetInt("HighScore", 0);
     }
 }
