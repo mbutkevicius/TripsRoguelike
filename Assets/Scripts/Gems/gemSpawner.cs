@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class GemSpawner : MonoBehaviour
 {
+    public GameDataManager gameDataManager;
+    public WhiteGhost whiteGhost;
+
+    public float IncreaseGemWeightTimeInterval;
+    public int numberOfWeightIncreaseCycles;
+
     [System.Serializable]
     public class gemSpawners
     {
@@ -156,14 +162,43 @@ public class GemSpawner : MonoBehaviour
         return gemIndex;
     }
 
+    public void IncreaseGemWeight()
+    {
+        gemList[1].gemWeight = gemList[1].gemWeight + 2;
+        gemList[2].gemWeight = gemList[2].gemWeight + 3;
+        GemSpawningTimer -= 0.3f;
+        CalculateTotalGemWeight();
+    }
+    public void DecreaseGemWeight()
+    {
+        gemList[1].gemWeight = gemList[1].gemWeight - 2;
+        gemList[2].gemWeight = gemList[2].gemWeight - 3;
+        GemSpawningTimer += 0.3f;
+        CalculateTotalGemWeight();
+    }
+
     void Start()
     {
         StartCoroutine(SpawnGems());
         CalculateTotalGemWeight();
+        StartCoroutine(IncreaseGemWeightTimer());
+
+        // Find the game data manager
+        gameDataManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameDataManager>();
     }
 
-    void Update()
+    public IEnumerator IncreaseGemWeightTimer()
     {
+        yield return new WaitForSeconds(3);
 
+        int i = 0;
+        while (i < numberOfWeightIncreaseCycles)
+        {
+            yield return new WaitForSeconds(IncreaseGemWeightTimeInterval);
+            gemList[1].gemWeight = gemList[1].gemWeight + 2;
+            gemList[2].gemWeight = gemList[2].gemWeight + 3;
+            GemSpawningTimer -= 0.2f;
+            i++;
+        }
     }
 }

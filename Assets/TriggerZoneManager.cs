@@ -7,6 +7,10 @@ public class TriggerZoneManager : MonoBehaviour
 {
     public WhiteGhostTrackingPoint trackingPoint;
 
+    private void Start()
+    {
+        transform.position = Vector3.zero;
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         targets target = GetTargetFromCollider(other);

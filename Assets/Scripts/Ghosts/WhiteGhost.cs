@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
@@ -25,6 +26,7 @@ public class WhiteGhost : MonoBehaviour
     public PlayerScript playerScript;
     public GameDataManager gameDataManager;
     public WhiteGhostTrackingPoint trackingPointScript;
+    public GemSpawner gemSpawner;
 
     [Header("Movement Values")]
     [SerializeField] private float movementSpeed = 5f;
@@ -135,9 +137,20 @@ public class WhiteGhost : MonoBehaviour
         }
     }
 
+    bool b = false;
+    public bool waiting = false;
     public IEnumerator Wait()
     {
+        if (b)
+        {
+            gemSpawner.DecreaseGemWeight();
+        }
+        b = true;
+
+        waiting = true;
         yield return new WaitForSeconds(breakTime);
+        waiting = false;
+        gemSpawner.IncreaseGemWeight();
         StartCoroutine(State1A());
     }
 

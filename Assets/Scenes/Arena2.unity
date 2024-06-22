@@ -3114,7 +3114,7 @@ Transform:
   m_GameObject: {fileID: 338867800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: -8.5, z: 0}
+  m_LocalPosition: {x: 3.5, y: -9.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3414,7 +3414,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1975941096}
     m_Modifications:
     - target: {fileID: 5807064836011243602, guid: ac6a55a9baf14334caa132655a95a71d, type: 3}
       propertyPath: trackingPoint
@@ -3696,7 +3696,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1975941096}
     m_Modifications:
     - target: {fileID: 628032747407256264, guid: 4d9d0ebbbfe1bbe4fa164cd37c8c074e, type: 3}
       propertyPath: m_Name
@@ -4791,6 +4791,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 6039302762687016250, guid: 9fba503ba46f1e4498235972b31216ec, type: 3}
   m_PrefabInstance: {fileID: 1292374563}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &682690044 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8940018392313247861, guid: ac6a55a9baf14334caa132655a95a71d, type: 3}
+  m_PrefabInstance: {fileID: 508972223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &688646825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4921,12 +4926,16 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1975941096}
     m_Modifications:
     - target: {fileID: 2978153279961957196, guid: e1b296fdd1bb16c4ba20f90a224b9f05, type: 3}
       propertyPath: fadeInTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2978153279961957196, guid: e1b296fdd1bb16c4ba20f90a224b9f05, type: 3}
+      propertyPath: gemSpawner
+      value: 
+      objectReference: {fileID: 1982793263}
     - target: {fileID: 2978153279961957196, guid: e1b296fdd1bb16c4ba20f90a224b9f05, type: 3}
       propertyPath: trailEffect
       value: 
@@ -6731,6 +6740,11 @@ Tilemap:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6196406065199146518, guid: 8dae2de586f6efc47b8205065e6658ac, type: 3}
   m_PrefabInstance: {fileID: 2011927726}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1103848325 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7772180108192590543, guid: 4d9d0ebbbfe1bbe4fa164cd37c8c074e, type: 3}
+  m_PrefabInstance: {fileID: 587271407}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1107307272 stripped
 MonoBehaviour:
@@ -23854,6 +23868,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!4 &1772240251 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5448875298151728100, guid: e1b296fdd1bb16c4ba20f90a224b9f05, type: 3}
+  m_PrefabInstance: {fileID: 769441225}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1811352932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9182324935043585114, guid: df573946579a54348bec66151e591986, type: 3}
@@ -28135,6 +28154,9 @@ Transform:
   - {fileID: 1459579070}
   - {fileID: 854492390}
   - {fileID: 445378261}
+  - {fileID: 1772240251}
+  - {fileID: 1103848325}
+  - {fileID: 682690044}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1982793263 stripped
@@ -29317,7 +29339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 745336827918675225, guid: 93e640a642bcfcc45b7eaf5b239fc8e7, type: 3}
       propertyPath: sounds.Array.data[17].volume
-      value: 0.401
+      value: 0.429
       objectReference: {fileID: 0}
     - target: {fileID: 745336827918675225, guid: 93e640a642bcfcc45b7eaf5b239fc8e7, type: 3}
       propertyPath: sounds.Array.data[18].volume
@@ -29546,6 +29568,10 @@ PrefabInstance:
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2924984186847357673, guid: df573946579a54348bec66151e591986, type: 3}
+      propertyPath: whiteGhost
+      value: 
+      objectReference: {fileID: 149744353}
+    - target: {fileID: 2924984186847357673, guid: df573946579a54348bec66151e591986, type: 3}
       propertyPath: spawnerList.Array.size
       value: 18
       objectReference: {fileID: 0}
@@ -29671,7 +29697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9124651984452978407, guid: df573946579a54348bec66151e591986, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 9124651984452978407, guid: df573946579a54348bec66151e591986, type: 3}
       propertyPath: m_LocalPosition.y
@@ -29859,6 +29885,3 @@ SceneRoots:
   - {fileID: 895594780}
   - {fileID: 1292374563}
   - {fileID: 515713135}
-  - {fileID: 769441225}
-  - {fileID: 587271407}
-  - {fileID: 508972223}

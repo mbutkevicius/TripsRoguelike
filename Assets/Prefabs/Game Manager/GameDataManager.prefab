@@ -47,11 +47,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
+  highScoreText: {fileID: 0}
   score: 0
-  ghostMaxSpeedTime: 90
-  ghostSpeedMultiplier: 2
+  ghostMaxSpeedTime: 120
+  ghostSpeedMultiplier: 2.2
   ghostTimeFraction: 0
   timerText: {fileID: 0}
+  speedTimeMultiplier: 0
 --- !u!114 &4167871610416086213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +69,12 @@ MonoBehaviour:
   gameOverUI: {fileID: 0}
   transition: {fileID: 0}
   gemSpawner: {fileID: 0}
+  playerScript: {fileID: 0}
+  yellowGhost: {fileID: 0}
+  purpleGhost: {fileID: 0}
+  redGhost: {fileID: 0}
+  whiteGhost: {fileID: 0}
+  gameDataManager: {fileID: 0}
   isGameOver: 0
   isCursorDisabled: 0
   deathDelay: 2
@@ -86,6 +94,7 @@ MonoBehaviour:
   yellowGhost: {fileID: 0}
   purpleGhost: {fileID: 0}
   redGhost: {fileID: 0}
+  whiteGhost: {fileID: 0}
   gameDataManager: {fileID: 881306786058495302}
   HudContainer: {fileID: 0}
   delayTime: 3

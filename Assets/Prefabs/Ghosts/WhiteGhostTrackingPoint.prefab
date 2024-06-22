@@ -55,11 +55,11 @@ MonoBehaviour:
     collider: {fileID: 0}
   - isValidTarget: 0
     transform: {fileID: 0}
-    direction: {x: 1, y: 0}
+    direction: {x: 0, y: 1}
     collider: {fileID: 0}
   - isValidTarget: 0
     transform: {fileID: 0}
-    direction: {x: 0, y: 1}
+    direction: {x: 1, y: 0}
     collider: {fileID: 0}
   selectedTarget:
     isValidTarget: 0
