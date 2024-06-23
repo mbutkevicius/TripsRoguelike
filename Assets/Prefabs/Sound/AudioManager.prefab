@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: PlayerJump
-    clip: {fileID: 8300000, guid: 6875d32f66ec2fc4caba6e50c81c4dde, type: 3}
-    volume: 0.36
-    pitch: 0.75
+    clip: {fileID: 8300000, guid: 2096dca2b129b5341ae411729dc0b4f3, type: 3}
+    volume: 0.288
+    pitch: 1.84
     spatialBlend: 0
     reverbZoneMix: 0
     loop: 0
@@ -70,59 +70,59 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: GemCollected100
-    clip: {fileID: 8300000, guid: 007e892f47b6c7745ae8c46965e430cd, type: 3}
-    volume: 0.308
-    pitch: 1
+    clip: {fileID: 8300000, guid: 670ef1453074c88488db49072efd8d8d, type: 3}
+    volume: 0.504
+    pitch: 1.1
     spatialBlend: 0
     reverbZoneMix: 0
     loop: 0
     source: {fileID: 0}
   - name: GemCollected300
-    clip: {fileID: 8300000, guid: 007e892f47b6c7745ae8c46965e430cd, type: 3}
-    volume: 0.299
+    clip: {fileID: 8300000, guid: 8ee9ab6155884a24bbe90c2bb89a49d5, type: 3}
+    volume: 0.526
     pitch: 1.2
     spatialBlend: 0
     reverbZoneMix: 0
     loop: 0
     source: {fileID: 0}
   - name: GemCollected1000
-    clip: {fileID: 8300000, guid: 007e892f47b6c7745ae8c46965e430cd, type: 3}
-    volume: 0.299
+    clip: {fileID: 8300000, guid: 192b5646cc377e444aa61d89e2f13915, type: 3}
+    volume: 0.643
     pitch: 1.5
     spatialBlend: 0
     reverbZoneMix: 0
     loop: 0
     source: {fileID: 0}
   - name: GemShatter
-    clip: {fileID: 8300000, guid: c9ee671f338cff34d91e99bad421bbcf, type: 3}
-    volume: 0.6
+    clip: {fileID: 8300000, guid: fd8165268018fe94996ad2c444b708eb, type: 3}
+    volume: 0.635
     pitch: 1
     spatialBlend: 1
     reverbZoneMix: 0.209
     loop: 0
     source: {fileID: 0}
   - name: GemSpawn100
-    clip: {fileID: 8300000, guid: b7d5c413587059d4c9c3b57adf4f44e6, type: 3}
-    volume: 1
-    pitch: 1
-    spatialBlend: 1
-    reverbZoneMix: 0.209
+    clip: {fileID: 8300000, guid: e2102a3f71346e0418d9c84d107ae4aa, type: 3}
+    volume: 0.248
+    pitch: 0.757
+    spatialBlend: 0.853
+    reverbZoneMix: 0.313
     loop: 0
     source: {fileID: 0}
   - name: GemSpawn300
-    clip: {fileID: 8300000, guid: b7d5c413587059d4c9c3b57adf4f44e6, type: 3}
-    volume: 1
-    pitch: 0.66
-    spatialBlend: 1
-    reverbZoneMix: 0.209
+    clip: {fileID: 8300000, guid: e2102a3f71346e0418d9c84d107ae4aa, type: 3}
+    volume: 0.257
+    pitch: 1
+    spatialBlend: 0.862
+    reverbZoneMix: 0.323
     loop: 0
     source: {fileID: 0}
   - name: GemSpawn1000
-    clip: {fileID: 8300000, guid: b7d5c413587059d4c9c3b57adf4f44e6, type: 3}
-    volume: 1
-    pitch: 0.33
-    spatialBlend: 1
-    reverbZoneMix: 0.209
+    clip: {fileID: 8300000, guid: e2102a3f71346e0418d9c84d107ae4aa, type: 3}
+    volume: 0.252
+    pitch: 1.2
+    spatialBlend: 0.853
+    reverbZoneMix: 0.323
     loop: 0
     source: {fileID: 0}
   - name: YellowGhostWindUp
@@ -150,40 +150,56 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: TimerTick
-    clip: {fileID: 8300000, guid: 6a2f5c3634a67e74db8b8061665feee4, type: 3}
-    volume: 0.26
+    clip: {fileID: 8300000, guid: 4b39173e79318924ba187eb8040b9867, type: 3}
+    volume: 0.687
     pitch: 1
     spatialBlend: 0
     reverbZoneMix: 0
     loop: 0
     source: {fileID: 0}
   - name: TimerFinish
-    clip: {fileID: 8300000, guid: cb432576226351442904d159cb73427c, type: 3}
-    volume: 0.26
+    clip: {fileID: 8300000, guid: e0040650501d75947a45cb98cec607eb, type: 3}
+    volume: 0.323
     pitch: 1
     spatialBlend: 0
     reverbZoneMix: 0
     loop: 0
     source: {fileID: 0}
   - name: MushroomBounce
-    clip: {fileID: 8300000, guid: 870c0075eef206d4ead1124cc0912442, type: 3}
-    volume: 0.28
+    clip: {fileID: 8300000, guid: 1c1e9ff374a20ab46a01324fa7a83934, type: 3}
+    volume: 0.635
     pitch: 1
     spatialBlend: 0
     reverbZoneMix: 0
     loop: 0
     source: {fileID: 0}
-  - name: WhiteGhostAggro
-    clip: {fileID: 8300000, guid: 833a90bcb40076f419df321117c159aa, type: 3}
-    volume: 0.42
+  - name: UiHighlighted
+    clip: {fileID: 8300000, guid: 376771db4f83416419ec06fcd978433a, type: 3}
+    volume: 0.474
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: UiClick
+    clip: {fileID: 8300000, guid: fb6c729f233b38f4cbcad44a211fdd3b, type: 3}
+    volume: 0.491
     pitch: 1
     spatialBlend: 0
     reverbZoneMix: 0
     loop: 0
     source: {fileID: 0}
   - name: WhiteGhostAppear
-    clip: {fileID: 8300000, guid: 9aa04a4c4dfe40f42ae114a050e0fcae, type: 3}
-    volume: 0.35
+    clip: {fileID: 8300000, guid: ea4b11329b438bc40967f574d53b8bf1, type: 3}
+    volume: 0.429
+    pitch: 1
+    spatialBlend: 0
+    reverbZoneMix: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: WhiteGhostAggro
+    clip: {fileID: 8300000, guid: 3db30258cead17246a47f5f2a3b9fb58, type: 3}
+    volume: 0.384
     pitch: 1
     spatialBlend: 0
     reverbZoneMix: 0
