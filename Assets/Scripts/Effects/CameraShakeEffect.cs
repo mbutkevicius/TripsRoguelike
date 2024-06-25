@@ -8,10 +8,14 @@ public class CameraShakeEffect : MonoBehaviour
     [SerializeField] private float shakeDuration;
     [SerializeField] private float shakeMagnitude;
 
+    Vector3 originalPos;
+
+    void Start()
+    {
+        originalPos = transform.localPosition;
+    }
     public IEnumerator CameraShake()
     {
-        Vector3 originalPos = transform.localPosition;
-
         float elapsed = 0f;
 
         while (elapsed < shakeDuration)
@@ -32,8 +36,6 @@ public class CameraShakeEffect : MonoBehaviour
 
     public IEnumerator CustomCameraShake(float shakeDuration, float shakeMagnitude)
     {
-        Vector3 originalPos = transform.localPosition;
-
         float elapsed = 0f;
 
         while (elapsed < shakeDuration)

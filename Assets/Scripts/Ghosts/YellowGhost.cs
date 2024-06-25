@@ -85,7 +85,7 @@ public class YellowGhost : MonoBehaviour
         isChasingPlayer = true;
 
         // shake camera
-        StartCoroutine(cameraShakeEffect.CustomCameraShake(0.1f, 0.08f));
+        // StartCoroutine(cameraShakeEffect.CustomCameraShake(0.1f, 0.08f));
 
         yield return new WaitForSeconds(0.02f);
 

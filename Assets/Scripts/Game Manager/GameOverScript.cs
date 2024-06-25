@@ -6,6 +6,7 @@ using System;
 using FullscreenEditor;
 using UnityEditor.EditorTools;
 using UnityEditorInternal;
+using UnityEngine.UI;
 
 public class GameOverScript : MonoBehaviour
 {
@@ -27,6 +28,12 @@ public class GameOverScript : MonoBehaviour
     [Header("Delay Settings")]
     [SerializeField] private float deathDelay = 1.5f;
     [SerializeField] private float restartDelay = 1f;
+
+    [Header("Buttons")]
+    public Button retryButton;
+    public Button mainMenuButton;
+    public Button QuitButton;
+
 
     void Start(){
         // dev check to make it easier to work
@@ -89,6 +96,11 @@ public class GameOverScript : MonoBehaviour
     }
 
     public void Restart(){
+        // disable buttons
+        retryButton.interactable = false;
+        mainMenuButton.interactable = false;
+        QuitButton.interactable = false;
+
         Debug.Log("Restart");
         StartCoroutine(Restarted());
     }
@@ -110,6 +122,10 @@ public class GameOverScript : MonoBehaviour
     }
 
     public void MainMenu(){
+        // disable buttons
+        retryButton.interactable = false;
+        mainMenuButton.interactable = false;
+        QuitButton.interactable = false;
         StartCoroutine(MainMenuTransition());
     }
 
@@ -125,6 +141,11 @@ public class GameOverScript : MonoBehaviour
     }
 
     public void Quit(){
+        // disable buttons
+        retryButton.interactable = false;
+        mainMenuButton.interactable = false;
+        QuitButton.interactable = false;
+
         FindObjectOfType<AudioManager>().Play("UiClick");
         Application.Quit();
     }
