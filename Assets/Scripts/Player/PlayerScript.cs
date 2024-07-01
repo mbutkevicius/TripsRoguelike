@@ -18,6 +18,7 @@ using UnityEngine.XR;
 public class PlayerScript : AnimatorManager
 {
     private Rigidbody2D rb;
+    public DelayedStartScript delayedStartScript;
 
     #region MovementVariables
 
@@ -155,8 +156,11 @@ public class PlayerScript : AnimatorManager
     void Update()
     {
         //Debug.Log(xMoveInput);
+        if (delayedStartScript.isCountdown){
+            return;
+        }
 
-        if (FindObjectOfType<GameOverScript>().isGameOver == false){
+        else if (FindObjectOfType<GameOverScript>().isGameOver == false){
             // get the horizontal direction player is moving (right key=1 leftkey=-1 no key=0)
             GetXAxis();
             // get the vertical direction player is moving (right key=1 leftkey=-1 no key=0)
@@ -219,8 +223,11 @@ public class PlayerScript : AnimatorManager
     // physics updates contained here
     void FixedUpdate()
     {
+        if (delayedStartScript.isCountdown){
+            return;
+        }
         // check if game is still going on
-        if (FindObjectOfType<GameOverScript>().isGameOver == false){
+        else if (FindObjectOfType<GameOverScript>().isGameOver == false){
             GroundedHorizontalMovement(rb.velocity.y);
             if (IsGrounded()){
                 //groundedLinearDrag = 5.35f;
@@ -230,7 +237,7 @@ public class PlayerScript : AnimatorManager
                 //groundedLinearDrag = 2;
             }
         
-        ModifyPhysics();
+            ModifyPhysics();
         }
         // if gameover is occuring, clear all player movement 
         else{

@@ -12,6 +12,7 @@ public class DelayedStartScript : MonoBehaviour
     public WhiteGhost whiteGhost;
 
     [Header("Game Info References")]
+    public bool isCountdown = true;
     public GameDataManager gameDataManager;
     public GameObject HudContainer;
 
@@ -24,7 +25,7 @@ public class DelayedStartScript : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("Music");
 
         // disable player movement
-        FindObjectOfType<UserInput>().OnDisable();
+        //FindObjectOfType<UserInput>().OnDisable();
 
         // get the game manager
         gameDataManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameDataManager>();
@@ -42,6 +43,8 @@ public class DelayedStartScript : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
 
+        isCountdown = false;
+
         // activate ghost movement
         purpleGhost.EnableMovement();
         redGhost.EnableMovement();
@@ -49,7 +52,7 @@ public class DelayedStartScript : MonoBehaviour
         StartCoroutine(whiteGhost.State1A());
 
         // activate player
-        FindObjectOfType<UserInput>().OnEnable();
+        //FindObjectOfType<UserInput>().OnEnable();
 
         // activate timer
         gameDataManager.BeginTimer();
