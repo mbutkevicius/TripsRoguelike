@@ -26,6 +26,11 @@ public class PlayerHealth : MonoBehaviour
     [Header("Effects")]
     public GameObject damagedEffect;
 
+    public class Heart : MonoBehaviour
+    {
+        public bool isEmptied = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,20 +104,39 @@ public class PlayerHealth : MonoBehaviour
 
         // Enable sprite if left off
         playerSprite.enabled = true;
-    }   
+    }
 
     // update hearts on UI for player to see
-    private void UpdateHearts(){
-        // Clear existing hearts
-        foreach (Transform child in heartsParent){
-            Destroy(child.gameObject);
-        }
+    private void UpdateHearts()
+{
+    int currentHearts = heartsParent.childCount;
+    int heartsToEmpty = maxHealth - health;
 
-        // Instantiate hearts based on current health
-        for (int i = 0; i < health; i++){
-            GameObject newHeart = Instantiate(heartPrefab, heartsParent);
-            // Position each heart horizontally next to the previous one
-            newHeart.transform.localPosition = new Vector2(i * 20, 0);     // Adjust the x value to change spacing
+    for (int i = currentHearts - 1; i >= 0; i--)
+    {
+        Heart heart = heartsParent.GetChild(i).GetComponent<Heart>() ?? heartsParent.GetChild(i).gameObject.AddComponent<Heart>();
+        Animator heartAnimator = heart.GetComponent<Animator>();
+
+        if (heartAnimator == null) continue;
+
+        bool shouldEmpty = i >= currentHearts - heartsToEmpty;
+        if (shouldEmpty && !heart.isEmptied)
+        {
+            heartAnimator.Play("Heart_Loss", -1, 0f);
+            heart.isEmptied = true;
         }
-    } 
+        else if (!shouldEmpty && heart.isEmptied)
+        {
+            heart.isEmptied = false;
+            heartAnimator.Play("Heart_Fill", -1, 0f);
+        }
+    }
+
+    // Add new hearts if current health is greater than the number of existing hearts
+    for (int i = currentHearts; i < health; i++)
+    {
+        GameObject newHeart = Instantiate(heartPrefab, heartsParent);
+        newHeart.transform.localPosition = new Vector2(i * 20, 0);
+    }
+}
 }
