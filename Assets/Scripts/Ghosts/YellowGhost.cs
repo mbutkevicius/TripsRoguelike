@@ -1,14 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Transactions;
-using System.Xml.Serialization;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Rendering;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEngine.GraphicsBuffer;
 
 public class YellowGhost : MonoBehaviour
 {

@@ -1,11 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using System;
-using FullscreenEditor;
-using UnityEditor.EditorTools;
-using UnityEditorInternal;
 using UnityEngine.UI;
 
 public class GameOverScript : MonoBehaviour
@@ -136,6 +131,7 @@ public class GameOverScript : MonoBehaviour
         yield return new WaitForSeconds(deathDelay);
 
         isGameOver = false;
+        FindObjectOfType<UserInput>().OnEnable();
 
         SceneManager.LoadScene(0);
     }
