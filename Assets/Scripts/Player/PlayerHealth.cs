@@ -27,8 +27,11 @@ public class PlayerHealth : MonoBehaviour
     public GameObject damagedEffect;
 
     // Start is called before the first frame update
+    private AudioManager AudioManager;
     void Start()
     {
+        //Get Audio Manager
+        AudioManager = GameObject.FindObjectOfType<AudioManager>();
         // set sprite renderer and health
         playerSprite = GetComponent<SpriteRenderer>();
         health = maxHealth;
@@ -58,7 +61,8 @@ public class PlayerHealth : MonoBehaviour
 
             Instantiate(damagedEffect, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
 
-            FindObjectOfType<AudioManager>().Play("PlayerHurt");
+            //FindObjectOfType<AudioManager>().Play("PlayerHurt");
+            AudioManager.playSoundName("trip_hurt", gameObject);
 
             // indicate player invulnerability time
             StartCoroutine(InvincibilityFrames());

@@ -10,6 +10,7 @@ public class DelayedStartScript : MonoBehaviour
     public PurpleGhost purpleGhost;
     public RedGhost redGhost;
     public WhiteGhost whiteGhost;
+    public AK.Wwise.Event sceneMusic;
 
     [Header("Game Info References")]
     public GameDataManager gameDataManager;
@@ -18,10 +19,15 @@ public class DelayedStartScript : MonoBehaviour
     [Header("Countdown Timer Settings")]
     [Tooltip("Determines amount of delay before game will start")]
     [SerializeField] private float delayTime;
+
+    private AudioManager AudioManager;
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<AudioManager>().Play("Music");
+        // FindObjectOfType<AudioManager>().Play("Music");
+        AudioManager = GameObject.FindObjectOfType<AudioManager>();
+        AudioManager.toggleMusic();
+        //FindObjectOfType<AudioManager>().toggleMusic();
 
         // disable player movement
         FindObjectOfType<UserInput>().OnDisable();
@@ -62,18 +68,19 @@ public class DelayedStartScript : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         // "3"
-        FindObjectOfType<AudioManager>().Play("TimerTick");
-
+        //FindObjectOfType<AudioManager>().Play("TimerTick");
+        AudioManager.playSoundName("timer_tick", gameObject);
         yield return new WaitForSeconds(0.666f);
         // "2"
-        FindObjectOfType<AudioManager>().Play("TimerTick");
-
+        //FindObjectOfType<AudioManager>().Play("TimerTick");
+        AudioManager.playSoundName("timer_tick", gameObject);
         yield return new WaitForSeconds(0.666f);
         // "1"
-        FindObjectOfType<AudioManager>().Play("TimerTick");
-
+        //FindObjectOfType<AudioManager>().Play("TimerTick");
+        AudioManager.playSoundName("timer_tick", gameObject);
         yield return new WaitForSeconds(0.666f);
         // "GO!"
-        FindObjectOfType<AudioManager>().Play("TimerFinish");
+        //FindObjectOfType<AudioManager>().Play("TimerFinish");
+        AudioManager.playSoundName("timer_finish", gameObject);
     }
 }

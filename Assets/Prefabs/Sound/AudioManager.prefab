@@ -205,3 +205,11 @@ MonoBehaviour:
     reverbZoneMix: 0
     loop: 0
     source: {fileID: 0}
+  gameMusic:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e4256caee977c6f4eb8e2c8431f3e582, type: 2}
+  titleMusic:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: bb86523c9f40d2f46bebd94497d7760d, type: 2}

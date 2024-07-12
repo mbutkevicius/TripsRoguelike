@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d622b781f8b7443b24e41f7bcacb5f, type: 3}
+  m_Name: E67A45A7-3773-437A-A6BE-A8D79E68B8E4
+  m_EditorClassIdentifier: 
+  objectName: interact_mushroom
+  id: 95261760
+  guid: E67A45A7-3773-437A-A6BE-A8D79E68B8E4

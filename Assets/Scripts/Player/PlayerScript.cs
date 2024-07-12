@@ -139,8 +139,11 @@ public class PlayerScript : AnimatorManager
     }
 
     // Start is called before the first frame update
+    private AudioManager AudioManager;
     void Start()
     {
+        //Get Audio Manager
+        AudioManager = GameObject.FindObjectOfType<AudioManager>();
         // initialize animation
         Initialize(GetComponent<Animator>().layerCount, Animations.IDLE, GetComponent<Animator>(), DefaultAnimation);
 
@@ -374,14 +377,16 @@ public class PlayerScript : AnimatorManager
             }
 
             // check if player can jump
-            if (IsGrounded() || coyoteTimeCounter > 0f && isJumping == false) // added 'isJumping == false' here to ensure we can't jump while we're jumping 
+            if (!isJumping && IsGrounded() || coyoteTimeCounter > 0f && isJumping == false) // added 'isJumping == false' here to ensure we can't jump while we're jumping 
             {
                 isJumping = true;
                 jumpTimeCounter = maxJumpTime;
                 //jumpCount++;
                 rb.velocity = new Vector2(rb.velocity.x, playerJumpForce);
 
-                FindObjectOfType<AudioManager>().Play("PlayerJump");
+                //FindObjectOfType<AudioManager>().Play("PlayerJump");
+                
+                AudioManager.playSoundName("trip_jump", gameObject);
             }
         }
 
@@ -427,7 +432,8 @@ public class PlayerScript : AnimatorManager
     // determines player jump height when bouncing from jump pad
     public void BounceJump()
     {
-        FindObjectOfType<AudioManager>().Play("MushroomBounce");
+        //FindObjectOfType<AudioManager>().Play("MushroomBounce");
+        AudioManager.playSoundName("interact_mushroom", gameObject);
 
         // disable jump while using the bouncepad. 
         // NOTE: If multiple jumps allowed, will need to check if more jumping is allowed

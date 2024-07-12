@@ -5,9 +5,11 @@ using UnityEngine.UI;
 public class HighlightHandler : MonoBehaviour, IPointerEnterHandler
 {
     private Button button;
-
+    private AudioManager AudioManager;
     void Start()
     {
+        //Get Audio Manager
+        AudioManager = GameObject.FindObjectOfType<AudioManager>();
         button = GetComponent<Button>();
     }
 
@@ -15,7 +17,8 @@ public class HighlightHandler : MonoBehaviour, IPointerEnterHandler
     {
         if (button.interactable)
         {
-            FindObjectOfType<AudioManager>().Play("UiHighlighted");
+            //FindObjectOfType<AudioManager>().Play("UiHighlighted");
+            AudioManager.playSoundName("ui_highlighted", gameObject);
         }
     }
 }

@@ -21,10 +21,19 @@ public class GemProperties : MonoBehaviour
 
     public GameObject shatterEffect;
     public GameObject spawnEffect;
+    public AK.Wwise.Event spawnSound;
+    public AK.Wwise.Event collectSound;
+    public AK.Wwise.Event shatterSound;
+
+    private AudioManager AudioManager;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        //Get Audio Manager
+        AudioManager = GameObject.FindObjectOfType<AudioManager>();
+
         // Find the game data manager
         gameDataManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameDataManager>();
 
@@ -32,18 +41,19 @@ public class GemProperties : MonoBehaviour
 
         StartCoroutine(DespawnGem());
 
-        if (ScoreToAdd == 100)
-        {
-            FindObjectOfType<AudioManager>().Play("GemSpawn100");
-        }
-        if (ScoreToAdd == 300)
-        {
-            FindObjectOfType<AudioManager>().Play("GemSpawn300");
-        }
-        if (ScoreToAdd == 1000)
-        {
-            FindObjectOfType<AudioManager>().Play("GemSpawn1000");
-        }
+        //if (ScoreToAdd == 100)
+        //{
+        //    FindObjectOfType<AudioManager>().Play("GemSpawn100");
+        //}
+        //if (ScoreToAdd == 300)
+        //{
+        //    FindObjectOfType<AudioManager>().Play("GemSpawn300");
+        //}
+        //if (ScoreToAdd == 1000)
+        //{
+        //    FindObjectOfType<AudioManager>().Play("GemSpawn1000");
+        //}
+        AudioManager.playSound(spawnSound, gameObject);
     }
 
     // Update is called once per frame
@@ -61,18 +71,20 @@ public class GemProperties : MonoBehaviour
             if (ScoreToAdd == 100)
             {
                 Instantiate(hundredScoreEffect, new Vector3(transform.position.x, transform.position.y + scoreEffectHeightOffset), Quaternion.identity);
-                FindObjectOfType<AudioManager>().Play("GemCollected100");
+               // FindObjectOfType<AudioManager>().Play("GemCollected100");
+                
             }
             if (ScoreToAdd == 300)
             {
                 Instantiate(threeHundredScoreEffect, new Vector3(transform.position.x, transform.position.y + scoreEffectHeightOffset), Quaternion.identity);
-                FindObjectOfType<AudioManager>().Play("GemCollected300");
+                //FindObjectOfType<AudioManager>().Play("GemCollected300");
             }
             if (ScoreToAdd == 1000)
             {
                 Instantiate(thousandScoreEffect, new Vector3(transform.position.x, transform.position.y + scoreEffectHeightOffset), Quaternion.identity);
-                FindObjectOfType<AudioManager>().Play("GemCollected1000");
+               // FindObjectOfType<AudioManager>().Play("GemCollected1000");
             }
+            AudioManager.playSound(collectSound, gameObject);
             gameDataManager.score += ScoreToAdd;
             gameDataManager.scoreText.text = gameDataManager.score.ToString();
             Instantiate(GemSparkle, new Vector3 (transform.position.x, transform.position.y), Quaternion.identity);
@@ -89,7 +101,9 @@ public class GemProperties : MonoBehaviour
         yield return new WaitForSeconds(GemLifespan);
         Instantiate(shatterEffect, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
 
-        FindObjectOfType<AudioManager>().Play("GemShatter");
+        //FindObjectOfType<AudioManager>().Play("GemShatter");
+        AudioManager.playSound(shatterSound, gameObject);
+
 
         Destroy(gameObject);
     }

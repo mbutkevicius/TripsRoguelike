@@ -34,8 +34,11 @@ public class GameOverScript : MonoBehaviour
     public Button mainMenuButton;
     public Button QuitButton;
 
-
+    private AudioManager AudioManager;
+    
     void Start(){
+        //Get Audio Manager
+        AudioManager = GameObject.FindObjectOfType<AudioManager>();
         // dev check to make it easier to work
         //disables the cursor during gameplay if true
         if (isCursorDisabled){
@@ -79,8 +82,11 @@ public class GameOverScript : MonoBehaviour
             // invoke calls the function name and allows some sort of delay before calling it
             //Invoke(nameof(Restart), restartDelay);
 
-            FindObjectOfType<AudioManager>().Play("PlayerDeath");
-            FindObjectOfType<AudioManager>().Stop("Music");
+            //FindObjectOfType<AudioManager>().Play("PlayerDeath");
+            AudioManager.playSoundName("StopAll", gameObject);
+            AudioManager.playSoundName("trip_death", gameObject);
+            //FindObjectOfType<AudioManager>().Stop("Music");
+            //AudioManager.toggleMusic();
 
             StartCoroutine(GameOverScreen());
         }
@@ -107,7 +113,8 @@ public class GameOverScript : MonoBehaviour
 
     IEnumerator Restarted()
     {
-        FindObjectOfType<AudioManager>().Play("UiClick");
+        //FindObjectOfType<AudioManager>().Play("UiClick");
+        AudioManager.playSoundName("ui_click", gameObject);
         transition.SetTrigger("Out");
         yield return new WaitForSeconds(deathDelay);
 
@@ -131,7 +138,8 @@ public class GameOverScript : MonoBehaviour
 
     IEnumerator MainMenuTransition()
     {
-        FindObjectOfType<AudioManager>().Play("UiClick");
+        //FindObjectOfType<AudioManager>().Play("UiClick");
+        AudioManager.playSoundName("ui_click", gameObject);
         transition.SetTrigger("Out");
         yield return new WaitForSeconds(deathDelay);
 
@@ -146,7 +154,8 @@ public class GameOverScript : MonoBehaviour
         mainMenuButton.interactable = false;
         QuitButton.interactable = false;
 
-        FindObjectOfType<AudioManager>().Play("UiClick");
+        //FindObjectOfType<AudioManager>().Play("UiClick");
+        AudioManager.playSoundName("ui_click", gameObject);
         Application.Quit();
     }
 }

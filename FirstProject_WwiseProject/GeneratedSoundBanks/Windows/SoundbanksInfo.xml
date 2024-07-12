@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="150">
+	<RootPaths>
+		<ProjectRoot>../..</ProjectRoot>
+		<SourceFilesRoot>../../.cache/Windows</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>.</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{A8857F44-3268-D145-FEB7-6B13EB412D69}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<Custom>
+					<Plugin Id="33124880" Name="Compressor (Custom)" LibName="Wwise Compressor" LibId="7077891"/>
+					<Plugin Id="448163570" Name="Compressor (Custom)" LibName="Wwise Compressor" LibId="7077891"/>
+					<Plugin Id="584019996" Name="High_Impact (Custom)" LibName="Wwise Compressor" LibId="7077891"/>
+					<Plugin Id="731620171" Name="High_Impact (Custom)" LibName="Wwise Compressor" LibId="7077891"/>
+				</Custom>
+				<ShareSets>
+					<Plugin Id="2080872166" Name="Brick_Wall_Minus_6dB_Peak_Fast_Release" LibName="Wwise Peak Limiter" LibId="7208963"/>
+					<Plugin Id="2662085913" Name="Large_Church1" LibName="Wwise Matrix Reverb" LibId="7536643"/>
+				</ShareSets>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="1502772432" Name="SFX Bus">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="584019996"/>
+						</Custom>
+						<ShareSets>
+							<PluginRef Id="2662085913"/>
+						</ShareSets>
+					</PluginRefs>
+				</Bus>
+				<Bus Id="2921525382" Name="UIFX_Bus">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="731620171"/>
+						</Custom>
+						<ShareSets>
+							<PluginRef Id="2662085913"/>
+						</ShareSets>
+					</PluginRefs>
+				</Bus>
+				<Bus Id="3127962312" Name="Music Bus">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="33124880"/>
+						</Custom>
+						<ShareSets>
+							<PluginRef Id="2080872166"/>
+						</ShareSets>
+					</PluginRefs>
+				</Bus>
+				<Bus Id="3803692087" Name="Master Audio Bus">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="448163570"/>
+						</Custom>
+					</PluginRefs>
+				</Bus>
+			</Busses>
+		</SoundBank>
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{A3F1A2F2-8862-2833-81C1-22A03924F541}">
+			<ShortName>Main</ShortName>
+			<Path>Main.bnk</Path>
+			<Media>
+				<File Id="47076788" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Gem_Appear_Large.wav</ShortName>
+					<CachePath>SFX/Gem_Appear_Large_818F3B66.wem</CachePath>
+				</File>
+				<File Id="60363362" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ghost_yellow_chase.wav</ShortName>
+					<CachePath>SFX/ghost_yellow_chase_818F3B66.wem</CachePath>
+				</File>
+				<File Id="124993898" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ui_countdown_finished.wav</ShortName>
+					<CachePath>SFX/ui_countdown_finished_818F3B66.wem</CachePath>
+				</File>
+				<File Id="137886123" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ghost_yellow_chase2.wav</ShortName>
+					<CachePath>SFX/ghost_yellow_chase2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="174765411" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Interact_Mushroom_Bounce_03.wav</ShortName>
+					<CachePath>SFX/Interact_Mushroom_Bounce_03_818F3B66.wem</CachePath>
+				</File>
+				<File Id="178755246" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>trip_death.wav</ShortName>
+					<CachePath>SFX/trip_death_818F3B66.wem</CachePath>
+				</File>
+				<File Id="194621523" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Gem_Pickup_Med.wav</ShortName>
+					<CachePath>SFX/Gem_Pickup_Med_818F3B66.wem</CachePath>
+				</File>
+				<File Id="200854205" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ui_keypress2.wav</ShortName>
+					<CachePath>SFX/ui_keypress2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="278914179" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Interact_Mushroom_Bounce_04.wav</ShortName>
+					<CachePath>SFX/Interact_Mushroom_Bounce_04_818F3B66.wem</CachePath>
+				</File>
+				<File Id="290084604" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>gem_shatter_med.wav</ShortName>
+					<CachePath>SFX/gem_shatter_med_818F3B66.wem</CachePath>
+				</File>
+				<File Id="330961496" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GhostAppearSFX.wav</ShortName>
+					<CachePath>SFX/GhostAppearSFX_818F3B66.wem</CachePath>
+				</File>
+				<File Id="339031070" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>trip_damaged2.wav</ShortName>
+					<CachePath>SFX/trip_damaged2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="421553896" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Gem_Appear_Med.wav</ShortName>
+					<CachePath>SFX/Gem_Appear_Med_818F3B66.wem</CachePath>
+				</File>
+				<File Id="435635697" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Gem_Appear_Small.wav</ShortName>
+					<CachePath>SFX/Gem_Appear_Small_818F3B66.wem</CachePath>
+				</File>
+				<File Id="496912879" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>gem_shatter_small.wav</ShortName>
+					<CachePath>SFX/gem_shatter_small_818F3B66.wem</CachePath>
+				</File>
+				<File Id="513517874" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Gem_Pickup_Small.wav</ShortName>
+					<CachePath>SFX/Gem_Pickup_Small_818F3B66.wem</CachePath>
+				</File>
+				<File Id="576938674" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ui_select.wav</ShortName>
+					<CachePath>SFX/ui_select_818F3B66.wem</CachePath>
+				</File>
+				<File Id="588324584" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>MinigameMusic.wav</ShortName>
+					<CachePath>SFX/MinigameMusic_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="652414710" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>trip_yelp.wav</ShortName>
+					<CachePath>SFX/trip_yelp_818F3B66.wem</CachePath>
+				</File>
+				<File Id="674987883" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>TitleScreenMusic.wav</ShortName>
+					<CachePath>SFX/TitleScreenMusic_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="702273742" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ui_countdown.wav</ShortName>
+					<CachePath>SFX/ui_countdown_818F3B66.wem</CachePath>
+				</File>
+				<File Id="720316535" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Interact_Mushroom_Bounce_05.wav</ShortName>
+					<CachePath>SFX/Interact_Mushroom_Bounce_05_818F3B66.wem</CachePath>
+				</File>
+				<File Id="779146869" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>PressedStartSFX.wav</ShortName>
+					<CachePath>SFX/PressedStartSFX_818F3B66.wem</CachePath>
+				</File>
+				<File Id="811207943" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Gem_Pickup_Large.wav</ShortName>
+					<CachePath>SFX/Gem_Pickup_Large_818F3B66.wem</CachePath>
+				</File>
+				<File Id="846661461" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ui_highlight.wav</ShortName>
+					<CachePath>SFX/ui_highlight_818F3B66.wem</CachePath>
+				</File>
+				<File Id="885854342" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Interact_Mushroom_Bounce_02.wav</ShortName>
+					<CachePath>SFX/Interact_Mushroom_Bounce_02_818F3B66.wem</CachePath>
+				</File>
+				<File Id="901247340" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>gem_shatter_large.wav</ShortName>
+					<CachePath>SFX/gem_shatter_large_818F3B66.wem</CachePath>
+				</File>
+				<File Id="919316855" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>trip_death_yelp.wav</ShortName>
+					<CachePath>SFX/trip_death_yelp_818F3B66.wem</CachePath>
+				</File>
+				<File Id="922406279" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ghost_yellow_windup.wav</ShortName>
+					<CachePath>SFX/ghost_yellow_windup_323B3667.wem</CachePath>
+				</File>
+				<File Id="971231475" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Slide Whistle Up and Down 2.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Slide Whistle Up and Down 2_525C3073.wem</CachePath>
+				</File>
+				<File Id="997447317" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Interact_Mushroom_Bounce_01.wav</ShortName>
+					<CachePath>SFX/Interact_Mushroom_Bounce_01_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1010140489" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GhostLaughSFX.wav</ShortName>
+					<CachePath>SFX/GhostLaughSFX_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1053870579" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ghost_yellow_windup2.wav</ShortName>
+					<CachePath>SFX/ghost_yellow_windup2_818F3B66.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="2275179450" Name="GameplayMusic" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="588324584"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="696829370" Name="gem_large_appear" DurationType="OneShot" DurationMin="1.4704791" DurationMax="1.4704791">
+					<MediaRefs>
+						<MediaRef Id="47076788"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1354498361" Name="gem_large_pickup" DurationType="OneShot" DurationMin="1.5146667" DurationMax="1.5146667">
+					<MediaRefs>
+						<MediaRef Id="811207943"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2565492056" Name="gem_large_shatter" DurationType="OneShot" DurationMin="1.8309584" DurationMax="1.8309584">
+					<MediaRefs>
+						<MediaRef Id="901247340"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4067875935" Name="gem_med_appear" DurationType="OneShot" DurationMin="1.2053334" DurationMax="1.2053334">
+					<MediaRefs>
+						<MediaRef Id="421553896"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4055973888" Name="gem_med_pickup" DurationType="OneShot" DurationMin="1.2266667" DurationMax="1.2266667">
+					<MediaRefs>
+						<MediaRef Id="194621523"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2489024383" Name="gem_med_shatter" DurationType="OneShot" DurationMin="1.8309584" DurationMax="1.8309584">
+					<MediaRefs>
+						<MediaRef Id="290084604"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3602679870" Name="gem_small_appear" DurationType="OneShot" DurationMin="1.0546875" DurationMax="1.0546875">
+					<MediaRefs>
+						<MediaRef Id="435635697"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1945737901" Name="gem_small_pickup" DurationType="OneShot" DurationMin="1.152" DurationMax="1.152">
+					<MediaRefs>
+						<MediaRef Id="513517874"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="918114036" Name="gem_small_shatter" DurationType="OneShot" DurationMin="1.3127917" DurationMax="1.3127917">
+					<MediaRefs>
+						<MediaRef Id="496912879"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3830028166" Name="ghost_appear" DurationType="OneShot" DurationMin="1.891625" DurationMax="1.891625">
+					<MediaRefs>
+						<MediaRef Id="330961496"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3984401521" Name="ghost_chase" DurationType="OneShot" DurationMin="1.1002916" DurationMax="1.1002916">
+					<MediaRefs>
+						<MediaRef Id="1010140489"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1271873053" Name="ghost_yellow_launch" DurationType="OneShot" DurationMin="5.2943335" DurationMax="5.2943335">
+					<MediaRefs>
+						<MediaRef Id="60363362"/>
+						<MediaRef Id="137886123"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3415310188" Name="ghost_yellow_stop" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="555380885" Name="ghost_yellow_windup" DurationType="OneShot" DurationMin="1.8152083" DurationMax="1.8152083">
+					<MediaRefs>
+						<MediaRef Id="922406279"/>
+						<MediaRef Id="1053870579"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="95261760" Name="interact_mushroom" DurationType="OneShot" DurationMin="0.56141955" DurationMax="0.77966356">
+					<MediaRefs>
+						<MediaRef Id="174765411"/>
+						<MediaRef Id="278914179"/>
+						<MediaRef Id="720316535"/>
+						<MediaRef Id="885854342"/>
+						<MediaRef Id="997447317"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3908297853" Name="menu_start" DurationType="OneShot" DurationMin="3.0479584" DurationMax="3.0479584">
+					<MediaRefs>
+						<MediaRef Id="779146869"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3086540886" Name="StopAll" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="1761942122" Name="timer_finish" DurationType="OneShot" DurationMin="0.9166667" DurationMax="0.9166667">
+					<MediaRefs>
+						<MediaRef Id="124993898"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="796052088" Name="timer_tick" DurationType="OneShot" DurationMin="0.9548542" DurationMax="0.9548542">
+					<MediaRefs>
+						<MediaRef Id="702273742"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3150188730" Name="title_keypress" DurationType="OneShot" DurationMin="2.6660626" DurationMax="2.6660626">
+					<MediaRefs>
+						<MediaRef Id="200854205"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2191159630" Name="TitleMusic" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="674987883"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4043912151" Name="trip_death" DurationType="OneShot" DurationMin="3.408375" DurationMax="3.408375">
+					<MediaRefs>
+						<MediaRef Id="178755246"/>
+						<MediaRef Id="919316855"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3594574672" Name="trip_hurt" DurationType="OneShot" DurationMin="0.40489584" DurationMax="0.4244829">
+					<MediaRefs>
+						<MediaRef Id="339031070"/>
+						<MediaRef Id="652414710"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3030002391" Name="trip_jump" DurationType="OneShot" DurationMin="0.40461117" DurationMax="0.45416066">
+					<MediaRefs>
+						<MediaRef Id="971231475"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2249769530" Name="ui_click" DurationType="OneShot" DurationMin="1.5080833" DurationMax="1.5080833">
+					<MediaRefs>
+						<MediaRef Id="576938674"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1022027585" Name="ui_highlighted" DurationType="OneShot" DurationMin="0.62702084" DurationMax="0.62702084">
+					<MediaRefs>
+						<MediaRef Id="846661461"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{1869BEDD-6BC1-44E8-1951-E0EB264F5265}</FileHash>
+</SoundBanksInfo>

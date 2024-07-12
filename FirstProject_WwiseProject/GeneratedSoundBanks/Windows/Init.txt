@@ -1,0 +1,18 @@
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	1502772432	SFX Bus			\Default Work Unit\Master Audio Bus\SFX Bus	
+	2921525382	UIFX_Bus			\Default Work Unit\Master Audio Bus\UIFX_Bus	
+	3127962312	Music Bus			\Default Work Unit\Master Audio Bus\Music Bus	
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+
+Effect plug-ins	ID	Name	Type				Notes
+	33124880	Compressor (Custom)	Wwise Compressor			
+	448163570	Compressor (Custom)	Wwise Compressor			
+	584019996	High_Impact (Custom)	Wwise Compressor			
+	731620171	High_Impact (Custom)	Wwise Compressor			
+	2080872166	Brick_Wall_Minus_6dB_Peak_Fast_Release	Wwise Peak Limiter			
+	2662085913	Large_Church1	Wwise Matrix Reverb			
+
+Audio Devices	ID	Name	Type				Notes
+	2317455096	No_Output	No Output			
+	3859886410	System	System			
+

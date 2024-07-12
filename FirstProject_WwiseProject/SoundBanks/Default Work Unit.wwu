@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{0F1DA841-2ED5-41CA-8923-AA29E5186A2A}" SchemaVersion="119">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{0F1DA841-2ED5-41CA-8923-AA29E5186A2A}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="Main" ID="{00E4BE70-374A-47E9-86B6-264A6275088B}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Default Work Unit" ID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="timer_finish" ID="{C71F8DAD-0D74-409F-BBF3-E7EC5F7EDB0E}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Player" ID="{0B82CB9B-0FBC-4196-8A37-3781414ED695}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="GameplayMusic" ID="{6FD9F56A-E461-41C4-860D-70D297CF3A11}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Pickups" ID="{F37D0093-96DF-4200-906A-03A882B81EEE}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="gem_med_shatter" ID="{2FE1A4DB-7434-425B-B0C8-BEFC46D65DFA}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="gem_large_appear" ID="{25DC620B-A96C-42F0-94D4-95E94AB8F24B}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="interact_mushroom" ID="{E67A45A7-3773-437A-A6BE-A8D79E68B8E4}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="gem_large_shatter" ID="{B4022FA3-6ED3-43BB-ADA5-7C180DEC5F7E}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="TitleMusic" ID="{3A0E6FAD-6E6F-442D-8C7B-2BD9DFD26249}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Environment" ID="{38CA4DC4-6A8F-4473-A5ED-D1D82BF15078}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="trip_jump" ID="{C655BE62-07B2-447C-A161-A71B3D018CC9}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="gem_small_appear" ID="{B23AFED1-7389-4512-B130-9B9B324B3F57}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StopAll" ID="{5B0CE01B-3361-4536-B882-2027CD310858}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="timer_tick" ID="{9A220333-AE36-455C-BDB6-A1AF6E8E9F2E}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="ghost_chase" ID="{E97397FF-A26F-4619-8AB7-F2F4132E2C55}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="ghost_yellow_stop" ID="{CDB88FAA-C097-472B-BD4B-F800F27C6D6D}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="ui_click" ID="{43CDCC53-DC7B-4782-8914-9BCD7B22CA1A}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="gem_med_pickup" ID="{26B26E48-8335-47E6-A668-84E7C1C055DC}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="gem_small_shatter" ID="{9F1A8D7F-703F-48DC-A6A1-72CF5467B6F1}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="gem_small_pickup" ID="{A5589C55-F6A7-48FD-81E5-312B390FB8F6}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="gem_med_appear" ID="{AFB02DF6-DC98-498D-BB0A-2D15883F7391}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="UI" ID="{EC5D9931-8A27-499A-B435-CDD7C9BEAE3A}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Music" ID="{366BE9CD-BFA0-49ED-92CA-75A5EF13B9E8}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="trip_hurt" ID="{64F8E746-9AC9-4B4A-A327-C794DC8A54F8}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="ghost_yellow_windup" ID="{2486BCBB-F8E5-4BBD-95C5-277CA505159F}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="gem_large_pickup" ID="{1CFDBABB-D320-4C47-A030-7A146DD20343}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Enemies" ID="{7AE2EBA6-E7A3-4C81-9BB4-269DFA522DD7}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="trip_death" ID="{8192D26E-B027-4C84-A210-C7566E279FF1}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="ghost_appear" ID="{F1A64C7D-3DCF-4CE6-8829-C8A03B3871C6}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="menu_start" ID="{0B4B5EE1-50D1-4E48-90FD-2AFAF068A6AD}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="ghost_yellow_launch" ID="{DBEA8672-F38B-4E58-8DC8-6F1226D1077C}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="title_keypress" ID="{3468D8AF-4C7E-4E92-BFE8-0B979266A11B}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="ui_highlighted" ID="{A3E4B488-24C2-4F9E-83AC-23A21469D5EA}" WorkUnitID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

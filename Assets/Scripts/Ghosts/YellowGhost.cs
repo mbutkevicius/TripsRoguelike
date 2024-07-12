@@ -45,8 +45,11 @@ public class YellowGhost : MonoBehaviour
     public bool isChasingPlayer = false;
 
     // Start is called before the first frame update
+    private AudioManager AudioManager;
     void Start()
     {
+        //Get Audio Manager
+        AudioManager = GameObject.FindObjectOfType<AudioManager>();
         // Find the player script
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
         // Find the game data manager
@@ -75,7 +78,8 @@ public class YellowGhost : MonoBehaviour
     {
         animator.Play("YellowGhostWindUpAnimation", -1, 0f);
 
-        FindObjectOfType<AudioManager>().Play("YellowGhostWindUp");
+        //FindObjectOfType<AudioManager>().Play("YellowGhostWindUp");
+        AudioManager.playSoundName("ghost_yellow_windup", gameObject);
 
         yield return new WaitForSeconds(1);
         // Tells the tracking point to locate the player's current position
@@ -89,7 +93,8 @@ public class YellowGhost : MonoBehaviour
 
         yield return new WaitForSeconds(0.02f);
 
-        FindObjectOfType<AudioManager>().Play("YellowGhostChase");
+        //FindObjectOfType<AudioManager>().Play("YellowGhostChase");
+        AudioManager.playSoundName("ghost_yellow_launch", gameObject);
         animator.Play("YellowGhostIdleAnimation", -1, 0f);
 
         StartCoroutine(TrailEffect());
@@ -122,6 +127,7 @@ public class YellowGhost : MonoBehaviour
             }
             else // Happens when Yellow Ghost meets the distance threshold
             {
+                AudioManager.playSoundName("ghost_yellow_stop", gameObject);
                 StopCoroutine(TrailEffect());
                 isChasingPlayer = false; // Disables this whole 'if' block
                 boostMultiplier = originalBoostMultiplier; // Reset the boost multiplier

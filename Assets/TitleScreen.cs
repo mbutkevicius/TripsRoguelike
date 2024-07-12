@@ -19,8 +19,11 @@ public class TitleScreen : MonoBehaviour
 
 
     // Start is called before the first frame update
+    private AudioManager AudioManager;
     void Start()
     {
+        //Get Audio Manager
+        AudioManager = GameObject.FindObjectOfType<AudioManager>();
         StartCoroutine(StartDelay());
     }
 
@@ -39,8 +42,10 @@ public class TitleScreen : MonoBehaviour
 
         transition.SetTrigger("Death");
 
-        FindObjectOfType<AudioManager>().Stop("TitleScreenMusic");
-        FindObjectOfType<AudioManager>().Play("TitleScreenKeyPress");
+        //FindObjectOfType<AudioManager>().Stop("TitleScreenMusic");
+        AudioManager.toggleMusic();
+        //FindObjectOfType<AudioManager>().Play("TitleScreenKeyPress");
+        AudioManager.playSoundName("title_keypress", gameObject);
 
         keyPrompt.SetTrigger("PressedKey");
 
@@ -55,7 +60,8 @@ public class TitleScreen : MonoBehaviour
 
     IEnumerator StartDelay()
     {
-        FindObjectOfType<AudioManager>().Play("TitleScreenMusic");
+        //FindObjectOfType<AudioManager>().Play("TitleScreenMusic");
+        AudioManager.toggleMusic();
 
         yield return new WaitForSeconds(startDelay);
 

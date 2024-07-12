@@ -50,8 +50,11 @@ public class WhiteGhost : MonoBehaviour
     public Animator animator;
 
     // Start is called before the first frame update
+    private AudioManager AudioManager;
     void Start()
     {
+        //Get Audio Manager
+        AudioManager = GameObject.FindObjectOfType<AudioManager>();
         // Find the player script
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
         // Find the game data manager
@@ -111,14 +114,15 @@ public class WhiteGhost : MonoBehaviour
 
         // play animation and sounds
         animator.Play("WhiteGhostFadeInAnimation", -1, 0f);
-        FindObjectOfType<AudioManager>().Play("WhiteGhostAppear");
-
+        //FindObjectOfType<AudioManager>().Play("WhiteGhostAppear");
+        AudioManager.playSoundName("ghost_appear", gameObject);
         // let the ghost fade in
         yield return new WaitForSeconds(fadeInTime);
 
         // play animation and sounds
         animator.Play("WhiteGhostFadeOutAnimation", -1, 0f);
-        FindObjectOfType<AudioManager>().Play("WhiteGhostAggro");
+        //FindObjectOfType<AudioManager>().Play("WhiteGhostAggro");
+        AudioManager.playSoundName("ghost_chase", gameObject);
 
         // get the direction from the selected target
         Vector3 direction = trackingPointScript.GetSelectedTargetDirection();

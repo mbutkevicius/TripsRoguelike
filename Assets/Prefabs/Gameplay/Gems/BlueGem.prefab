@@ -164,6 +164,18 @@ MonoBehaviour:
   thousandScoreEffect: {fileID: 4355495334792737151, guid: a98ce02303bc6c74b9f07d5149903ee8, type: 3}
   shatterEffect: {fileID: 3043067919055294142, guid: af9b4fa089c79d3488d5502e91a60742, type: 3}
   spawnEffect: {fileID: 3267786191348378026, guid: a1c0806e963738542a9fb1e98cd217b2, type: 3}
+  spawnSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ba20d74a1d46c624e88b4fb4a3fd6551, type: 2}
+  collectSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 841ca7bdc63d3df41bbac9cad44d1acd, type: 2}
+  shatterSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9ee28a12ff29f7e429e39ef23db2cc4e, type: 2}
 --- !u!61 &8915368934945117149
 BoxCollider2D:
   m_ObjectHideFlags: 0
