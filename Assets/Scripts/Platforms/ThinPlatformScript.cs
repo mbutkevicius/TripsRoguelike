@@ -34,7 +34,7 @@ public class ThinPlatformScript : MonoBehaviour
 
             if (delayActive == false)
             {
-                StartCoroutine(EnableColliderAfterDelay(0.15f));
+                StartCoroutine(EnableColliderAfterDelay(0.2f));
             }
         }
         else if (delayActive == false)
@@ -43,11 +43,13 @@ public class ThinPlatformScript : MonoBehaviour
             StopCoroutine(EnableColliderAfterDelay(0));
         }
 
+        /*
         if (player.yMoveInput >= deadzone && player.IsGrounded()! && delayActive == false)
         {
             coll.enabled = true;
             StopCoroutine(EnableColliderAfterDelay(0));
         }
+        */
     }
 
     // create short delay to allow player to drop through platform
