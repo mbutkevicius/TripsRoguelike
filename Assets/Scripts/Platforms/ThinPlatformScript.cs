@@ -9,6 +9,7 @@ public class ThinPlatformScript : MonoBehaviour
     private PlayerScript player;
     [Tooltip("controls the distance analog stick has to be pressed down before falling through")]
     [SerializeField] private float deadzone = -0.4f;
+    [SerializeField] private float delay;
     private bool delayActive = false;
 
     // Start is called before the first frame update
@@ -34,7 +35,7 @@ public class ThinPlatformScript : MonoBehaviour
 
             if (delayActive == false)
             {
-                StartCoroutine(EnableColliderAfterDelay(0.2f));
+                StartCoroutine(EnableColliderAfterDelay(delay));
             }
         }
         else if (delayActive == false)
