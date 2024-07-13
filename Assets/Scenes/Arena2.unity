@@ -16806,7 +16806,7 @@ PrefabInstance:
       objectReference: {fileID: 870977564}
     - target: {fileID: 6450341160156292470, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
       propertyPath: isInvincible
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6450341160156292470, guid: e22da42eefd22cf48a222c55fa468071, type: 3}
       propertyPath: cameraShakeEffect
