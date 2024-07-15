@@ -1233,6 +1233,60 @@
 										<ActiveSource Name="trip_damaged2" ID="{CC18B7EB-C62C-4827-8A19-D11C2D5C6C23}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="trip_damaged3" ID="{6E52BB15-8C24-46C8-910D-B641323EE2E0}" ShortID="819494595">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3032BEEB-FD86-4401-B274-5CBC94BD0E6E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="UIFX_Bus" ID="{344179CF-6C4A-435C-A7FC-87E2023A8292}" WorkUnitID="{E2108970-7662-45C6-9EDB-0005F1F508FD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="trip_damaged3" ID="{A2414CB5-4102-4D77-A970-1815AF0BBE0B}">
+											<Language>SFX</Language>
+											<AudioFile>trip_damaged3.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1051874832"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="trip_damaged3" ID="{A2414CB5-4102-4D77-A970-1815AF0BBE0B}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="trip_damaged4" ID="{86B8FA77-3268-4D03-A93D-5CB7C609E240}" ShortID="712709655">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>360</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3032BEEB-FD86-4401-B274-5CBC94BD0E6E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{E2108970-7662-45C6-9EDB-0005F1F508FD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="trip_damaged4" ID="{896A49D1-C69E-4294-B9AF-50D8C0B84371}">
+											<Language>SFX</Language>
+											<AudioFile>trip_damaged4.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="731839964"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="trip_damaged4" ID="{896A49D1-C69E-4294-B9AF-50D8C0B84371}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</ActorMixer>
 					</ChildrenList>
@@ -1462,9 +1516,14 @@
 								</Sound>
 								<Sound Name="trip_yelp" ID="{28C4B2BD-8940-4350-990E-AF26E3841609}" ShortID="287199741">
 									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>12</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
-												<Value>380</Value>
+												<Value>460</Value>
 											</ValueList>
 											<ModifierList>
 												<ModifierInfo>
@@ -1477,6 +1536,11 @@
 													</Modifier>
 												</ModifierInfo>
 											</ModifierList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
@@ -1509,7 +1573,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>5</Value>
+												<Value>-7</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>

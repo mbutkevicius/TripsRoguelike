@@ -10,6 +10,7 @@ Effect plug-ins	ID	Name	Type				Notes
 	584019996	High_Impact (Custom)	Wwise Compressor			
 	731620171	High_Impact (Custom)	Wwise Compressor			
 	2080872166	Brick_Wall_Minus_6dB_Peak_Fast_Release	Wwise Peak Limiter			
+	2513915904	Hall_Large	Wwise RoomVerb			
 	2662085913	Large_Church1	Wwise Matrix Reverb			
 
 Audio Devices	ID	Name	Type				Notes

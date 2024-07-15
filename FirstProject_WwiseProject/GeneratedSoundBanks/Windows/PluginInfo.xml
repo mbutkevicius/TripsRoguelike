@@ -4,8 +4,9 @@
 		<PluginLib LibName="Wwise Compressor" LibId="7077891" Type="Effect" DLL="AkCompressor" StaticLib="AkCompressorFX"/>
 		<PluginLib LibName="Wwise Peak Limiter" LibId="7208963" Type="Effect" DLL="AkPeakLimiter" StaticLib="AkPeakLimiterFX"/>
 		<PluginLib LibName="Wwise Matrix Reverb" LibId="7536643" Type="Effect" DLL="AkMatrixReverb" StaticLib="AkMatrixReverbFX"/>
+		<PluginLib LibName="Wwise RoomVerb" LibId="7733251" Type="Effect" DLL="AkRoomVerb" StaticLib="AkRoomVerbFX"/>
 		<PluginLib LibName="System" LibId="11403271" Type="AudioDevice"/>
 		<PluginLib LibName="No Output" LibId="11862023" Type="AudioDevice"/>
 	</PluginLibs>
-	<FileHash>{BB38063A-A9D6-9E4E-742D-67C897DB09AE}</FileHash>
+	<FileHash>{51B67AE1-64D9-0657-DFBF-6CE2DB0CCB59}</FileHash>
 </PluginInfo>

@@ -225,7 +225,7 @@
 								<Action Name="" ID="{3C9F42ED-BFEA-40A3-B01D-6D437B4A58A2}" ShortID="879748945">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="trip_damaged2" ID="{54F49481-454A-4147-B5FD-2D747C647185}" WorkUnitID="{52457B69-2AE3-4C43-A107-B8B02A2B6215}"/>
+											<ObjectRef Name="trip_damaged4" ID="{86B8FA77-3268-4D03-A93D-5CB7C609E240}" WorkUnitID="{52457B69-2AE3-4C43-A107-B8B02A2B6215}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

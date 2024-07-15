@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{A8857F44-3268-D145-FEB7-6B13EB412D69}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{82B2C216-2D26-DCE1-B6B8-B44FB03A8B01}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -21,6 +21,7 @@
 				</Custom>
 				<ShareSets>
 					<Plugin Id="2080872166" Name="Brick_Wall_Minus_6dB_Peak_Fast_Release" LibName="Wwise Peak Limiter" LibId="7208963"/>
+					<Plugin Id="2513915904" Name="Hall_Large" LibName="Wwise RoomVerb" LibId="7733251"/>
 					<Plugin Id="2662085913" Name="Large_Church1" LibName="Wwise Matrix Reverb" LibId="7536643"/>
 				</ShareSets>
 				<AudioDevices>
@@ -35,6 +36,7 @@
 							<PluginRef Id="584019996"/>
 						</Custom>
 						<ShareSets>
+							<PluginRef Id="2513915904"/>
 							<PluginRef Id="2662085913"/>
 						</ShareSets>
 					</PluginRefs>
@@ -44,9 +46,6 @@
 						<Custom>
 							<PluginRef Id="731620171"/>
 						</Custom>
-						<ShareSets>
-							<PluginRef Id="2662085913"/>
-						</ShareSets>
 					</PluginRefs>
 				</Bus>
 				<Bus Id="3127962312" Name="Music Bus">
@@ -68,7 +67,7 @@
 				</Bus>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{A3F1A2F2-8862-2833-81C1-22A03924F541}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{08D4B341-48B2-3FC5-0B71-147E6FB9954C}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -116,10 +115,6 @@
 					<ShortName>GhostAppearSFX.wav</ShortName>
 					<CachePath>SFX/GhostAppearSFX_818F3B66.wem</CachePath>
 				</File>
-				<File Id="339031070" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>trip_damaged2.wav</ShortName>
-					<CachePath>SFX/trip_damaged2_818F3B66.wem</CachePath>
-				</File>
 				<File Id="421553896" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Gem_Appear_Med.wav</ShortName>
 					<CachePath>SFX/Gem_Appear_Med_818F3B66.wem</CachePath>
@@ -159,6 +154,10 @@
 				<File Id="720316535" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Interact_Mushroom_Bounce_05.wav</ShortName>
 					<CachePath>SFX/Interact_Mushroom_Bounce_05_818F3B66.wem</CachePath>
+				</File>
+				<File Id="731839964" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>trip_damaged4.wav</ShortName>
+					<CachePath>SFX/trip_damaged4_818F3B66.wem</CachePath>
 				</File>
 				<File Id="779146869" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>PressedStartSFX.wav</ShortName>
@@ -320,10 +319,10 @@
 						<MediaRef Id="919316855"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="3594574672" Name="trip_hurt" DurationType="OneShot" DurationMin="0.40489584" DurationMax="0.4244829">
+				<Event Id="3594574672" Name="trip_hurt" DurationType="OneShot" DurationMin="0.7068626" DurationMax="0.7068626">
 					<MediaRefs>
-						<MediaRef Id="339031070"/>
 						<MediaRef Id="652414710"/>
+						<MediaRef Id="731839964"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="3030002391" Name="trip_jump" DurationType="OneShot" DurationMin="0.40461117" DurationMax="0.45416066">
@@ -344,5 +343,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{1869BEDD-6BC1-44E8-1951-E0EB264F5265}</FileHash>
+	<FileHash>{05BECADA-95D1-F266-BA10-82FAF303985B}</FileHash>
 </SoundBanksInfo>

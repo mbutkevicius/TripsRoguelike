@@ -77,9 +77,23 @@
 									<Reference>
 										<Local>
 											<EffectSlot Name="" ID="{A25F709C-CDAF-4B1E-8734-143B96DC85FD}" ShortID="559597673">
+												<PropertyList>
+													<Property Name="Bypass" Type="bool" Value="True"/>
+												</PropertyList>
 												<ReferenceList>
 													<Reference Name="Effect" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
 														<ObjectRef Name="Large_Church1" ID="{9B6E8B78-EF8C-494C-AADA-D01CF51B5FAC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+													</Reference>
+												</ReferenceList>
+											</EffectSlot>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<EffectSlot Name="" ID="{E2BE12C8-6F6E-4C40-98EF-DEE23AA392B6}" ShortID="633052133">
+												<ReferenceList>
+													<Reference Name="Effect" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+														<ObjectRef Name="Hall_Large" ID="{6D154498-FF6D-4823-96FC-56841B70E079}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 													</Reference>
 												</ReferenceList>
 											</EffectSlot>
@@ -94,6 +108,9 @@
 									<Reference>
 										<Local>
 											<EffectSlot Name="" ID="{D8452379-76D0-4B30-9E76-54DACB7D2EAA}" ShortID="628154465">
+												<PropertyList>
+													<Property Name="Bypass" Type="bool" Value="True"/>
+												</PropertyList>
 												<ReferenceList>
 													<Reference Name="Effect">
 														<Custom CreatedFrom="{2AFD6FB0-C906-4683-A377-FEEEF72967B0}">
@@ -106,20 +123,6 @@
 																</PropertyList>
 															</Effect>
 														</Custom>
-													</Reference>
-												</ReferenceList>
-											</EffectSlot>
-										</Local>
-									</Reference>
-									<Reference>
-										<Local>
-											<EffectSlot Name="" ID="{80F34ABF-DBAA-430B-B54C-662002A200CB}" ShortID="730149573">
-												<PropertyList>
-													<Property Name="Bypass" Type="bool" Value="True"/>
-												</PropertyList>
-												<ReferenceList>
-													<Reference Name="Effect" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
-														<ObjectRef Name="Large_Church1" ID="{9B6E8B78-EF8C-494C-AADA-D01CF51B5FAC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 													</Reference>
 												</ReferenceList>
 											</EffectSlot>
