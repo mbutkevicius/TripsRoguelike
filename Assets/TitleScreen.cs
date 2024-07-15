@@ -57,7 +57,7 @@ public class TitleScreen : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     IEnumerator StartDelay()

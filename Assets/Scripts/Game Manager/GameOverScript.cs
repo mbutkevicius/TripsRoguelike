@@ -133,7 +133,7 @@ public class GameOverScript : MonoBehaviour
         isGameOver = false;
         FindObjectOfType<UserInput>().OnEnable();
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void Quit(){
