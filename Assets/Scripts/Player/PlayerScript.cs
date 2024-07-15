@@ -382,11 +382,7 @@ public class PlayerScript : AnimatorManager
             }
 
             // check if player can jump
-<<<<<<< HEAD
-            if (!isJumping && IsGrounded() || coyoteTimeCounter > 0f && isJumping == false) // added 'isJumping == false' here to ensure we can't jump while we're jumping 
-=======
             if (!isJumping && IsGrounded() || coyoteTimeCounter > 0f && !isJumping) // added 'isJumping == false' here to ensure we can't jump while we're jumping 
->>>>>>> Development
             {
                 isJumping = true;
                 jumpTimeCounter = maxJumpTime;

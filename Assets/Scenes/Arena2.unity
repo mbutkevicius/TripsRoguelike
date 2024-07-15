@@ -6148,11 +6148,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1b296fdd1bb16c4ba20f90a224b9f05, type: 3}
-<<<<<<< HEAD
 --- !u!114 &785174947 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3966615878327518681, guid: 0b94f8a786d6ae546830aa0973c02838, type: 3}
-  m_PrefabInstance: {fileID: 396131810004834944}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -6217,8 +6215,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
->>>>>>> Development
 --- !u!4 &854492390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4398230830530631940, guid: 9de6b7c53509fe44e9c874831bb6e910, type: 3}
@@ -33814,8 +33810,5 @@ SceneRoots:
   - {fileID: 1292374563}
   - {fileID: 515713135}
   - {fileID: 48584732}
-<<<<<<< HEAD
   - {fileID: 812360819}
-=======
   - {fileID: 1025865841}
->>>>>>> Development
