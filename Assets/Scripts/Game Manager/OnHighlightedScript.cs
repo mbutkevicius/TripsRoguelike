@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HighlightHandler : MonoBehaviour, IPointerEnterHandler
+public class HighlightHandler : MonoBehaviour, IPointerEnterHandler, ISelectHandler
 {
     private Button button;
     private AudioManager AudioManager;
@@ -19,6 +19,14 @@ public class HighlightHandler : MonoBehaviour, IPointerEnterHandler
         {
             //FindObjectOfType<AudioManager>().Play("UiHighlighted");
             AudioManager.playSoundName("ui_highlighted", gameObject);
+        }
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        if (button.interactable)
+        {
+            FindObjectOfType<AudioManager>().Play("UiHighlighted");
         }
     }
 }

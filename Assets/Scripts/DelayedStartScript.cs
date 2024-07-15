@@ -1,6 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.EditorTools;
+
 using UnityEngine;
 
 public class DelayedStartScript : MonoBehaviour
@@ -13,6 +12,7 @@ public class DelayedStartScript : MonoBehaviour
     public AK.Wwise.Event sceneMusic;
 
     [Header("Game Info References")]
+    public bool isCountdown = true;
     public GameDataManager gameDataManager;
     public GameObject HudContainer;
 
@@ -30,7 +30,7 @@ public class DelayedStartScript : MonoBehaviour
         //FindObjectOfType<AudioManager>().toggleMusic();
 
         // disable player movement
-        FindObjectOfType<UserInput>().OnDisable();
+        //FindObjectOfType<UserInput>().OnDisable();
 
         // get the game manager
         gameDataManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameDataManager>();
@@ -48,6 +48,8 @@ public class DelayedStartScript : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
 
+        isCountdown = false;
+
         // activate ghost movement
         purpleGhost.EnableMovement();
         redGhost.EnableMovement();
@@ -55,7 +57,7 @@ public class DelayedStartScript : MonoBehaviour
         StartCoroutine(whiteGhost.State1A());
 
         // activate player
-        FindObjectOfType<UserInput>().OnEnable();
+        //FindObjectOfType<UserInput>().OnEnable();
 
         // activate timer
         gameDataManager.BeginTimer();

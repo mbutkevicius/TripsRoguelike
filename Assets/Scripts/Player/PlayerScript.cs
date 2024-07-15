@@ -5,8 +5,6 @@ using System.Security.Cryptography;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.Callbacks;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.LowLevel;
@@ -18,6 +16,7 @@ using UnityEngine.XR;
 public class PlayerScript : AnimatorManager
 {
     private Rigidbody2D rb;
+    public DelayedStartScript delayedStartScript;
 
     #region MovementVariables
 
@@ -158,8 +157,11 @@ public class PlayerScript : AnimatorManager
     void Update()
     {
         //Debug.Log(xMoveInput);
+        if (delayedStartScript.isCountdown){
+            return;
+        }
 
-        if (FindObjectOfType<GameOverScript>().isGameOver == false){
+        else if (FindObjectOfType<GameOverScript>().isGameOver == false){
             // get the horizontal direction player is moving (right key=1 leftkey=-1 no key=0)
             GetXAxis();
             // get the vertical direction player is moving (right key=1 leftkey=-1 no key=0)
@@ -222,8 +224,11 @@ public class PlayerScript : AnimatorManager
     // physics updates contained here
     void FixedUpdate()
     {
+        if (delayedStartScript.isCountdown){
+            return;
+        }
         // check if game is still going on
-        if (FindObjectOfType<GameOverScript>().isGameOver == false){
+        else if (FindObjectOfType<GameOverScript>().isGameOver == false){
             GroundedHorizontalMovement(rb.velocity.y);
             if (IsGrounded()){
                 //groundedLinearDrag = 5.35f;
@@ -233,7 +238,7 @@ public class PlayerScript : AnimatorManager
                 //groundedLinearDrag = 2;
             }
         
-        ModifyPhysics();
+            ModifyPhysics();
         }
         // if gameover is occuring, clear all player movement 
         else{
@@ -311,7 +316,7 @@ public class PlayerScript : AnimatorManager
         GetXAxis();
 
         // apply force to move vector. Note: this is AddForce not creating a new vector. This allows the slide to happen during turns and stops
-        rb.AddForce(Vector2.right * xMoveInput * playerAcceleration);
+        rb.AddForce(Vector2.right * xMoveInput * playerAcceleration * Time.deltaTime);
 
         // check if player is changing direction
         if ((xMoveInput > 0 && !facingRight) || (xMoveInput < 0 && facingRight)){
@@ -377,7 +382,11 @@ public class PlayerScript : AnimatorManager
             }
 
             // check if player can jump
+<<<<<<< HEAD
             if (!isJumping && IsGrounded() || coyoteTimeCounter > 0f && isJumping == false) // added 'isJumping == false' here to ensure we can't jump while we're jumping 
+=======
+            if (!isJumping && IsGrounded() || coyoteTimeCounter > 0f && !isJumping) // added 'isJumping == false' here to ensure we can't jump while we're jumping 
+>>>>>>> Development
             {
                 isJumping = true;
                 jumpTimeCounter = maxJumpTime;
@@ -471,7 +480,7 @@ public class PlayerScript : AnimatorManager
     // contains gravity changes for when player is airborn
     private void Gravity()
     {
-        // This part is a little iffy. I was just playing around with stuff until it worked LOL 
+        // This part is a little iffy. I was just playing around with stuff until it worked
         if (previousVelocityY > ApproachingPeakJump && rb.velocity.y <= ApproachingPeakJump)
         {
             // entering peak of jump
@@ -488,10 +497,22 @@ public class PlayerScript : AnimatorManager
         {
             // exit peak jump
             isApproachingPeak = false;
+
+            // player wasn't getting falling gravity when dropping
+            // this ensures player has desc gravity effects when dropping or falling through platform
+            if (rb.gravityScale == ascGravity){
+                rb.gravityScale = peakJumpGravity + 1;    // added + 1 because it felt like it should be a little higher when just falling
+            }
+
             // increase gravity the longer you fall until it reaches max
-            descGravity = Mathf.MoveTowards(rb.gravityScale, maxGravity, descGravityAceleration);
+            descGravity = Mathf.MoveTowards(rb.gravityScale, maxGravity, descGravityAceleration * Time.deltaTime);
             // apply gravity change
             rb.gravityScale = descGravity;
+        }
+
+        // player wasn't always resetting gravity to asc on jump so added this check
+        if (rb.velocity.y > 0 && isJumping){
+            rb.gravityScale = ascGravity;
         }
 
         // continuously track previous vertical position

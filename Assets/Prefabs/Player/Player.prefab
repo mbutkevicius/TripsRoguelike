@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a81725ea80cf14ca6702e2a4e65e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayedStartScript: {fileID: 0}
   maxRunningSpeed: 8
   playerAcceleration: 40
   groundedLinearDrag: 22
