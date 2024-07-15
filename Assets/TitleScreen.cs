@@ -27,7 +27,14 @@ public class TitleScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check for keyboard input
         if (Input.anyKeyDown && !isInputLocked)
+        {
+            StartCoroutine(PlayGame());
+        }
+
+        // Check for controller input
+        if (!isInputLocked && (Input.GetButtonDown("Submit") || Input.GetButtonDown("Start")))
         {
             StartCoroutine(PlayGame());
         }
