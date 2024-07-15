@@ -363,9 +363,11 @@ public class PlayerScript : AnimatorManager
         JumpBufferActive = true;
         yield return new WaitForSeconds(JumpBufferTime);
         JumpBufferActive = false;
+        jumpSoundCount = 0;
     }
 
     // allows the player to jump
+    private int jumpSoundCount = 0;
     private void Jump()
     {
         // check if button was just pushed
@@ -384,6 +386,9 @@ public class PlayerScript : AnimatorManager
             // check if player can jump
             if (!isJumping && IsGrounded() || coyoteTimeCounter > 0f && !isJumping) // added 'isJumping == false' here to ensure we can't jump while we're jumping 
             {
+                if (rb.velocity.y < 0){
+                    jumpSoundCount = 0;
+                }
                 isJumping = true;
                 jumpTimeCounter = maxJumpTime;
                 //jumpCount++;
@@ -391,7 +396,12 @@ public class PlayerScript : AnimatorManager
 
                 //FindObjectOfType<AudioManager>().Play("PlayerJump");
                 
-                AudioManager.playSoundName("trip_jump", gameObject);
+                jumpSoundCount += 1;
+                Debug.LogWarning("Jump Sound Count: " + jumpSoundCount);
+
+                if (jumpSoundCount == 1){
+                    AudioManager.playSoundName("trip_jump", gameObject);
+                }
             }
         }
 
