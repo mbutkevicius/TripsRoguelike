@@ -17,6 +17,8 @@
 										<Value>-8</Value>
 									</ValueList>
 								</Property>
+								<Property Name="Color" Type="int16" Value="10"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 							<ObjectLists>
 								<ObjectList Name="Effects">
@@ -52,6 +54,10 @@
 							</ObjectLists>
 						</Bus>
 						<Bus Name="SFX Bus" ID="{034D7654-7B2A-429E-A1A9-D76C41B81C03}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="1"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ObjectLists>
 								<ObjectList Name="Effects">
 									<Reference>
@@ -103,6 +109,10 @@
 							</ObjectLists>
 						</Bus>
 						<Bus Name="UIFX_Bus" ID="{344179CF-6C4A-435C-A7FC-87E2023A8292}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="3"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ObjectLists>
 								<ObjectList Name="Effects">
 									<Reference>

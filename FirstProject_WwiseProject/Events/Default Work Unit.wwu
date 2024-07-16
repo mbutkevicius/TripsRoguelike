@@ -4,8 +4,16 @@
 		<WorkUnit Name="Default Work Unit" ID="{6CC521CB-E22F-407B-A328-EC72E9FCDA66}" PersistMode="Standalone">
 			<ChildrenList>
 				<Folder Name="Pickups" ID="{F37D0093-96DF-4200-906A-03A882B81EEE}" ShortID="552116846">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="4"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
 						<Event Name="gem_med_pickup" ID="{26B26E48-8335-47E6-A668-84E7C1C055DC}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{F80DE5B6-3CFD-48D5-BB66-5B68701DBBC1}" ShortID="635333507">
 									<ReferenceList>
@@ -17,6 +25,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="gem_small_pickup" ID="{A5589C55-F6A7-48FD-81E5-312B390FB8F6}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{8797E433-A9FE-4DA2-BEF1-69982F1E9A82}" ShortID="226049980">
 									<ReferenceList>
@@ -28,6 +40,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="gem_large_pickup" ID="{1CFDBABB-D320-4C47-A030-7A146DD20343}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{55175CC8-9227-4675-BCDA-82FA11419A69}" ShortID="652310635">
 									<ReferenceList>
@@ -39,6 +55,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="gem_large_appear" ID="{25DC620B-A96C-42F0-94D4-95E94AB8F24B}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{1A2869D3-094B-4F83-B4FD-F98424FD2A63}" ShortID="54487793">
 									<ReferenceList>
@@ -50,6 +70,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="gem_med_appear" ID="{AFB02DF6-DC98-498D-BB0A-2D15883F7391}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{1557472F-E5B7-403D-AEBE-1E7728D4F1A6}" ShortID="54579133">
 									<ReferenceList>
@@ -61,6 +85,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="gem_small_appear" ID="{B23AFED1-7389-4512-B130-9B9B324B3F57}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{0F7CE926-AD81-4FD9-9836-4217D35F2E68}" ShortID="659426867">
 									<ReferenceList>
@@ -72,6 +100,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="gem_large_shatter" ID="{B4022FA3-6ED3-43BB-ADA5-7C180DEC5F7E}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{6B78DE85-7076-4E32-BEF5-F3DB2D9B7E8B}" ShortID="665322507">
 									<ReferenceList>
@@ -83,6 +115,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="gem_med_shatter" ID="{2FE1A4DB-7434-425B-B0C8-BEFC46D65DFA}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{E2ED03EC-8D36-4842-9010-37A2603B880B}" ShortID="275252045">
 									<ReferenceList>
@@ -94,6 +130,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="gem_small_shatter" ID="{9F1A8D7F-703F-48DC-A6A1-72CF5467B6F1}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{EBD9540E-00BA-4244-95B6-C9AE67A211AF}" ShortID="536882742">
 									<ReferenceList>
@@ -107,8 +147,16 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Environment" ID="{38CA4DC4-6A8F-4473-A5ED-D1D82BF15078}" ShortID="207146201">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="21"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
 						<Event Name="interact_mushroom" ID="{E67A45A7-3773-437A-A6BE-A8D79E68B8E4}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="21"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{6E90BCF9-BA76-46AF-8526-0FC611CC1B5B}" ShortID="938465849">
 									<ReferenceList>
@@ -122,8 +170,16 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Enemies" ID="{7AE2EBA6-E7A3-4C81-9BB4-269DFA522DD7}" ShortID="606744513">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="23"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
 						<Event Name="ghost_appear" ID="{F1A64C7D-3DCF-4CE6-8829-C8A03B3871C6}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="23"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{00D73E72-23D7-4230-8CB6-51564936C557}" ShortID="751057890">
 									<ReferenceList>
@@ -135,6 +191,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="ghost_chase" ID="{E97397FF-A26F-4619-8AB7-F2F4132E2C55}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="23"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{D6596175-CE53-4A58-ACA0-586B3E4D028B}" ShortID="626321521">
 									<ReferenceList>
@@ -146,6 +206,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="ghost_yellow_windup" ID="{2486BCBB-F8E5-4BBD-95C5-277CA505159F}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="23"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{DF2EC023-19D1-48CC-88F5-C0D9B834F951}" ShortID="1036111691">
 									<ReferenceList>
@@ -164,6 +228,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="ghost_yellow_launch" ID="{DBEA8672-F38B-4E58-8DC8-6F1226D1077C}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="23"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{041BB0D0-C9A8-4455-B435-6FE37AC334F5}" ShortID="181711100">
 									<ReferenceList>
@@ -182,6 +250,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="ghost_yellow_stop" ID="{CDB88FAA-C097-472B-BD4B-F800F27C6D6D}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="23"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{8658C1D6-C24A-4179-B3FC-2A1AB484F5E7}" ShortID="492552057">
 									<PropertyList>
@@ -208,24 +280,36 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{0B82CB9B-0FBC-4196-8A37-3781414ED695}" ShortID="981284721">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="10"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
 						<Event Name="trip_jump" ID="{C655BE62-07B2-447C-A161-A71B3D018CC9}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="10"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{9B860033-E300-4D26-BA57-EE863292FE42}" ShortID="865107269">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="trip_jump_3" ID="{A5B06547-D0DF-434D-B92C-4CBDF0CD05ED}" WorkUnitID="{52457B69-2AE3-4C43-A107-B8B02A2B6215}"/>
+											<ObjectRef Name="trip_jump" ID="{A5B06547-D0DF-434D-B92C-4CBDF0CD05ED}" WorkUnitID="{52457B69-2AE3-4C43-A107-B8B02A2B6215}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
 							</ChildrenList>
 						</Event>
 						<Event Name="trip_hurt" ID="{64F8E746-9AC9-4B4A-A327-C794DC8A54F8}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="10"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{3C9F42ED-BFEA-40A3-B01D-6D437B4A58A2}" ShortID="879748945">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="trip_damaged4" ID="{86B8FA77-3268-4D03-A93D-5CB7C609E240}" WorkUnitID="{52457B69-2AE3-4C43-A107-B8B02A2B6215}"/>
+											<ObjectRef Name="ui_damaged" ID="{86B8FA77-3268-4D03-A93D-5CB7C609E240}" WorkUnitID="{52457B69-2AE3-4C43-A107-B8B02A2B6215}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -239,11 +323,15 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="trip_death" ID="{8192D26E-B027-4C84-A210-C7566E279FF1}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="10"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{7B8E2B49-13D4-44AB-AA19-AEB5BB983037}" ShortID="299803727">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="trip_death" ID="{DEE70CD4-D2F8-4CAF-8629-BEFA41F0F9CF}" WorkUnitID="{52457B69-2AE3-4C43-A107-B8B02A2B6215}"/>
+											<ObjectRef Name="ui_death" ID="{DEE70CD4-D2F8-4CAF-8629-BEFA41F0F9CF}" WorkUnitID="{52457B69-2AE3-4C43-A107-B8B02A2B6215}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -259,34 +347,17 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{EC5D9931-8A27-499A-B435-CDD7C9BEAE3A}" ShortID="706410354">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="25"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
-						<Event Name="menu_start" ID="{0B4B5EE1-50D1-4E48-90FD-2AFAF068A6AD}">
-							<ChildrenList>
-								<Action Name="" ID="{635EEDDD-4C1F-469C-B80D-A96689462423}" ShortID="626506204">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="PressedStartSFX" ID="{C44950FC-946F-409A-AE69-E5B92B9012F1}" WorkUnitID="{52457B69-2AE3-4C43-A107-B8B02A2B6215}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
 						<Event Name="title_keypress" ID="{3468D8AF-4C7E-4E92-BFE8-0B979266A11B}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
-								<Action Name="" ID="{8924B514-8BFF-4597-AC6B-2B2711DA71D6}" ShortID="721724985">
-									<PropertyList>
-										<Property Name="Inclusion" Type="bool">
-											<ValueList>
-												<Value>False</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="ui_keypress" ID="{9376BA59-2A29-41F9-A833-878B669ECD68}" WorkUnitID="{52457B69-2AE3-4C43-A107-B8B02A2B6215}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
 								<Action Name="" ID="{D07B85F3-2D3D-4CA7-8383-08BF817FD756}" ShortID="639495592">
 									<ReferenceList>
 										<Reference Name="Target">
@@ -297,6 +368,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="ui_click" ID="{43CDCC53-DC7B-4782-8914-9BCD7B22CA1A}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{511765AF-9068-415F-A8CC-2AA0075F5D39}" ShortID="261140007">
 									<ReferenceList>
@@ -308,6 +383,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="ui_highlighted" ID="{A3E4B488-24C2-4F9E-83AC-23A21469D5EA}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{D6F69239-C99B-488B-A26B-1628484C2E7C}" ShortID="665728205">
 									<ReferenceList>
@@ -319,6 +398,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="timer_tick" ID="{9A220333-AE36-455C-BDB6-A1AF6E8E9F2E}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{9F139FB2-B54B-4D86-BF06-C6B910092FDD}" ShortID="516665323">
 									<ReferenceList>
@@ -330,6 +413,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="timer_finish" ID="{C71F8DAD-0D74-409F-BBF3-E7EC5F7EDB0E}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{BA1A068B-F6AF-43D7-AA58-8C74FE4548FA}" ShortID="778906055">
 									<ReferenceList>
@@ -343,8 +430,16 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Music" ID="{366BE9CD-BFA0-49ED-92CA-75A5EF13B9E8}" ShortID="515192093">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="14"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
 						<Event Name="TitleMusic" ID="{3A0E6FAD-6E6F-442D-8C7B-2BD9DFD26249}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="14"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{B93C57DD-CEF7-4378-83D5-288405B94D0C}" ShortID="989910565">
 									<ReferenceList>
@@ -356,6 +451,10 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="GameplayMusic" ID="{6FD9F56A-E461-41C4-860D-70D297CF3A11}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="14"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Action Name="" ID="{5C8CC953-7CB6-4C76-82DB-703147C2872E}" ShortID="286939015">
 									<ReferenceList>

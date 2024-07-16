@@ -26,7 +26,8 @@ public class HighlightHandler : MonoBehaviour, IPointerEnterHandler, ISelectHand
     {
         if (button.interactable)
         {
-            FindObjectOfType<AudioManager>().Play("UiHighlighted");
+            //FindObjectOfType<AudioManager>().Play("UiHighlighted");
+            AudioManager.playSoundName("ui_highlighted", gameObject);
         }
     }
 }

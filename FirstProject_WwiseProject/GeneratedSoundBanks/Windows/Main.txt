@@ -21,7 +21,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	3594574672	trip_hurt			\Default Work Unit\Player\trip_hurt	
 	3602679870	gem_small_appear			\Default Work Unit\Pickups\gem_small_appear	
 	3830028166	ghost_appear			\Default Work Unit\Enemies\ghost_appear	
-	3908297853	menu_start			\Default Work Unit\UI\menu_start	
 	3984401521	ghost_chase			\Default Work Unit\Enemies\ghost_chase	
 	4043912151	trip_death			\Default Work Unit\Player\trip_death	
 	4055973888	gem_med_pickup			\Default Work Unit\Pickups\gem_med_pickup	
@@ -33,7 +32,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	124993898	ui_countdown_finished	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\ui_countdown_finished_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI\ui_countdown_finished		176096
 	137886123	ghost_yellow_chase2	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\ghost_yellow_chase2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Ghosts\YellowGhost\ghost_yellow_chase2		508352
 	174765411	Interact_Mushroom_Bounce_03	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\Interact_Mushroom_Bounce_03_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Interact_Mushroom\Interact_Mushroom_Bounce_03		67164
-	178755246	trip_death	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\trip_death_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI\trip_death		654504
+	178755246	ui_death	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\trip_death_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI\ui_death		654504
 	194621523	Gem_Pickup_Med	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\Gem_Pickup_Med_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pickups\Gem_Pickup\Gem_Pickup_Med		117856
 	200854205	ui_keypress2	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\ui_keypress2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI\ui_keypress2		511980
 	278914179	Interact_Mushroom_Bounce_04	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\Interact_Mushroom_Bounce_04_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Interact_Mushroom\Interact_Mushroom_Bounce_04		55140
@@ -49,15 +48,14 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	674987883	TitleScreenMusic	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\TitleScreenMusic_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\TitleScreenMusic\TitleScreenMusic\TitleScreenMusic		22530044
 	702273742	ui_countdown	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\ui_countdown_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI\ui_countdown		183428
 	720316535	Interact_Mushroom_Bounce_05	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\Interact_Mushroom_Bounce_05_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Interact_Mushroom\Interact_Mushroom_Bounce_05		59686
-	731839964	trip_damaged4	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\trip_damaged4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI\trip_damaged4		167184
-	779146869	PressedStartSFX	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\PressedStartSFX_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI\PressedStartSFX		585304
+	731839964	ui_damaged	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\trip_damaged4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI\ui_damaged		167184
 	811207943	Gem_Pickup_Large	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\Gem_Pickup_Large_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pickups\Gem_Pickup\Gem_Pickup_Large		290912
 	846661461	ui_highlight	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\ui_highlight_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI\ui_highlight		120484
 	885854342	Interact_Mushroom_Bounce_02	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\Interact_Mushroom_Bounce_02_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Interact_Mushroom\Interact_Mushroom_Bounce_02		55270
 	901247340	gem_shatter_large	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\gem_shatter_large_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pickups\Gem_Shatter\gem_shatter_large		351640
 	919316855	trip_death_yelp	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\trip_death_yelp_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Trip\trip_death_yelp		307108
 	922406279	ghost_yellow_windup	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\ghost_yellow_windup_323B3667.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Ghosts\YellowGhost\ghost_yellow_windup		101562
-	971231475	trip_jump_3	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\Soundly Audio\Slide Whistle Up and Down 2_525C3073.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Trip\trip_jump_3		51944
+	971231475	trip_jump	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\Soundly Audio\Slide Whistle Up and Down 2_525C3073.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Trip\trip_jump		51944
 	997447317	Interact_Mushroom_Bounce_01	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\Interact_Mushroom_Bounce_01_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Interact_Mushroom\Interact_Mushroom_Bounce_01		51262
 	1010140489	GhostLaughSFX	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\GhostLaughSFX_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Ghosts\WhiteGhost\GhostLaughSFX		211352
 	1053870579	ghost_yellow_windup2	T:\Documents\Unity\FirstProject\FirstProject_WwiseProject\.cache\Windows\SFX\ghost_yellow_windup2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Ghosts\YellowGhost\ghost_yellow_windup2		174356

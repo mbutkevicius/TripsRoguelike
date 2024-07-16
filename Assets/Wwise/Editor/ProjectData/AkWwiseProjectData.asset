@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: 708910e26276c6459edb0005f1f508fd
     GuidInternal: 
-    m_lastTime: -8584805318980299360
+    m_lastTime: -8584804680660859644
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -117,7 +117,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 41a81d0fd52eca418923aa29e5186a2a
     GuidInternal: 
-    m_lastTime: -8584805318973418375
+    m_lastTime: -8584804660113612988
     List:
     - name: Main
       guid: 70bee4004a37e94786b6264a6275088b
@@ -145,7 +145,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: cb21c56c2fe27b40a328ec72e9fcda66
     GuidInternal: 
-    m_lastTime: -8584805318989094072
+    m_lastTime: -8584804660113687382
     List:
     - name: Enemies
       guid: a6ebe27aa3e7814c9bb4269dfa522dd7
@@ -501,26 +501,6 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.77966356
       minDuration: 0.56141955
-    - name: menu_start
-      guid: e15e4b0bd150484e90fd2afaf068a6ad
-      id: 3908297853
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: cb21c56c2fe27b40a328ec72e9fcda66
-      - ElementName: UI
-        ObjectType: 4
-        guid: 31995dec278a9a49b435cdd7c9beae3a
-      - ElementName: menu_start
-        ObjectType: 3
-        guid: e15e4b0bd150484e90fd2afaf068a6ad
-      Path: Events\Default Work Unit\UI\menu_start
-      maxAttenuation: 0
-      maxDuration: 3.0479584
-      minDuration: 3.0479584
     - name: Music
       guid: cde96b36a0bfed4992ca75a5ef13b9e8
       id: 3991942870

@@ -5,6 +5,8 @@
 			<ChildrenList>
 				<MusicPlaylistContainer Name="MinigameMusic" ID="{9066FC82-F76D-4033-92CC-E416BDCAA544}" ShortID="1024434506">
 					<PropertyList>
+						<Property Name="Color" Type="int16" Value="14"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
 								<Value>-3</Value>
@@ -65,7 +67,9 @@
 					<ChildrenList>
 						<MusicSegment Name="MinigameMusic" ID="{C80973EB-208C-445E-942E-70EA387590F5}" ShortID="802817661">
 							<PropertyList>
+								<Property Name="Color" Type="int16" Value="14"/>
 								<Property Name="EndPosition" Type="Real64" Value="234159.3125"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -77,6 +81,10 @@
 							</ReferenceList>
 							<ChildrenList>
 								<MusicTrack Name="MinigameMusic" ID="{F65FE573-3A4F-450C-B38B-BCF06F8C3DB0}" ShortID="876494548">
+									<PropertyList>
+										<Property Name="Color" Type="int16" Value="14"/>
+										<Property Name="OverrideColor" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="OutputBus">
 											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{E2108970-7662-45C6-9EDB-0005F1F508FD}"/>
@@ -153,6 +161,8 @@
 				</MusicPlaylistContainer>
 				<MusicPlaylistContainer Name="TitleScreenMusic" ID="{B84794DC-5464-4E68-9EA5-5F0554597E11}" ShortID="352642846">
 					<PropertyList>
+						<Property Name="Color" Type="int16" Value="17"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
 								<Value>-7</Value>
@@ -207,7 +217,9 @@
 					<ChildrenList>
 						<MusicSegment Name="TitleScreenMusic" ID="{DF53D5C0-E9DB-4EED-B991-0857DE45A7BE}" ShortID="48379006">
 							<PropertyList>
+								<Property Name="Color" Type="int16" Value="17"/>
 								<Property Name="EndPosition" Type="Real64" Value="117343.479166667"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">

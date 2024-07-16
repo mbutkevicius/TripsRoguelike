@@ -29,7 +29,6 @@ namespace AK
         static const AkUniqueID GHOST_YELLOW_STOP = 3415310188U;
         static const AkUniqueID GHOST_YELLOW_WINDUP = 555380885U;
         static const AkUniqueID INTERACT_MUSHROOM = 95261760U;
-        static const AkUniqueID MENU_START = 3908297853U;
         static const AkUniqueID STOPALL = 3086540886U;
         static const AkUniqueID TIMER_FINISH = 1761942122U;
         static const AkUniqueID TIMER_TICK = 796052088U;

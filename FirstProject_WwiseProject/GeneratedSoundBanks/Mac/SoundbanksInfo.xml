@@ -67,7 +67,7 @@
 				</Bus>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{08D4B341-48B2-3FC5-0B71-147E6FB9954C}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{DB7F6B65-5E55-6962-34D7-3F2D5D535EDD}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -158,10 +158,6 @@
 				<File Id="731839964" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>trip_damaged4.wav</ShortName>
 					<CachePath>SFX/trip_damaged4_818F3B66.wem</CachePath>
-				</File>
-				<File Id="779146869" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>PressedStartSFX.wav</ShortName>
-					<CachePath>SFX/PressedStartSFX_818F3B66.wem</CachePath>
 				</File>
 				<File Id="811207943" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Gem_Pickup_Large.wav</ShortName>
@@ -287,11 +283,6 @@
 						<MediaRef Id="997447317"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="3908297853" Name="menu_start" DurationType="OneShot" DurationMin="3.0479584" DurationMax="3.0479584">
-					<MediaRefs>
-						<MediaRef Id="779146869"/>
-					</MediaRefs>
-				</Event>
 				<Event Id="3086540886" Name="StopAll" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="1761942122" Name="timer_finish" DurationType="OneShot" DurationMin="0.9166667" DurationMax="0.9166667">
 					<MediaRefs>
@@ -343,5 +334,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{1D921674-FC51-F9CE-7352-5CDB75CB2CD0}</FileHash>
+	<FileHash>{90C6E295-7111-2118-B0EB-C7361FE1C796}</FileHash>
 </SoundBanksInfo>
