@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "FirstProject.sln"
+    "dotnet.defaultSolution": "TripsRoguelike.sln"
 }
